@@ -5,8 +5,8 @@ function sphericalCoordinatesToCartesian (radius, inclination, azimuth) {
    * See: https://en.wikipedia.org/wiki/Spherical_coordinate_system#Cartesian_coordinates
    */
   const x = radius * Math.sin(inclination) * Math.cos(azimuth);
-  const y = radius * Math.sin(inclination) * Math.sin(azimuth);
-  const z = radius * Math.cos(inclination);
+  const z = radius * Math.sin(inclination) * Math.sin(azimuth);
+  const y = radius * Math.cos(inclination);
   return [x, y, z];
 }
 

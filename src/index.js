@@ -4,9 +4,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Credits from "./components/Credits";
 import { Canvas } from "react-three-fiber";
-import Cubes from "./components/Cubes";
 import Lights from "./components/Lights";
 import Environment from "./components/Environment";
+import { LightGlobe } from "./components/LightGlobe";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
       <Canvas>
         <Lights />
         <Environment />
+        <LightGlobe />
       </Canvas>
     </>
   );
