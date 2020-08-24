@@ -1,0 +1,560 @@
+[
+  {
+    "name": "Kabul",
+    "population": "3043532",
+    "lat": "34.52813",
+    "lng": "69.17233"
+  },
+  {
+    "name": "Buenos Aires",
+    "population": "13076300",
+    "lat": "-34.61315",
+    "lng": "-58.37723"
+  },
+  {
+    "name": "Sydney",
+    "population": "4627345",
+    "lat": "-33.86785",
+    "lng": "151.20732"
+  },
+  {
+    "name": "Melbourne",
+    "population": "4246375",
+    "lat": "-37.814",
+    "lng": "144.96332"
+  },
+  {
+    "name": "Dhaka",
+    "population": "10356500",
+    "lat": "23.7104",
+    "lng": "90.40744"
+  },
+  {
+    "name": "Chattogram",
+    "population": "3920222",
+    "lat": "22.3384",
+    "lng": "91.83168"
+  },
+  {
+    "name": "São Paulo",
+    "population": "10021295",
+    "lat": "-23.5475",
+    "lng": "-46.63611"
+  },
+  {
+    "name": "Rio de Janeiro",
+    "population": "6023699",
+    "lat": "-22.90642",
+    "lng": "-43.18223"
+  },
+  {
+    "name": "Kinshasa",
+    "population": "7785965",
+    "lat": "-4.32758",
+    "lng": "15.31357"
+  },
+  {
+    "name": "Abidjan",
+    "population": "3677115",
+    "lat": "5.35444",
+    "lng": "-4.00167"
+  },
+  {
+    "name": "Santiago",
+    "population": "4837295",
+    "lat": "-33.45694",
+    "lng": "-70.64827"
+  },
+  {
+    "name": "Ürümqi",
+    "population": "3029372",
+    "lat": "43.80096",
+    "lng": "87.60046"
+  },
+  {
+    "name": "Zhengzhou",
+    "population": "4253913",
+    "lat": "34.75778",
+    "lng": "113.64861"
+  },
+  {
+    "name": "Zibo",
+    "population": "3129228",
+    "lat": "36.79056",
+    "lng": "118.06333"
+  },
+  {
+    "name": "Xi’an",
+    "population": "6501190",
+    "lat": "34.25833",
+    "lng": "108.92861"
+  },
+  {
+    "name": "Xiamen",
+    "population": "3531347",
+    "lat": "24.47979",
+    "lng": "118.08187"
+  },
+  {
+    "name": "Wuxi",
+    "population": "3543719",
+    "lat": "31.56887",
+    "lng": "120.28857"
+  },
+  {
+    "name": "Wuhan",
+    "population": "9785388",
+    "lat": "30.58333",
+    "lng": "114.26667"
+  },
+  {
+    "name": "Tianshui",
+    "population": "3500000",
+    "lat": "34.57952",
+    "lng": "105.74238"
+  },
+  {
+    "name": "Tianjin",
+    "population": "11090314",
+    "lat": "39.14222",
+    "lng": "117.17667"
+  },
+  {
+    "name": "Tangshan",
+    "population": "3372102",
+    "lat": "39.63333",
+    "lng": "118.18333"
+  },
+  {
+    "name": "Taiyuan",
+    "population": "3426519",
+    "lat": "37.86944",
+    "lng": "112.56028"
+  },
+  {
+    "name": "Tai’an",
+    "population": "5499000",
+    "lat": "36.18528",
+    "lng": "117.12"
+  },
+  {
+    "name": "Shiyan",
+    "population": "3460000",
+    "lat": "32.6475",
+    "lng": "110.77806"
+  },
+  {
+    "name": "Shenzhen",
+    "population": "10358381",
+    "lat": "22.54554",
+    "lng": "114.0683"
+  },
+  {
+    "name": "Shantou",
+    "population": "5329024",
+    "lat": "23.36814",
+    "lng": "116.71479"
+  },
+  {
+    "name": "Shanghai",
+    "population": "22315474",
+    "lat": "31.22222",
+    "lng": "121.45806"
+  },
+  {
+    "name": "Qingdao",
+    "population": "3718835",
+    "lat": "36.06488",
+    "lng": "120.38042"
+  },
+  {
+    "name": "Puyang",
+    "population": "3590000",
+    "lat": "29.45679",
+    "lng": "119.88872"
+  },
+  {
+    "name": "Ningbo",
+    "population": "3491597",
+    "lat": "29.87819",
+    "lng": "121.54945"
+  },
+  {
+    "name": "Nanjing",
+    "population": "7165292",
+    "lat": "32.06167",
+    "lng": "118.77778"
+  },
+  {
+    "name": "Nanchong",
+    "population": "7150000",
+    "lat": "30.79508",
+    "lng": "106.08473"
+  },
+  {
+    "name": "Kunming",
+    "population": "3855346",
+    "lat": "25.03889",
+    "lng": "102.71833"
+  },
+  {
+    "name": "Jinan",
+    "population": "4335989",
+    "lat": "36.66833",
+    "lng": "116.99722"
+  },
+  {
+    "name": "Hefei",
+    "population": "3310268",
+    "lat": "31.86389",
+    "lng": "117.28083"
+  },
+  {
+    "name": "Hangzhou",
+    "population": "6241971",
+    "lat": "30.29365",
+    "lng": "120.16142"
+  },
+  {
+    "name": "Guangzhou",
+    "population": "11071424",
+    "lat": "23.11667",
+    "lng": "113.25"
+  },
+  {
+    "name": "Foshan",
+    "population": "3600000",
+    "lat": "23.02677",
+    "lng": "113.13148"
+  },
+  {
+    "name": "Dongguan",
+    "population": "8000000",
+    "lat": "23.01797",
+    "lng": "113.74866"
+  },
+  {
+    "name": "Dalian",
+    "population": "4087733",
+    "lat": "38.91222",
+    "lng": "121.60222"
+  },
+  {
+    "name": "Chongqing",
+    "population": "7457600",
+    "lat": "29.56278",
+    "lng": "106.55278"
+  },
+  {
+    "name": "Chengdu",
+    "population": "7415590",
+    "lat": "30.66667",
+    "lng": "104.06667"
+  },
+  {
+    "name": "Changsha",
+    "population": "3093980",
+    "lat": "28.19874",
+    "lng": "112.97087"
+  },
+  {
+    "name": "Beijing",
+    "population": "11716620",
+    "lat": "39.9075",
+    "lng": "116.39723"
+  },
+  {
+    "name": "Suzhou",
+    "population": "5345961",
+    "lat": "31.30408",
+    "lng": "120.59538"
+  },
+  {
+    "name": "Zhongshan",
+    "population": "3121275",
+    "lat": "21.31992",
+    "lng": "110.5723"
+  },
+  {
+    "name": "Shenyang",
+    "population": "6255921",
+    "lat": "41.79222",
+    "lng": "123.43278"
+  },
+  {
+    "name": "Harbin",
+    "population": "5878939",
+    "lat": "45.75",
+    "lng": "126.65"
+  },
+  {
+    "name": "Changchun",
+    "population": "4193073",
+    "lat": "43.88",
+    "lng": "125.32278"
+  },
+  {
+    "name": "Bogotá",
+    "population": "7674366",
+    "lat": "4.60971",
+    "lng": "-74.08175"
+  },
+  {
+    "name": "Berlin",
+    "population": "3426354",
+    "lat": "52.52437",
+    "lng": "13.41053"
+  },
+  {
+    "name": "Cairo",
+    "population": "7734614",
+    "lat": "30.06263",
+    "lng": "31.24967"
+  },
+  {
+    "name": "Alexandria",
+    "population": "3811516",
+    "lat": "31.20176",
+    "lng": "29.91582"
+  },
+  {
+    "name": "Madrid",
+    "population": "3255944",
+    "lat": "40.4165",
+    "lng": "-3.70256"
+  },
+  {
+    "name": "London",
+    "population": "7556900",
+    "lat": "51.50853",
+    "lng": "-0.12574"
+  },
+  {
+    "name": "Hong Kong",
+    "population": "7012738",
+    "lat": "22.27832",
+    "lng": "114.17469"
+  },
+  {
+    "name": "Jakarta",
+    "population": "8540121",
+    "lat": "-6.21462",
+    "lng": "106.84513"
+  },
+  {
+    "name": "Chennai",
+    "population": "4328063",
+    "lat": "13.08784",
+    "lng": "80.27847"
+  },
+  {
+    "name": "Hyderabad",
+    "population": "3597816",
+    "lat": "17.38405",
+    "lng": "78.45636"
+  },
+  {
+    "name": "Delhi",
+    "population": "10927986",
+    "lat": "28.65195",
+    "lng": "77.23149"
+  },
+  {
+    "name": "Kolkata",
+    "population": "4631392",
+    "lat": "22.56263",
+    "lng": "88.36304"
+  },
+  {
+    "name": "Mumbai",
+    "population": "12691836",
+    "lat": "19.07283",
+    "lng": "72.88261"
+  },
+  {
+    "name": "Bengaluru",
+    "population": "5104047",
+    "lat": "12.97194",
+    "lng": "77.59369"
+  },
+  {
+    "name": "Ahmedabad",
+    "population": "3719710",
+    "lat": "23.02579",
+    "lng": "72.58727"
+  },
+  {
+    "name": "Baghdad",
+    "population": "7216000",
+    "lat": "33.34058",
+    "lng": "44.40088"
+  },
+  {
+    "name": "Tehran",
+    "population": "7153309",
+    "lat": "35.69439",
+    "lng": "51.42151"
+  },
+  {
+    "name": "Yokohama",
+    "population": "3574443",
+    "lat": "35.43333",
+    "lng": "139.65"
+  },
+  {
+    "name": "Tokyo",
+    "population": "8336599",
+    "lat": "35.6895",
+    "lng": "139.69171"
+  },
+  {
+    "name": "Pyongyang",
+    "population": "3222000",
+    "lat": "39.03385",
+    "lng": "125.75432"
+  },
+  {
+    "name": "Seoul",
+    "population": "10349312",
+    "lat": "37.566",
+    "lng": "126.9784"
+  },
+  {
+    "name": "Busan",
+    "population": "3678555",
+    "lat": "35.10168",
+    "lng": "129.03004"
+  },
+  {
+    "name": "Casablanca",
+    "population": "3144909",
+    "lat": "33.58831",
+    "lng": "-7.61138"
+  },
+  {
+    "name": "Yangon",
+    "population": "4477638",
+    "lat": "16.80528",
+    "lng": "96.15611"
+  },
+  {
+    "name": "Mexico City",
+    "population": "12294193",
+    "lat": "19.42847",
+    "lng": "-99.12766"
+  },
+  {
+    "name": "Lagos",
+    "population": "9000000",
+    "lat": "6.45407",
+    "lng": "3.39467"
+  },
+  {
+    "name": "Kano",
+    "population": "3626068",
+    "lat": "12.00012",
+    "lng": "8.51672"
+  },
+  {
+    "name": "Ibadan",
+    "population": "3565108",
+    "lat": "7.37756",
+    "lng": "3.90591"
+  },
+  {
+    "name": "Lima",
+    "population": "7737002",
+    "lat": "-12.04318",
+    "lng": "-77.02824"
+  },
+  {
+    "name": "Lahore",
+    "population": "6310888",
+    "lat": "31.558",
+    "lng": "74.35071"
+  },
+  {
+    "name": "Karachi",
+    "population": "11624219",
+    "lat": "24.8608",
+    "lng": "67.0104"
+  },
+  {
+    "name": "Saint Petersburg",
+    "population": "5028000",
+    "lat": "59.93863",
+    "lng": "30.31413"
+  },
+  {
+    "name": "Moscow",
+    "population": "10381222",
+    "lat": "55.75222",
+    "lng": "37.61556"
+  },
+  {
+    "name": "Riyadh",
+    "population": "4205961",
+    "lat": "24.68773",
+    "lng": "46.72185"
+  },
+  {
+    "name": "Singapore",
+    "population": "3547809",
+    "lat": "1.28967",
+    "lng": "103.85007"
+  },
+  {
+    "name": "Bangkok",
+    "population": "5104476",
+    "lat": "13.75398",
+    "lng": "100.50144"
+  },
+  {
+    "name": "Ankara",
+    "population": "3517182",
+    "lat": "39.91987",
+    "lng": "32.85427"
+  },
+  {
+    "name": "Istanbul",
+    "population": "14804116",
+    "lat": "41.01384",
+    "lng": "28.94966"
+  },
+  {
+    "name": "Taipei",
+    "population": "7871900",
+    "lat": "25.04776",
+    "lng": "121.53185"
+  },
+  {
+    "name": "New York City",
+    "population": "8175133",
+    "lat": "40.71427",
+    "lng": "-74.00597"
+  },
+  {
+    "name": "Los Angeles",
+    "population": "3971883",
+    "lat": "34.05223",
+    "lng": "-118.24368"
+  },
+  {
+    "name": "Ho Chi Minh City",
+    "population": "3467331",
+    "lat": "10.82302",
+    "lng": "106.62965"
+  },
+  {
+    "name": "Durban",
+    "population": "3120282",
+    "lat": "-29.8579",
+    "lng": "31.0292"
+  },
+  {
+    "name": "Cape Town",
+    "population": "3433441",
+    "lat": "-33.92584",
+    "lng": "18.42322"
+  }
+]

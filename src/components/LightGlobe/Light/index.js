@@ -8,7 +8,7 @@ import React, {
 import { random } from "lodash";
 import { useFrame } from "react-three-fiber";
 
-export function Light ({ position }) {
+export function Light ({ position, name }) {
   const mesh = useRef();
   const time = useRef(0);
 
@@ -50,6 +50,7 @@ export function Light ({ position }) {
 
   const onClick = useCallback(
     e => {
+      console.log('name:', name);
       e.stopPropagation();
       setIsActive(v => !v);
     },
