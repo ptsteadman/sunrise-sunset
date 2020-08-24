@@ -13,7 +13,6 @@ function App() {
     <>
       <Credits/>
       <Canvas>
-        <Cubes />
         <Lights />
         <Environment />
       </Canvas>
