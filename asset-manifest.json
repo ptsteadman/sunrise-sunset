@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.b49d71bd.chunk.css",
-    "main.js": "/static/js/main.a503ead5.chunk.js",
-    "main.js.map": "/static/js/main.a503ead5.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.b8db504d.chunk.js": "/static/js/2.b8db504d.chunk.js",
-    "static/js/2.b8db504d.chunk.js.map": "/static/js/2.b8db504d.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.7f1f40acf62a549ef1ce98b00f78d775.js": "/precache-manifest.7f1f40acf62a549ef1ce98b00f78d775.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.b49d71bd.chunk.css.map": "/static/css/main.b49d71bd.chunk.css.map"
+    "main.css": "/heads-tails-clock/static/css/main.b49d71bd.chunk.css",
+    "main.js": "/heads-tails-clock/static/js/main.a503ead5.chunk.js",
+    "main.js.map": "/heads-tails-clock/static/js/main.a503ead5.chunk.js.map",
+    "runtime~main.js": "/heads-tails-clock/static/js/runtime~main.74563b4f.js",
+    "runtime~main.js.map": "/heads-tails-clock/static/js/runtime~main.74563b4f.js.map",
+    "static/js/2.b8db504d.chunk.js": "/heads-tails-clock/static/js/2.b8db504d.chunk.js",
+    "static/js/2.b8db504d.chunk.js.map": "/heads-tails-clock/static/js/2.b8db504d.chunk.js.map",
+    "index.html": "/heads-tails-clock/index.html",
+    "precache-manifest.c821ab17127d610302aec07f31cacc15.js": "/heads-tails-clock/precache-manifest.c821ab17127d610302aec07f31cacc15.js",
+    "service-worker.js": "/heads-tails-clock/service-worker.js",
+    "static/css/main.b49d71bd.chunk.css.map": "/heads-tails-clock/static/css/main.b49d71bd.chunk.css.map"
   }
 }
