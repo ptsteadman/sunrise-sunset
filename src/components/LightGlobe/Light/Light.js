@@ -8,8 +8,12 @@ import React, {
 import { random } from "lodash";
 import { useFrame } from "react-three-fiber";
 
-export function Light ({ position, name }) {
+import { MyVolumetricSpotlight } from "./VolumetricSpotlight"
+
+
+export function Light ({ position, name, spotlightTargetPosition }) {
   const mesh = useRef();
+  const spotlightTarget = useRef();
   const time = useRef(0);
 
   const [isHovered, setIsHovered] = useState(false);
@@ -57,20 +61,39 @@ export function Light ({ position, name }) {
   );
 
   return (
-    <mesh
-      ref={mesh}
-      position={position}
-      onClick={e => onClick(e)}
-      onPointerOver={e => onHover(e, true)}
-      onPointerOut={e => onHover(e, false)}
-    >
-      <boxBufferGeometry attach="geometry" args={[0.12, 0.07, 0.05]} />
-      <meshStandardMaterial
-        attach="material"
-        color={color}
-        transparent
-        opacity={0.8}
-      />
-    </mesh>
+    <group>
+      {
+        name == 'Shanghai' && position[0] > 0 && (
+          <>
+            <mesh
+              ref={spotlightTarget}
+              position={[position[0] * 10, position[1] * 10, position[2] * 10]}
+            >
+            </mesh>
+            <MyVolumetricSpotlight
+              position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
+              color={0xffffff}
+              target={spotlightTarget}
+              intensity={3}
+            />
+          </>
+        )
+      }
+      <mesh
+        ref={mesh}
+        position={position}
+        onClick={e => onClick(e)}
+        onPointerOver={e => onHover(e, true)}
+        onPointerOut={e => onHover(e, false)}
+      >
+        <boxBufferGeometry attach="geometry" args={[0.12, 0.07, 0.05]} />
+        <meshStandardMaterial
+          attach="material"
+          color={color}
+          transparent
+          opacity={0.8}
+        />
+      </mesh>
+    </group>
   );
 };
