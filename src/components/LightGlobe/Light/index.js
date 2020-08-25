@@ -22,7 +22,7 @@ export function Light ({ position, name }) {
   const timeMod = useMemo(() => random(0.1, 4, true), []);
 
   // color
-  const color = isHovered ? 0xe5d54d : (isActive ? 0xf7e7e5 : 0xf95b3c);
+  const color = isHovered ? 0xefefef : (isActive ? 0xffffff : 0xeeeeee);
 
   //useEffect of the activeState
   useEffect(() => {
@@ -50,7 +50,6 @@ export function Light ({ position, name }) {
 
   const onClick = useCallback(
     e => {
-      console.log('name:', name);
       e.stopPropagation();
       setIsActive(v => !v);
     },
@@ -65,12 +64,12 @@ export function Light ({ position, name }) {
       onPointerOver={e => onHover(e, true)}
       onPointerOut={e => onHover(e, false)}
     >
-      <boxBufferGeometry attach="geometry" args={[0.25, 0.15, 0.1]} />
+      <boxBufferGeometry attach="geometry" args={[0.12, 0.07, 0.05]} />
       <meshStandardMaterial
         attach="material"
         color={color}
-        roughness={0.6}
-        metalness={0.1}
+        transparent
+        opacity={0.8}
       />
     </mesh>
   );
