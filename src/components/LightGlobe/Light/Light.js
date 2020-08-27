@@ -1,34 +1,29 @@
 import React, {
-  useMemo,
   useRef,
   useState,
   useEffect,
-  useCallback,
-  Suspense
 } from "react";
-import { random } from "lodash";
-import { useFrame, useLoader } from "react-three-fiber";
+import { useFrame } from "react-three-fiber";
 
 import { MyVolumetricSpotlight } from "./VolumetricSpotlight";
-import { EightSeriesHeadlight } from "./EightSeriesHeadlight";
 
 
-export function Light ({ position, name, spotlightTargetPosition }) {
+export function Light ({ position, name }) {
   const mesh = useRef();
   const spotlightTarget = useRef();
   const time = useRef(0);
 
-  const [isHovered, setIsHovered] = useState(false);
-  const [isActive, setIsActive] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
+  const [isActive] = useState(false);
 
   const isActiveRef = useRef(isActive);
 
 
   // random time mod factor
-  const timeMod = useMemo(() => random(0.1, 4, true), []);
+  // const timeMod = useMemo(() => random(0.1, 4, true), []);
 
   // color
-  const color = isHovered ? 0xefefef : (isActive ? 0xffffff : 0xeeeeee);
+  // const color = isHovered ? 0xefefef : (isActive ? 0xffffff : 0xeeeeee);
 
   //useEffect of the activeState
   useEffect(() => {
@@ -46,47 +41,47 @@ export function Light ({ position, name, spotlightTargetPosition }) {
   });
 
   // Events
-  const onHover = useCallback(
-    (e, value) => {
-      e.stopPropagation();
-      setIsHovered(value);
-    },
-    [setIsHovered]
-  );
+  // const onHover = useCallback(
+  //   (e, value) => {
+  //     e.stopPropagation();
+  //     setIsHovered(value);
+  //   },
+  //   [setIsHovered]
+  // );
 
-  const onClick = useCallback(
-    e => {
-      e.stopPropagation();
-      setIsActive(v => !v);
-    },
-    [setIsActive]
-  );
+  // const onClick = useCallback(
+  //   e => {
+  //     e.stopPropagation();
+  //     setIsActive(v => !v);
+  //   },
+  //   [setIsActive]
+  // );
 
-  function LightPlaceholder () {
-    return (
-      <mesh
-        ref={mesh}
-        position={position}
-        onClick={e => onClick(e)}
-        onPointerOver={e => onHover(e, true)}
-        onPointerOut={e => onHover(e, false)}
-      >
-        <boxBufferGeometry attach="geometry" args={[0.12, 0.07, 0.05]} />
-        <meshStandardMaterial
-          attach="material"
-          color={color}
-          transparent
-          opacity={0.8}
-        />
-      </mesh>
-    )
-  }
+  // function LightPlaceholder () {
+  //   return (
+  //     <mesh
+  //       ref={mesh}
+  //       position={position}
+  //       onClick={e => onClick(e)}
+  //       onPointerOver={e => onHover(e, true)}
+  //       onPointerOut={e => onHover(e, false)}
+  //     >
+  //       <boxBufferGeometry attach="geometry" args={[0.12, 0.07, 0.05]} />
+  //       <meshStandardMaterial
+  //         attach="material"
+  //         color={color}
+  //         transparent
+  //         opacity={0.8}
+  //       />
+  //     </mesh>
+  //   )
+  // }
 
 
   return (
     <group>
       {
-        name === 'Shanghai' && position[0] > 0 && (
+        ['Shanghai', 'Berlin', 'New York City'].includes(name)  && (
           <>
             <mesh
               ref={spotlightTarget}
@@ -95,16 +90,14 @@ export function Light ({ position, name, spotlightTargetPosition }) {
             </mesh>
             <MyVolumetricSpotlight
               position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
-              color={0xffffff}
+              color={0xccccff}
               target={spotlightTarget}
-              intensity={3}
+              intensity={0.1}
             />
           </>
         )
       }
-      <Suspense fallback={<LightPlaceholder />}>
-        <EightSeriesHeadlight position={position} />
-      </Suspense>
+      {/* <LightPlaceholder /> */}
     </group>
   );
 };

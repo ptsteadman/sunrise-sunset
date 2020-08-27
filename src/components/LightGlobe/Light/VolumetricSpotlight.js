@@ -32,7 +32,6 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
 
     const geometry = vs.current.geometry;
 
-    console.log('geometry:', geometry);
     geometry.applyMatrix(
       new THREE.Matrix4().makeTranslation(0, -geometry.parameters.height / 2, 0)
     );
@@ -48,10 +47,14 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     // @todo fix this
     vs.current.material.uniforms.lightColor.value = spotlight.current.color;
 
+
     if (target && target.current) {
       const targetPos = new THREE.Vector3();
       target.current.getWorldPosition(targetPos) ;
       vs.current.lookAt(targetPos);
+      if  (targetPos.x < 0) {
+        vs.current.material.uniforms.lightColor.value = new THREE.Color(0xffd7aa);
+      }
       spotlight.current.target.position.copy(targetPos);
     }
   });
@@ -62,7 +65,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     if (ref) {
       ref.current = el;
     }
-  }, []);
+  }, [ref]);
 
   // maps spotlight angle to volueme cylinder every frame
   // it would be better to do it on a need-to basis
@@ -91,8 +94,8 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
         <volumetricSpotlight
           attach="material"
           uniforms-lightColor-value={color}
-          uniforms-attenuation-value={24}
-          uniforms-anglePower-value={8}
+          uniforms-attenuation-value={3}
+          uniforms-anglePower-value={12}
         />
       </mesh>
     </>

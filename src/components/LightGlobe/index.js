@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, Suspense } from "react";
 import { useFrame } from "react-three-fiber";
 
 import { Light } from "./Light/Light";
 import { sphericalCoordsToCartesian, latlngToSphericalCoords } from "../../lib";
 import cities from "../../lib/cities.json";
 
-import { MyVolumetricSpotlight } from "./Light/VolumetricSpotlight";
+import { EightSeriesHeadlight } from "./Light/EightSeriesHeadlight";
 
 export function LightGlobe () {
   const group = useRef();
@@ -16,6 +16,12 @@ export function LightGlobe () {
   });
 
   const RADIUS = 2;
+  const positions = cities.map(({ lat, lng }) => {
+    const [inc, azm ] = latlngToSphericalCoords(lat, lng)
+    return sphericalCoordsToCartesian(RADIUS, inc, azm);
+
+  })
+
   const lights = cities.map(({ lat, lng, name }) => {
     const coords = latlngToSphericalCoords(lat, lng);
     const [inc, azm] = coords
@@ -33,6 +39,9 @@ export function LightGlobe () {
   return (
     <group ref={group}>
       {lights}
+      <Suspense fallback={<axesHelper />}>
+        <EightSeriesHeadlight positions={positions} />
+      </Suspense>
     </group>
   )
   ;
