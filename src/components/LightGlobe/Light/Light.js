@@ -3,12 +3,14 @@ import React, {
   useRef,
   useState,
   useEffect,
-  useCallback
+  useCallback,
+  Suspense
 } from "react";
 import { random } from "lodash";
-import { useFrame } from "react-three-fiber";
+import { useFrame, useLoader } from "react-three-fiber";
 
-import { MyVolumetricSpotlight } from "./VolumetricSpotlight"
+import { MyVolumetricSpotlight } from "./VolumetricSpotlight";
+import { EightSeriesHeadlight } from "./EightSeriesHeadlight";
 
 
 export function Light ({ position, name, spotlightTargetPosition }) {
@@ -35,8 +37,8 @@ export function Light ({ position, name, spotlightTargetPosition }) {
 
   // raf loop
   useFrame(() => {
+    if (!mesh.current) return;
     mesh.current.lookAt(0, 0, 0)
-    mesh.current.rotation.y += 0 * timeMod;
     if (isActiveRef.current) {
       time.current += 0.03;
       mesh.current.position.y = position[1] + Math.sin(time.current) * 0.05;
@@ -60,25 +62,8 @@ export function Light ({ position, name, spotlightTargetPosition }) {
     [setIsActive]
   );
 
-  return (
-    <group>
-      {
-        name == 'Shanghai' && position[0] > 0 && (
-          <>
-            <mesh
-              ref={spotlightTarget}
-              position={[position[0] * 10, position[1] * 10, position[2] * 10]}
-            >
-            </mesh>
-            <MyVolumetricSpotlight
-              position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
-              color={0xffffff}
-              target={spotlightTarget}
-              intensity={3}
-            />
-          </>
-        )
-      }
+  function LightPlaceholder () {
+    return (
       <mesh
         ref={mesh}
         position={position}
@@ -94,6 +79,32 @@ export function Light ({ position, name, spotlightTargetPosition }) {
           opacity={0.8}
         />
       </mesh>
+    )
+  }
+
+
+  return (
+    <group>
+      {
+        name === 'Shanghai' && position[0] > 0 && (
+          <>
+            <mesh
+              ref={spotlightTarget}
+              position={[position[0] * 10, position[1] * 10, position[2] * 10]}
+            >
+            </mesh>
+            <MyVolumetricSpotlight
+              position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
+              color={0xffffff}
+              target={spotlightTarget}
+              intensity={3}
+            />
+          </>
+        )
+      }
+      <Suspense fallback={<LightPlaceholder />}>
+        <EightSeriesHeadlight position={position} />
+      </Suspense>
     </group>
   );
 };
