@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/heads-tails-clock/static/css/main.b49d71bd.chunk.css",
-    "main.js": "/heads-tails-clock/static/js/main.a503ead5.chunk.js",
-    "main.js.map": "/heads-tails-clock/static/js/main.a503ead5.chunk.js.map",
+    "main.js": "/heads-tails-clock/static/js/main.f8fec7c2.chunk.js",
+    "main.js.map": "/heads-tails-clock/static/js/main.f8fec7c2.chunk.js.map",
     "runtime~main.js": "/heads-tails-clock/static/js/runtime~main.74563b4f.js",
     "runtime~main.js.map": "/heads-tails-clock/static/js/runtime~main.74563b4f.js.map",
-    "static/js/2.b8db504d.chunk.js": "/heads-tails-clock/static/js/2.b8db504d.chunk.js",
-    "static/js/2.b8db504d.chunk.js.map": "/heads-tails-clock/static/js/2.b8db504d.chunk.js.map",
+    "static/js/2.d5dec92d.chunk.js": "/heads-tails-clock/static/js/2.d5dec92d.chunk.js",
+    "static/js/2.d5dec92d.chunk.js.map": "/heads-tails-clock/static/js/2.d5dec92d.chunk.js.map",
     "index.html": "/heads-tails-clock/index.html",
-    "precache-manifest.c821ab17127d610302aec07f31cacc15.js": "/heads-tails-clock/precache-manifest.c821ab17127d610302aec07f31cacc15.js",
+    "precache-manifest.3c90c8fa5ff98eba99937295f9c9d994.js": "/heads-tails-clock/precache-manifest.3c90c8fa5ff98eba99937295f9c9d994.js",
     "service-worker.js": "/heads-tails-clock/service-worker.js",
     "static/css/main.b49d71bd.chunk.css.map": "/heads-tails-clock/static/css/main.b49d71bd.chunk.css.map"
   }
