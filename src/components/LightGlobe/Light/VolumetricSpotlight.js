@@ -93,7 +93,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
         <volumetricSpotlight
           attach="material"
           uniforms-lightColor-value={color}
-          uniforms-attenuation-value={3}
+          uniforms-attenuation-value={6}
           uniforms-anglePower-value={12}
         />
       </mesh>
