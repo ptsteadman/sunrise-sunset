@@ -11,7 +11,7 @@ export function LightGlobe () {
   const group = useRef();
 
   useFrame(() => {
-    group.current.rotation.y += 0.005;
+    group.current.rotation.y += 0.0005;
     // use redux here instead
   });
 

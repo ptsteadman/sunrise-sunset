@@ -6,13 +6,14 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "lodash": "4.17.15",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "react-scripts": "3.0.1",
-    "react-three-fiber": "3.0.15",
+    "drei": "1.3.1",
+    "lodash": "^4.17.20",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "react-scripts": "^3.4.3",
+    "react-three-fiber": "4.2.20",
     "styled-jsx": "3.2.4",
-    "three": "0.111.0"
+    "three": "0.120.0"
   },
   "devDependencies": {
     "jsonfile": "^6.0.1",
