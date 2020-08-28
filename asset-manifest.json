@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/heads-tails-clock/static/css/main.b49d71bd.chunk.css",
-    "main.js": "/heads-tails-clock/static/js/main.88fb8e2b.chunk.js",
-    "main.js.map": "/heads-tails-clock/static/js/main.88fb8e2b.chunk.js.map",
+    "main.js": "/heads-tails-clock/static/js/main.82665d4a.chunk.js",
+    "main.js.map": "/heads-tails-clock/static/js/main.82665d4a.chunk.js.map",
     "runtime-main.js": "/heads-tails-clock/static/js/runtime-main.f4e6114d.js",
     "runtime-main.js.map": "/heads-tails-clock/static/js/runtime-main.f4e6114d.js.map",
     "static/js/2.5bf052f8.chunk.js": "/heads-tails-clock/static/js/2.5bf052f8.chunk.js",
     "static/js/2.5bf052f8.chunk.js.map": "/heads-tails-clock/static/js/2.5bf052f8.chunk.js.map",
     "index.html": "/heads-tails-clock/index.html",
-    "precache-manifest.2c1b582cb9fec83acec24c64c9807ea5.js": "/heads-tails-clock/precache-manifest.2c1b582cb9fec83acec24c64c9807ea5.js",
+    "precache-manifest.c9b6c0cdb905b38cfe69de1923ec26ed.js": "/heads-tails-clock/precache-manifest.c9b6c0cdb905b38cfe69de1923ec26ed.js",
     "service-worker.js": "/heads-tails-clock/service-worker.js",
     "static/css/main.b49d71bd.chunk.css.map": "/heads-tails-clock/static/css/main.b49d71bd.chunk.css.map",
     "static/js/2.5bf052f8.chunk.js.LICENSE.txt": "/heads-tails-clock/static/js/2.5bf052f8.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.f4e6114d.js",
     "static/js/2.5bf052f8.chunk.js",
     "static/css/main.b49d71bd.chunk.css",
-    "static/js/main.88fb8e2b.chunk.js"
+    "static/js/main.82665d4a.chunk.js"
   ]
 }
