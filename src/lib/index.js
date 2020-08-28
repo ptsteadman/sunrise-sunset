@@ -1,4 +1,6 @@
 
+import startOfDay from 'date-fns/startOfDay'
+import differenceInSeconds from 'date-fns/differenceInSeconds'
 
 export function sphericalCoordsToCartesian (radius, inclination, azimuth) {
   /*
@@ -18,4 +20,13 @@ export function latlngToSphericalCoords (lat, lng) {
   return [inclination, azimuth];
 }
 
+export function calculateAngleForTime () {
+  const secondsElapsedInDay = differenceInSeconds(
+    new Date(),
+    startOfDay(new Date()),
+  )
+
+  const dayProgress = secondsElapsedInDay / (24 * 60 * 60);
+  return dayProgress * 2 * Math.PI - (Math.PI / 4);
+}
 

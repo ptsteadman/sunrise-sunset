@@ -2,16 +2,17 @@ import React, { useRef, Suspense } from "react";
 import { useFrame } from "react-three-fiber";
 
 import { Light } from "./Light/Light";
-import { sphericalCoordsToCartesian, latlngToSphericalCoords } from "../../lib";
+import { sphericalCoordsToCartesian, latlngToSphericalCoords, calculateAngleForTime } from "../../lib";
 import cities from "../../lib/cities.json";
 
-import { EightSeriesHeadlight } from "./Light/EightSeriesHeadlight";
+import { EightSeriesHeadlightManager } from "./Light/EightSeriesHeadlightManager";
 
 export function LightGlobe () {
   const group = useRef();
 
   useFrame(() => {
-    group.current.rotation.y += 0.0005;
+    group.current.rotation.y = calculateAngleForTime()
+    // group.current.rotation.y += 0.0005;
     // use redux here instead
   });
 
@@ -39,8 +40,8 @@ export function LightGlobe () {
   return (
     <group ref={group}>
       {lights}
-      <Suspense fallback={<axesHelper />}>
-        <EightSeriesHeadlight positions={positions} />
+      <Suspense fallback={null}>
+        <EightSeriesHeadlightManager positions={positions} />
       </Suspense>
     </group>
   )

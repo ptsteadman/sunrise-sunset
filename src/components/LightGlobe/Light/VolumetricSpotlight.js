@@ -32,10 +32,10 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
 
     const geometry = vs.current.geometry;
 
-    geometry.applyMatrix(
+    geometry.applyMatrix4(
       new THREE.Matrix4().makeTranslation(0, -geometry.parameters.height / 2, 0)
     );
-    geometry.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
+    geometry.applyMatrix4(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
 
     vs.current.material.uniforms.spotPosition.value = vs.current.position;
 
@@ -79,7 +79,6 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
   return (
     <>
       <spotLight
-        castShadow
         ref={spotlight}
         intensity={intensity}
         angle={angle}

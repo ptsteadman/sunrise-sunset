@@ -4,7 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { BufferGeometryUtils } from "three/examples/jsm/utils/BufferGeometryUtils";
 
 
-export function EightSeriesHeadlight ({ positions }) {
+export function EightSeriesHeadlightManager ({ positions }) {
   const { scene } = useLoader(GLTFLoader, process.env.PUBLIC_URL + "/headlight-simplest-deglitched.glb");
   const meshes = scene.children[0].children[0].children;
   const merged = BufferGeometryUtils.mergeBufferGeometries(meshes.map(m => m.geometry.center()));
@@ -21,13 +21,13 @@ export function EightSeriesHeadlight ({ positions }) {
   const meshObjects = positions.map((p, i) => {
     return (
       <mesh position={p} ref={refs.current[i]} scale={[0.009, 0.009, 0.009 ]} key={p[0]} visible geometry={merged}>
-        <meshStandardMaterial
-          attach="material"
-          color={0xcccccc}
-          roughness={0.5}
-          metalness={0.6}
-          opacity={0.7}
-          transparent
+       <meshStandardMaterial
+         attach="material"
+         color={0xdddddd}
+         roughness={0.5}
+         metalness={0.6}
+         opacity={0.7}
+         transparent
         />
       </mesh>
     )})
