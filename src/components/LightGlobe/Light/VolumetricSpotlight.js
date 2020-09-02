@@ -17,7 +17,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
   const { scene } = useThree();
 
   const {
-    angle = 0.2,
+    angle = 0.15,
     penumbra = 0.6,
     distance = 1,
     color,
@@ -53,7 +53,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       target.current.getWorldPosition(targetPos) ;
       vs.current.lookAt(targetPos);
       if  (targetPos.x < 0) {
-        vs.current.material.uniforms.lightColor.value = new THREE.Color(0xffd7aa);
+        vs.current.material.uniforms.lightColor.value = new THREE.Color(0xffe7dd);
       }
       spotlight.current.target.position.copy(targetPos);
     }
@@ -94,7 +94,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
           attach="material"
           uniforms-lightColor-value={color}
           uniforms-attenuation-value={6}
-          uniforms-anglePower-value={12}
+          uniforms-anglePower-value={2}
         />
       </mesh>
     </>

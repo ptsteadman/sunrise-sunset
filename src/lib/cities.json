@@ -78,12 +78,6 @@
     "lng": "113.64861"
   },
   {
-    "name": "Zibo",
-    "population": "3129228",
-    "lat": "36.79056",
-    "lng": "118.06333"
-  },
-  {
     "name": "Xi’an",
     "population": "6501190",
     "lat": "34.25833",
@@ -108,12 +102,6 @@
     "lng": "114.26667"
   },
   {
-    "name": "Tianshui",
-    "population": "3500000",
-    "lat": "34.57952",
-    "lng": "105.74238"
-  },
-  {
     "name": "Tianjin",
     "population": "11090314",
     "lat": "39.14222",
@@ -132,12 +120,6 @@
     "lng": "112.56028"
   },
   {
-    "name": "Tai’an",
-    "population": "5499000",
-    "lat": "36.18528",
-    "lng": "117.12"
-  },
-  {
     "name": "Shiyan",
     "population": "3460000",
     "lat": "32.6475",
@@ -148,12 +130,6 @@
     "population": "10358381",
     "lat": "22.54554",
     "lng": "114.0683"
-  },
-  {
-    "name": "Shantou",
-    "population": "5329024",
-    "lat": "23.36814",
-    "lng": "116.71479"
   },
   {
     "name": "Shanghai",
@@ -168,12 +144,6 @@
     "lng": "120.38042"
   },
   {
-    "name": "Puyang",
-    "population": "3590000",
-    "lat": "29.45679",
-    "lng": "119.88872"
-  },
-  {
     "name": "Ningbo",
     "population": "3491597",
     "lat": "29.87819",
@@ -184,12 +154,6 @@
     "population": "7165292",
     "lat": "32.06167",
     "lng": "118.77778"
-  },
-  {
-    "name": "Nanchong",
-    "population": "7150000",
-    "lat": "30.79508",
-    "lng": "106.08473"
   },
   {
     "name": "Kunming",
@@ -220,18 +184,6 @@
     "population": "11071424",
     "lat": "23.11667",
     "lng": "113.25"
-  },
-  {
-    "name": "Foshan",
-    "population": "3600000",
-    "lat": "23.02677",
-    "lng": "113.13148"
-  },
-  {
-    "name": "Dongguan",
-    "population": "8000000",
-    "lat": "23.01797",
-    "lng": "113.74866"
   },
   {
     "name": "Dalian",

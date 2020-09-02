@@ -13,6 +13,7 @@ export function Light ({ position, name }) {
   const spotlightTarget = useRef();
   const time = useRef(0);
 
+
   // const [isHovered, setIsHovered] = useState(false);
   const [isActive] = useState(false);
 
@@ -81,13 +82,17 @@ export function Light ({ position, name }) {
   return (
     <group>
       {
-        ['Shanghai', 'Berlin', 'New York City'].includes(name)  && (
+        ['Shanghai', 'Berlin', 'New York City', 'London', 'Los Angeles', 'Mumbai', 'Sydney'].includes(name)  && (
           <>
             <mesh
               ref={spotlightTarget}
               position={[position[0] * 10, position[1] * 10, position[2] * 10]}
             >
             </mesh>
+            <pointLight
+              args={[0xffffff, 10, 0.15]}
+              position={[position[0] * 1.03, position[1] * 1.03, position[2] * 1.03]}
+            />
             <MyVolumetricSpotlight
               position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
               color={0xccccff}

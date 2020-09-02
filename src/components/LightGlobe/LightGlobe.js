@@ -16,11 +16,10 @@ export function LightGlobe () {
     // use redux here instead
   });
 
-  const RADIUS = 2.75;
+  const RADIUS = 3;
   const positions = cities.map(({ lat, lng }) => {
     const [inc, azm ] = latlngToSphericalCoords(lat, lng)
     return sphericalCoordsToCartesian(RADIUS, inc, azm);
-
   })
 
   const lights = cities.map(({ lat, lng, name }) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, createRef } from 'react'
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
-import { BufferGeometryUtils } from "three/examples/jsm/utils/BufferGeometryUtils";
+import { CubeTextureLoader } from "three";
 
 
 export function EightSeriesHeadlightManager ({ positions }) {
@@ -11,65 +11,104 @@ export function EightSeriesHeadlightManager ({ positions }) {
     process.env.PUBLIC_URL + "/headlight-simpler-origin.glb",
     draco(process.env.PUBLIC_URL + "/draco-gltf/")
   );
-  console.log('nodes:', nodes);
-  const headlightBodyMeshes = nodes['headlight-simpler'].children.filter(c => c.name.startsWith("headlight-simpler"));
-  const headlightBodyMerged = BufferGeometryUtils.mergeBufferGeometries(headlightBodyMeshes.map(m => m.geometry));
-  const griddyThingMerged = BufferGeometryUtils.mergeBufferGeometries(nodes['griddy-thing'].children.map(m => m.geometry));
-  const complexInnerThingOneMerged = BufferGeometryUtils.mergeBufferGeometries(nodes['complex--inner-thing-1'].children.map(m => m.geometry));
-  const complexInnerThingTwoMerged = BufferGeometryUtils.mergeBufferGeometries(nodes['complex-inner-thing-2'].children.map(m => m.geometry));
+
+  const files = ['371.jpeg', '371.jpeg', '371.jpeg', '371.jpeg', '371.jpeg', '371.jpeg'];
+  const path = process.env.PUBLIC_URL + '/';
+  const [cubeTexture] = useLoader(
+    CubeTextureLoader,
+    [files],
+    loader => {
+      loader.setPath(path);
+      loader.setCrossOrigin('');
+      return loader;
+    }
+  )
+  // const envMap = useCubeTextureLoader(
+  //   ['cctv371.jpg', 'cctv371.jpg', 'cctv371.jpg', 'cctv371.jpg', 'cctv371.jpg', 'cctv371.jpg'],
+  //   { path: 'http://207.251.86.238/' }
+  // )
 
   const refs = useRef(positions.map(() => createRef()))
   useEffect(() => {
     for (const r of refs.current) {
       r.current.lookAt(0,0,0)
-      r.current.rotateX(Math.PI / 2)
-      r.current.rotateY(Math.PI)
-      r.current.rotateZ(Math.PI / 4)
+      // r.current.rotateX(Math.PI / 2)
+      r.current.rotateY( 5 * Math.PI / 4)
+      // r.current.rotateZ(Math.PI / 4)
     }
   }, [])
   const meshObjects = positions.map((p, i) => {
     return (
-      <group scale={[0.009, 0.009, 0.009 ]} key={p[0]} position={p} ref={refs.current[i]}>
+      <group scale={[0.012, 0.012, 0.012 ]} key={p[0]} position={p} ref={refs.current[i]}>
         <mesh visible geometry={nodes['visor'].geometry}>
           <meshPhysicalMaterial
             attach="material"
-            color={0xffffff}
-            roughness={0.3}
-            metalness={0.6}
+            color={0xeeeeee}
+            roughness={0.05}
+            metalness={0.9}
             opacity={1}
+            envMap={cubeTexture}
             transmission={0.6}
             transparent
+            depthWrite={false}
           />
         </mesh>
-        <mesh visible geometry={headlightBodyMerged}>
+        <mesh visible geometry={nodes['headlight-simpler'].geometry}>
           <meshPhysicalMaterial
             attach="material"
-            color={0xddddff}
+            color={0x8899aa}
             roughness={0.2}
             metalness={0.8}
-            clearcoat={0.65}
+            clearcoat={0.7}
           />
         </mesh>
-        <mesh visible geometry={griddyThingMerged}>
+        <mesh visible geometry={nodes['griddy-thing'].geometry}>
+          <meshPhysicalMaterial
+            attach="material"
+            color={0xddeeff}
+            roughness={0.1}
+            metalness={0.8}
+            emissive={0xffffff}
+            opacity={1}
+            transparent
+            transmission={0.4}
+            depthWrite={false}
+          />
+        </mesh>
+        <mesh visible geometry={nodes['bulbs'].geometry}>
           <meshStandardMaterial
             attach="material"
-            color={0xddffdd}
+            color={0xeeeeff}
             roughness={0.3}
             metalness={0.5}
+            emissive={0xffffff}
           />
         </mesh>
-        <mesh visible geometry={complexInnerThingOneMerged}>
+        <mesh visible geometry={nodes['top-light'].geometry}>
+          <meshPhysicalMaterial
+            attach="material"
+            color={0xddffff}
+            roughness={0.1}
+            metalness={0.8}
+            emissive={0xffffff}
+            opacity={1}
+            transparent
+            transmission={0.5}
+            depthWrite={false}
+          />
+        </mesh>
+        <mesh visible geometry={nodes['complex--inner-thing-1'].geometry}>
           <meshStandardMaterial
             attach="material"
-            color={0x9400d3}
+            color={0x3333ff}
             roughness={0.6}
             metalness={0.5}
           />
         </mesh>
-        <mesh visible geometry={complexInnerThingTwoMerged}>
+        <mesh visible geometry={nodes['complex-inner-thing-2'].geometry}>
           <meshStandardMaterial
             attach="material"
-            color={0x9400d3}
+            color={0x3333ff}
             roughness={0.3}
             metalness={0.5}
           />
