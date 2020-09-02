@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/heads-tails-clock/static/css/main.b49d71bd.chunk.css",
-    "main.js": "/heads-tails-clock/static/js/main.23c78661.chunk.js",
-    "main.js.map": "/heads-tails-clock/static/js/main.23c78661.chunk.js.map",
-    "runtime-main.js": "/heads-tails-clock/static/js/runtime-main.f4e6114d.js",
-    "runtime-main.js.map": "/heads-tails-clock/static/js/runtime-main.f4e6114d.js.map",
-    "static/js/2.3a4fc215.chunk.js": "/heads-tails-clock/static/js/2.3a4fc215.chunk.js",
-    "static/js/2.3a4fc215.chunk.js.map": "/heads-tails-clock/static/js/2.3a4fc215.chunk.js.map",
-    "index.html": "/heads-tails-clock/index.html",
-    "precache-manifest.5f40c84e6be2bab8a72c270b6cc70fc2.js": "/heads-tails-clock/precache-manifest.5f40c84e6be2bab8a72c270b6cc70fc2.js",
-    "service-worker.js": "/heads-tails-clock/service-worker.js",
-    "static/css/main.b49d71bd.chunk.css.map": "/heads-tails-clock/static/css/main.b49d71bd.chunk.css.map",
-    "static/js/2.3a4fc215.chunk.js.LICENSE.txt": "/heads-tails-clock/static/js/2.3a4fc215.chunk.js.LICENSE.txt"
+    "main.css": "/sunrise-sunset/static/css/main.b49d71bd.chunk.css",
+    "main.js": "/sunrise-sunset/static/js/main.740fe9a4.chunk.js",
+    "main.js.map": "/sunrise-sunset/static/js/main.740fe9a4.chunk.js.map",
+    "runtime-main.js": "/sunrise-sunset/static/js/runtime-main.641aec74.js",
+    "runtime-main.js.map": "/sunrise-sunset/static/js/runtime-main.641aec74.js.map",
+    "static/js/2.c98b2e1c.chunk.js": "/sunrise-sunset/static/js/2.c98b2e1c.chunk.js",
+    "static/js/2.c98b2e1c.chunk.js.map": "/sunrise-sunset/static/js/2.c98b2e1c.chunk.js.map",
+    "index.html": "/sunrise-sunset/index.html",
+    "precache-manifest.9ba3e7498c7b6b465cf746297b5c345d.js": "/sunrise-sunset/precache-manifest.9ba3e7498c7b6b465cf746297b5c345d.js",
+    "service-worker.js": "/sunrise-sunset/service-worker.js",
+    "static/css/main.b49d71bd.chunk.css.map": "/sunrise-sunset/static/css/main.b49d71bd.chunk.css.map",
+    "static/js/2.c98b2e1c.chunk.js.LICENSE.txt": "/sunrise-sunset/static/js/2.c98b2e1c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.f4e6114d.js",
-    "static/js/2.3a4fc215.chunk.js",
+    "static/js/runtime-main.641aec74.js",
+    "static/js/2.c98b2e1c.chunk.js",
     "static/css/main.b49d71bd.chunk.css",
-    "static/js/main.23c78661.chunk.js"
+    "static/js/main.740fe9a4.chunk.js"
   ]
 }
