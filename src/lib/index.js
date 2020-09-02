@@ -30,3 +30,6 @@ export function calculateAngleForTime () {
   return dayProgress * 2 * Math.PI - (Math.PI / 4);
 }
 
+export function createCubeTexture () {
+
+}

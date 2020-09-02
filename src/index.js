@@ -12,12 +12,13 @@ function App() {
   return (
     <>
       <Credits/>
-      <Canvas colorManagement shadowMap style={{ background: '#101010' }}>
-        <fog attach="fog" args={["#222831", -10, 15]} />
+      <Canvas colorManagement shadowMap style={{ background: '#020204' }}>
+        <fog attach="fog" args={["#020204", 1, 15]} />
+        <axesHelper />
         <Lights />
         <LightGlobe />
         <OrbitControls enablePan={false} zoomSpeed={0.5} />
-        <Stars factor={2} saturation={0.5} />
+        <Stars factor={2} saturation={0.7} />
       </Canvas>
     </>
   );

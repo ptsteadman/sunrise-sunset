@@ -1,62 +1,26 @@
 import React, { useEffect, useRef, createRef } from 'react'
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { draco, Html } from "drei";
-import { RepeatWrapping, CubeTexture } from "three";
+import { draco } from "drei";
+import { BackSide } from "three";
+import { WebcamImageManager } from "../../WebcamImageManager";
 
+const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
+const nycSrc = 'http://207.251.86.238/cctv884.jpg?'
 
-export function EightSeriesHeadlightManager ({ positions }) {
-  const imgRef = useRef()
-  const [cubeMap, setCubeMap] = React.useState(null)
+export function EightSeriesHeadlightManager ({ locations }) {
+  const [nycCubeMap, setNycCubeMap] = React.useState(null)
+  const [hkCubeMap, setHkCubeMap] = React.useState(null)
+
   const { nodes } = useLoader(
     GLTFLoader,
     process.env.PUBLIC_URL + "/headlight-simpler-origin.glb",
     draco(process.env.PUBLIC_URL + "/draco-gltf/")
   );
 
-  const refs = useRef(positions.map(() => createRef()))
+  const refs = useRef(locations.map(() => createRef()))
   useEffect(() => {
-    imgRef.current.onload = () => {
-      const inputWidth = imgRef.current.naturalWidth;
-      const inputHeight = imgRef.current.naturalHeight;
 
-      // get the aspect ratio of the input image
-      const inputImageAspectRatio = inputWidth / inputHeight;
-      const outputImageAspectRatio = 1;
-
-      // if it's bigger than our target aspect ratio
-      let outputWidth = inputWidth;
-      let outputHeight = inputHeight;
-      if (inputImageAspectRatio > outputImageAspectRatio) {
-        outputWidth = inputHeight * outputImageAspectRatio;
-      } else if (inputImageAspectRatio < outputImageAspectRatio) {
-        outputHeight = inputWidth / outputImageAspectRatio;
-      }
-
-      // create a canvas that will present the output image
-      const outputImage = document.createElement('canvas');
-
-      // set it to the same size as the image
-      outputImage.width = outputWidth;
-      outputImage.height = outputHeight;
-
-      // draw our image at position 0, 0 on the canvas
-      const ctx = outputImage.getContext('2d');
-      ctx.drawImage(imgRef.current, 0, 0);
-
-      // show both the image and the canvas
-
-      const map = new CubeTexture(
-        [outputImage, outputImage, outputImage, outputImage, outputImage, outputImage ]
-      )
-      map.wrapS = RepeatWrapping;
-      map.wrapT = RepeatWrapping;
-      map.needsUpdate = true;
-       setCubeMap(map)
-      setTimeout(() => {
-        imgRef.current.src = 'http://cors-anywhere.services.computerlab.io:8080/http://207.251.86.238/cctv884.jpg?rand=' + Math.random()
-      }, 900)
-    }
 
     for (const r of refs.current) {
       r.current.lookAt(0,0,0)
@@ -66,17 +30,22 @@ export function EightSeriesHeadlightManager ({ positions }) {
     }
   }, [])
 
-  const meshObjects = positions.map((p, i) => {
+  const meshObjects = locations.map(({ position, name }, i) => {
+    const envMap = {
+      "New York City": nycCubeMap,
+      "Hong Kong": hkCubeMap,
+      "Qingdao": hkCubeMap,
+
+    }
     return (
-      <group scale={[0.012, 0.012, 0.012 ]} key={p[0]} position={p} ref={refs.current[i]}>
-        {cubeMap &&
+      <group scale={[0.012, 0.012, 0.012 ]} key={name} position={position} ref={refs.current[i]}>
         <mesh visible geometry={nodes['visor'].geometry}>
           <meshPhysicalMaterial
             attach="material"
             color={0xeeeeee}
             roughness={0.05}
-            envMap={cubeMap}
-            envMapIntensity={2}
+            envMap={envMap[name]}
+            clearcoat={0.9}
             metalness={0.9}
             opacity={1}
             transmission={0.5}
@@ -84,7 +53,6 @@ export function EightSeriesHeadlightManager ({ positions }) {
             depthWrite={false}
           />
         </mesh>
-        }
         <mesh visible geometry={nodes['headlight-simpler'].geometry}>
           <meshPhysicalMaterial
             attach="material"
@@ -98,13 +66,27 @@ export function EightSeriesHeadlightManager ({ positions }) {
           <meshPhysicalMaterial
             attach="material"
             color={0xddeeff}
-            roughness={0.1}
+            roughness={0.2}
             metalness={0.8}
-            emissive={0xffffff}
+            emissive={0xeeeeff}
+            opacity={1}
+            transparent
+            transmission={0.94}
+            depthWrite={false}
+          />
+        </mesh>
+        <mesh visible geometry={nodes['griddy-thing'].geometry}>
+          <meshPhysicalMaterial
+            attach="material"
+            color={0xddeeff}
+            roughness={0.2}
+            metalness={0.8}
+            emissive={0xeeeeff}
             opacity={1}
             transparent
             transmission={0.4}
             depthWrite={false}
+            side={BackSide}
           />
         </mesh>
         <mesh visible geometry={nodes['bulbs'].geometry}>
@@ -149,9 +131,8 @@ export function EightSeriesHeadlightManager ({ positions }) {
     )})
   return (
     <group>
-      <Html>
-        <img alt='nyc traffic cam' style={{ display: 'none' }} crossOrigin="anonymous" ref={imgRef} src="http://cors-anywhere.services.computerlab.io:8080/http://207.251.86.238/cctv884.jpg" width="200" height="200" />
-    </Html>
+      <WebcamImageManager src={nycSrc} handleUpdateCubeMap={setNycCubeMap} />
+      <WebcamImageManager src={hkSrc} handleUpdateCubeMap={setHkCubeMap} />
       {meshObjects}
     </group>
   )

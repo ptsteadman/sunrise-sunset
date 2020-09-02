@@ -17,9 +17,12 @@ export function LightGlobe () {
   });
 
   const RADIUS = 3;
-  const positions = cities.map(({ lat, lng }) => {
+  const locations = cities.map(({ lat, lng, name }) => {
     const [inc, azm ] = latlngToSphericalCoords(lat, lng)
-    return sphericalCoordsToCartesian(RADIUS, inc, azm);
+    return {
+      position: sphericalCoordsToCartesian(RADIUS, inc, azm),
+      name,
+    }
   })
 
   const lights = cities.map(({ lat, lng, name }) => {
@@ -40,7 +43,7 @@ export function LightGlobe () {
     <group ref={group}>
       {lights}
       <Suspense fallback={null}>
-        <EightSeriesHeadlightManager positions={positions} />
+        <EightSeriesHeadlightManager locations={locations} />
       </Suspense>
     </group>
   )

@@ -14,7 +14,8 @@
     "react-scripts": "^3.4.3",
     "react-three-fiber": "4.2.20",
     "styled-jsx": "3.2.4",
-    "three": "0.120.0"
+    "three": "0.120.0",
+    "three.equirectangular-to-cubemap": "^1.1.0"
   },
   "devDependencies": {
     "jsonfile": "^6.0.1",
