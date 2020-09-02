@@ -3,9 +3,9 @@ import React from "react";
 export default () => {
   return (
     <group>
-      <ambientLight intensity={0.2} />
+      <ambientLight intensity={0.3} />
       <directionalLight
-        intensity={1.5}
+        intensity={2}
         position={[-1, 0, 0]}
       />
     </group>
