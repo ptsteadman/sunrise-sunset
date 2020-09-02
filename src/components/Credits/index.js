@@ -8,7 +8,7 @@ export default () => {
         href="https://bortolamigallery.com/artist/madeline-hollander/bio/"
         target="_blank"
       >
-        Heads / Tails Clock
+        Sunrise / Sunset
       </a>
       <br />
       <a
