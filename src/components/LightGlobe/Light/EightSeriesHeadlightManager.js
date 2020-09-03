@@ -4,6 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
 import { BackSide } from "three";
 import { WebcamImageManager } from "../../WebcamImageManager";
+import { citiesWhereHeadlightsOn } from "../../../lib";
 
 const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
 const nycSrc = 'http://207.251.86.238/cctv884.jpg?'
@@ -45,10 +46,11 @@ export function EightSeriesHeadlightManager ({ locations }) {
             color={0xeeeeee}
             roughness={0.05}
             envMap={envMap[name]}
+            envMapIntensity={1.5}
             clearcoat={0.9}
             metalness={0.9}
             opacity={1}
-            transmission={0.5}
+            transmission={0.6}
             transparent
             depthWrite={false}
           />
@@ -56,9 +58,9 @@ export function EightSeriesHeadlightManager ({ locations }) {
         <mesh visible geometry={nodes['headlight-simpler'].geometry}>
           <meshPhysicalMaterial
             attach="material"
-            color={0x8899aa}
-            roughness={0.2}
-            metalness={0.8}
+            color={0x778899}
+            roughness={0.3}
+            metalness={0.7}
             clearcoat={0.7}
           />
         </mesh>
@@ -68,7 +70,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
             color={0xddeeff}
             roughness={0.2}
             metalness={0.8}
-            emissive={0xeeeeff}
+            emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
             opacity={1}
             transparent
             transmission={0.94}
@@ -81,7 +83,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
             color={0xddeeff}
             roughness={0.2}
             metalness={0.8}
-            emissive={0xeeeeff}
+            emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
             opacity={1}
             transparent
             transmission={0.4}
@@ -89,13 +91,33 @@ export function EightSeriesHeadlightManager ({ locations }) {
             side={BackSide}
           />
         </mesh>
+        {citiesWhereHeadlightsOn.includes(name) && (
+          <mesh position={[-5.5, 0, -1]}>
+            {/* <sphereBufferGeometry attach="geometry" args={[1, 32, 32]} /> */}
+            {/* <meshBasicMaterial attach="material" color="#FFFF99" fog={false} /> */}
+            <pointLight
+              args={[0x7777ff, 8, 0.1]}
+            />
+          </mesh>
+        )
+        }
+        {citiesWhereHeadlightsOn.includes(name) && (
+          <mesh position={[-1, 1, 5]}>
+            {/* <sphereBufferGeometry attach="geometry" args={[1, 32, 32]} /> */}
+            {/* <meshBasicMaterial attach="material" color="#FFFF99" fog={false} /> */}
+            <pointLight
+              args={[0x7777ff, 8, 0.1]}
+            />
+          </mesh>
+        )
+        }
         <mesh visible geometry={nodes['bulbs'].geometry}>
           <meshStandardMaterial
             attach="material"
-            color={0xeeeeff}
+            color={0xaaaaff}
             roughness={0.3}
             metalness={0.5}
-            emissive={0xffffff}
+            emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
           />
         </mesh>
         <mesh visible geometry={nodes['top-light'].geometry}>
@@ -104,7 +126,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
             color={0xddffff}
             roughness={0.1}
             metalness={0.8}
-            emissive={0xffffff}
+            emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
             opacity={1}
             transparent
             transmission={0.5}

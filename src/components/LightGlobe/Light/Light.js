@@ -6,6 +6,7 @@ import React, {
 import { useFrame } from "react-three-fiber";
 
 import { MyVolumetricSpotlight } from "./VolumetricSpotlight";
+import { citiesWhereHeadlightsOn } from '../../../lib';
 
 
 export function Light ({ position, name }) {
@@ -82,17 +83,13 @@ export function Light ({ position, name }) {
   return (
     <group>
       {
-        ['Shanghai', 'Berlin', 'New York City', 'London', 'Los Angeles', 'Mumbai', 'Sydney'].includes(name)  && (
+        citiesWhereHeadlightsOn.includes(name)  && (
           <>
             <mesh
               ref={spotlightTarget}
               position={[position[0] * 10, position[1] * 10, position[2] * 10]}
             >
             </mesh>
-            <pointLight
-              args={[0xffffff, 10, 0.15]}
-              position={[position[0] * 1.03, position[1] * 1.03, position[2] * 1.03]}
-            />
             <MyVolumetricSpotlight
               position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
               color={0xccccff}

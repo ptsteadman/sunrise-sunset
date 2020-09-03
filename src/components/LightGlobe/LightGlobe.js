@@ -1,4 +1,4 @@
-import React, { useRef, Suspense } from "react";
+import React, { useRef } from "react";
 import { useFrame } from "react-three-fiber";
 
 import { Light } from "./Light/Light";
@@ -39,12 +39,11 @@ export function LightGlobe () {
 
   })
 
+
   return (
     <group ref={group}>
       {lights}
-      <Suspense fallback={null}>
-        <EightSeriesHeadlightManager locations={locations} />
-      </Suspense>
+      <EightSeriesHeadlightManager locations={locations} />
     </group>
   )
   ;

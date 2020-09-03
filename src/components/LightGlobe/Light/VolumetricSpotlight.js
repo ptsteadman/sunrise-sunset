@@ -53,7 +53,10 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       target.current.getWorldPosition(targetPos) ;
       vs.current.lookAt(targetPos);
       if  (targetPos.x < 0) {
-        vs.current.material.uniforms.lightColor.value = new THREE.Color(0xffe7dd);
+        // vs.current.material.uniforms.lightColor.value = new THREE.Color(0xffe7dd);
+        // vs.current.material.uniforms.lightColor.value = new THREE.Color(0xffe7dd);
+        vs.current.material.uniforms.attenuation.value = 4;
+
       }
       spotlight.current.target.position.copy(targetPos);
     }

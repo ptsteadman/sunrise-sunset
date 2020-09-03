@@ -30,6 +30,4 @@ export function calculateAngleForTime () {
   return dayProgress * 2 * Math.PI - (Math.PI / 4);
 }
 
-export function createCubeTexture () {
-
-}
+export const citiesWhereHeadlightsOn = ['Shanghai', 'New York City', 'Berlin', 'Mexico City',  'London', 'Los Angeles', 'Mumbai', 'Sydney', 'Cairo', 'Seoul', 'Moscow', 'Buenos Aires']
