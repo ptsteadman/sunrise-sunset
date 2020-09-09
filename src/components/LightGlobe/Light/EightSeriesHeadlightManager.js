@@ -15,7 +15,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
 
   const { nodes } = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/headlight-simpler-origin.glb",
+    process.env.PUBLIC_URL + "/headlight-simplest-origin.glb",
     draco(process.env.PUBLIC_URL + "/draco-gltf/")
   );
 

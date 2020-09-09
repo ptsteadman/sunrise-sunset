@@ -6,7 +6,7 @@ import Credits from "./components/Credits";
 import { Canvas } from "react-three-fiber";
 import Lights from "./components/Lights";
 import { LightGlobe } from "./components/LightGlobe/LightGlobe";
-import { OrbitControls, Stars, Html } from "drei";
+import { OrbitControls, Stars, Html, Stats } from "drei";
 
 const loader = (
   <Html center>
@@ -29,6 +29,7 @@ function App() {
         </Suspense>
         <OrbitControls enablePan={false} zoomSpeed={0.5} />
         <Stars factor={2} saturation={0.7} />
+        <Stats />
       </Canvas>
     </>
   );
