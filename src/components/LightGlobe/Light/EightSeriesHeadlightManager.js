@@ -15,7 +15,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
 
   const { nodes } = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/headlight-simplest-origin.glb",
+    process.env.PUBLIC_URL + "/headlight-simpler-origin.glb",
     draco(process.env.PUBLIC_URL + "/draco-gltf/")
   );
 
@@ -42,7 +42,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
 
     }
     return (
-      <group scale={[0.012, 0.012, 0.012 ]} key={name} position={position} ref={refs.current[i]}>
+      <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
         <mesh visible geometry={nodes['visor'].geometry}>
           <meshPhysicalMaterial
             attach="material"
@@ -95,21 +95,11 @@ export function EightSeriesHeadlightManager ({ locations }) {
           />
         </mesh>
         {citiesWhereHeadlightsOn.includes(name) && (
-          <mesh position={[-5.5, 0, -1]}>
+          <mesh position={[-5, 1, 1]}>
             {/* <sphereBufferGeometry attach="geometry" args={[1, 32, 32]} /> */}
             {/* <meshBasicMaterial attach="material" color="#FFFF99" fog={false} /> */}
             <pointLight
-              args={[0x7777ff, 8, 0.1]}
-            />
-          </mesh>
-        )
-        }
-        {citiesWhereHeadlightsOn.includes(name) && (
-          <mesh position={[-1, 1, 5]}>
-            {/* <sphereBufferGeometry attach="geometry" args={[1, 32, 32]} /> */}
-            {/* <meshBasicMaterial attach="material" color="#FFFF99" fog={false} /> */}
-            <pointLight
-              args={[0x7777ff, 8, 0.1]}
+              args={[0x7777ff, 8, 0.07]}
             />
           </mesh>
         )

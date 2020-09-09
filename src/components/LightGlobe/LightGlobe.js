@@ -17,13 +17,15 @@ export function LightGlobe () {
   });
 
   const RADIUS = 3;
-  const locations = cities.map(({ lat, lng, name }) => {
-    const [inc, azm ] = latlngToSphericalCoords(lat, lng)
-    return {
-      position: sphericalCoordsToCartesian(RADIUS, inc, azm),
-      name,
-    }
-  })
+  const locations = cities
+    .filter(c => c.render)
+    .map(({ lat, lng, name }) => {
+      const [inc, azm ] = latlngToSphericalCoords(lat, lng)
+      return {
+        position: sphericalCoordsToCartesian(RADIUS, inc, azm),
+        name,
+      }
+    })
 
   const lights = cities.map(({ lat, lng, name }) => {
     const coords = latlngToSphericalCoords(lat, lng);
