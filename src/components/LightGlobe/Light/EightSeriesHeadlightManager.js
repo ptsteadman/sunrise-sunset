@@ -34,8 +34,11 @@ export function EightSeriesHeadlightManager ({ locations }) {
   const meshObjects = locations.map(({ position, name }, i) => {
     const envMap = {
       "New York City": nycCubeMap,
+      'Mexico City': nycCubeMap,
       "Hong Kong": hkCubeMap,
       "Qingdao": hkCubeMap,
+      "Seoul": hkCubeMap,
+      "Dhaka": hkCubeMap,
 
     }
     return (
