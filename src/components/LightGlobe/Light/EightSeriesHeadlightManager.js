@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, createRef } from 'react'
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { draco } from "drei";
+import { draco, Detailed } from "drei";
 import { BackSide } from "three";
 import { WebcamImageManager } from "../../WebcamImageManager";
 import { citiesWhereHeadlightsOn } from "../../../lib";
@@ -16,6 +16,18 @@ export function EightSeriesHeadlightManager ({ locations }) {
   const { nodes } = useLoader(
     GLTFLoader,
     process.env.PUBLIC_URL + "/eight-series-headlight-simplified.glb",
+    draco(process.env.PUBLIC_URL + "/draco-gltf/")
+  );
+
+  const { nodes: midDetailNodes } = useLoader(
+    GLTFLoader,
+    process.env.PUBLIC_URL + "/eight-series-headlight-mid-lod.glb",
+    draco(process.env.PUBLIC_URL + "/draco-gltf/")
+  );
+
+  const { nodes: lowDetailNodes } = useLoader(
+    GLTFLoader,
+    process.env.PUBLIC_URL + "/eight-series-headlight-very-low-lod.glb",
     draco(process.env.PUBLIC_URL + "/draco-gltf/")
   );
 
@@ -58,51 +70,73 @@ export function EightSeriesHeadlightManager ({ locations }) {
             depthWrite={false}
           />
         </mesh>
-        <mesh visible geometry={nodes['headlight-simpler'].geometry}>
-          <meshStandardMaterial
-            attach="material"
-            color={0x778899}
-            roughness={0.3}
-            metalness={0.7}
-          />
-        </mesh>
-        <mesh visible geometry={nodes['griddy-thing'].geometry}>
-          <meshPhysicalMaterial
-            attach="material"
-            color={0xddeeff}
-            roughness={0.2}
-            metalness={0.8}
-            emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
-            opacity={1}
-            transparent
-            transmission={0.94}
-            depthWrite={false}
-          />
-        </mesh>
-        <mesh visible geometry={nodes['griddy-thing'].geometry}>
-          <meshPhysicalMaterial
-            attach="material"
-            color={0xddeeff}
-            roughness={0.2}
-            metalness={0.8}
-            emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
-            opacity={1}
-            transparent
-            transmission={0.4}
-            depthWrite={false}
-            side={BackSide}
-          />
-        </mesh>
-        {citiesWhereHeadlightsOn.includes(name) && (
-          <mesh position={[-5, 1, 1]}>
-            {/* <sphereBufferGeometry attach="geometry" args={[1, 32, 32]} /> */}
-            {/* <meshBasicMaterial attach="material" color="#FFFF99" fog={false} /> */}
-            <pointLight
-              args={[0x7777ff, 8, 0.07]}
+        <Detailed distances={[0, 2.5, 5]}>
+          <mesh visible geometry={nodes['headlight-simpler'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0x778899}
+              roughness={0.3}
+              metalness={0.7}
             />
           </mesh>
-        )
-        }
+          <mesh visible geometry={midDetailNodes['headlight-simpler'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0x778899}
+              roughness={0.3}
+              metalness={0.7}
+            />
+          </mesh>
+          <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0x778899}
+              roughness={0.3}
+              metalness={0.7}
+            />
+          </mesh>
+        </Detailed>
+        <Detailed distances={[0, 3]}>
+          <mesh>
+            <mesh visible geometry={nodes['griddy-thing'].geometry}>
+              <meshPhysicalMaterial
+                attach="material"
+                color={0xddeeff}
+                roughness={0.2}
+                metalness={0.8}
+                emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+                opacity={1}
+                transparent
+                transmission={0.94}
+                depthWrite={false}
+              />
+            </mesh>
+            <mesh visible geometry={nodes['griddy-thing'].geometry}>
+              <meshPhysicalMaterial
+                attach="material"
+                color={0xddeeff}
+                roughness={0.2}
+                metalness={0.8}
+                emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+                opacity={1}
+                transparent
+                transmission={0.4}
+                depthWrite={false}
+                side={BackSide}
+              />
+            </mesh>
+          </mesh>
+          <mesh visible geometry={lowDetailNodes['griddy-thing'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0xddeeff}
+              roughness={0.2}
+              metalness={0.8}
+              emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+              depthWrite={false}
+            />
+          </mesh>
+        </Detailed>
         <mesh visible geometry={nodes['bulbs'].geometry}>
           <meshStandardMaterial
             attach="material"
@@ -112,35 +146,67 @@ export function EightSeriesHeadlightManager ({ locations }) {
             emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
           />
         </mesh>
-        <mesh visible geometry={nodes['top-light'].geometry}>
-          <meshPhysicalMaterial
-            attach="material"
-            color={0xddffff}
-            roughness={0.1}
-            metalness={0.8}
-            emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
-            opacity={1}
-            transparent
-            transmission={0.5}
-            depthWrite={false}
-          />
-        </mesh>
-        <mesh visible geometry={nodes['complex--inner-thing-1'].geometry}>
-          <meshStandardMaterial
-            attach="material"
-            color={0x3333ff}
-            roughness={0.6}
-            metalness={0.5}
-          />
-        </mesh>
-        <mesh visible geometry={nodes['complex-inner-thing-2'].geometry}>
-          <meshStandardMaterial
-            attach="material"
-            color={0x3333ff}
-            roughness={0.3}
-            metalness={0.5}
-          />
-        </mesh>
+        <Detailed distances={[0, 3]}>
+          <mesh visible geometry={nodes['top-light'].geometry}>
+            <meshPhysicalMaterial
+              attach="material"
+              color={0xddffff}
+              roughness={0.1}
+              metalness={0.8}
+              emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+              opacity={1}
+              transparent
+              transmission={0.5}
+              depthWrite={false}
+            />
+          </mesh>
+          <mesh visible geometry={lowDetailNodes['top-light'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0xddffff}
+              roughness={0.1}
+              metalness={0.8}
+              emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+              depthWrite={false}
+            />
+          </mesh>
+        </Detailed>
+        <Detailed distances={[0, 3]}>
+          <mesh visible geometry={nodes['complex--inner-thing-1'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0x3333ff}
+              roughness={0.6}
+              metalness={0.5}
+            />
+          </mesh>
+          <mesh visible geometry={lowDetailNodes['complex--inner-thing-1'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0x3333ff}
+              roughness={0.6}
+              metalness={0.5}
+            />
+          </mesh>
+        </Detailed>
+        <Detailed distances={[0, 3]}>
+          <mesh visible geometry={nodes['complex-inner-thing-2'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0x3333ff}
+              roughness={0.3}
+              metalness={0.5}
+            />
+          </mesh>
+          <mesh visible geometry={lowDetailNodes['complex-inner-thing-2'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={0x3333ff}
+              roughness={0.3}
+              metalness={0.5}
+            />
+          </mesh>
+        </Detailed>
       </group>
     )})
   return (
