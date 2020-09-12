@@ -21,7 +21,12 @@ function App() {
   return (
     <>
       <Credits/>
-      <Canvas colorManagement style={{ background: '#020204' }}>
+      <Canvas
+        colorManagement
+        concurrent
+        gl={{ antialias: true }}
+        style={{ background: '#020204' }}
+      >
         <fog attach="fog" args={["#020204", 1, 15]} />
         <Lights />
         <Suspense fallback={loader}>

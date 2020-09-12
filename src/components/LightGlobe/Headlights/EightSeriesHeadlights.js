@@ -4,12 +4,11 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
 import { WebcamImageManager } from "../../WebcamImageManager";
-import { citiesWhereHeadlightsOn } from "../../../lib";
 
 const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
 const nycSrc = 'http://207.251.86.238/cctv884.jpg?'
 
-export function EightSeriesHeadlightManager ({ locations }) {
+export function EightSeriesHeadlights ({ locations }) {
   const [nycCubeMap, setNycCubeMap] = React.useState(null)
   const [hkCubeMap, setHkCubeMap] = React.useState(null)
 
@@ -32,9 +31,8 @@ export function EightSeriesHeadlightManager ({ locations }) {
   );
 
   const refs = useRef(locations.map(() => createRef()))
+
   useEffect(() => {
-
-
     for (const r of refs.current) {
       r.current.lookAt(0,0,0)
       // r.current.rotateX(Math.PI / 2)
@@ -43,7 +41,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
     }
   }, [])
 
-  const meshObjects = locations.map(({ position, name }, i) => {
+  const meshObjects = locations.map(({ position, name, lightOn }, i) => {
     const envMap = {
       "New York City": nycCubeMap,
       'Mexico City': nycCubeMap,
@@ -51,7 +49,6 @@ export function EightSeriesHeadlightManager ({ locations }) {
       "Qingdao": hkCubeMap,
       "Seoul": hkCubeMap,
       "Dhaka": hkCubeMap,
-
     }
     return (
       <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
@@ -104,7 +101,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
                 color={0xddeeff}
                 roughness={0.2}
                 metalness={0.8}
-                emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+                emissive={lightOn ? 0xaaaaff : null}
                 opacity={1}
                 transparent
                 transmission={0.94}
@@ -117,7 +114,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
                 color={0xddeeff}
                 roughness={0.2}
                 metalness={0.8}
-                emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+                emissive={lightOn ? 0xaaaaff : null}
                 opacity={1}
                 transparent
                 transmission={0.4}
@@ -132,7 +129,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
               color={0xddeeff}
               roughness={0.2}
               metalness={0.8}
-              emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+              emissive={lightOn ? 0xaaaaff : null}
               depthWrite={false}
             />
           </mesh>
@@ -143,7 +140,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
             color={0xaaaaff}
             roughness={0.3}
             metalness={0.5}
-            emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+            emissive={lightOn ? 0xaaaaff : null}
           />
         </mesh>
         <Detailed distances={[0, 3]}>
@@ -153,7 +150,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
               color={0xddffff}
               roughness={0.1}
               metalness={0.8}
-              emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+              emissive={lightOn ? 0xaaaaff : null}
               opacity={1}
               transparent
               transmission={0.5}
@@ -166,7 +163,7 @@ export function EightSeriesHeadlightManager ({ locations }) {
               color={0xddffff}
               roughness={0.1}
               metalness={0.8}
-              emissive={citiesWhereHeadlightsOn.includes(name) ? 0xaaaaff : null}
+              emissive={lightOn ? 0xaaaaff : null}
               depthWrite={false}
             />
           </mesh>

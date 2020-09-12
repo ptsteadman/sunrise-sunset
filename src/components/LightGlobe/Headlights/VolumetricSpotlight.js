@@ -40,7 +40,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     vs.current.material.uniforms.spotPosition.value = vs.current.position;
 
     spotlight.current.position.copy(vs.current.position);
-  }, [scene, color, position]);
+  }, [scene]);
 
   useFrame(({ clock }) => {
     spotlight.current.position.copy(vs.current.position);
