@@ -17,7 +17,7 @@ export function HeadlightBeams ({ locations, rotation }) {
         </mesh>
         <MyVolumetricSpotlight
           position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
-          color={0xccccff}
+          color={0xccccef}
           target={refs.current[i]}
           intensity={0.1}
         />

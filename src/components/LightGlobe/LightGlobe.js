@@ -21,12 +21,18 @@ export function LightGlobe () {
   const RADIUS = 3;
   const locations = cities
     .filter(c => c.render)
-    .map(({ lat, lng, name }) => {
+    .map(({ lat, lng, name }, i) => {
       const [inc, azm ] = latlngToSphericalCoords(lat, lng)
       const position = sphericalCoordsToCartesian(RADIUS, inc, azm);
       const pos = new Vector3(...position)
       const worldPos = pos.applyMatrix4(new Matrix4().makeRotationY(rotation))
-      const lightOn = !!(worldPos.x > 0.1)
+      const onDarkSide = !!(worldPos.x > 0.1)
+      const blinker = i % 3 === 0
+      const blinkingOn = new Date().getSeconds() % 10 > 5
+      let lightOn = false
+      if (onDarkSide) {
+        lightOn = blinker ? blinkingOn : true
+      }
       return {
         position,
         name,
