@@ -76,7 +76,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
   useFrame(() => {
     const angle = spotlight.current.angle;
 
-    vs.current.scale.set(1.2 * angle, 1 * angle, 1);
+    vs.current.scale.set(1.25 * angle, 1 * angle, 1);
   });
 
   return (
@@ -96,8 +96,8 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
         <volumetricSpotlight
           attach="material"
           uniforms-lightColor-value={color}
-          uniforms-attenuation-value={4}
-          uniforms-anglePower-value={1}
+          uniforms-attenuation-value={6}
+          uniforms-anglePower-value={1.2}
         />
       </mesh>
     </>
