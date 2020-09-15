@@ -6,7 +6,7 @@ import { BackSide } from "three";
 import { WebcamImageManager } from "../../WebcamImageManager";
 
 const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
-const nycSrc = 'http://207.251.86.238/cctv884.jpg?'
+const nycSrc = 'http://207.251.86.238/cctv884.jpg?';
 
 export function EightSeriesHeadlights ({ locations }) {
   const [nycCubeMap, setNycCubeMap] = React.useState(null)
@@ -212,5 +212,5 @@ export function EightSeriesHeadlights ({ locations }) {
       <WebcamImageManager src={hkSrc} handleUpdateCubeMap={setHkCubeMap} />
       {meshObjects}
     </group>
-  )
+  );
 }
