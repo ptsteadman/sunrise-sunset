@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useThree, useFrame, extend } from "react-three-fiber";
 
 import * as THREE from "three";
@@ -11,6 +11,7 @@ extend({
 });
 
 export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotlight(props, ref) {
+  const [initialized, setInitialized] = useState(false);
   const vs = React.useRef();
   const spotlight = React.useRef();
 
@@ -40,6 +41,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     vs.current.material.uniforms.spotPosition.value = vs.current.position;
 
     spotlight.current.position.copy(vs.current.position);
+    setInitialized(true);
   }, [scene]);
 
   useFrame(({ clock }) => {
@@ -52,12 +54,6 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       const targetPos = new THREE.Vector3();
       target.current.getWorldPosition(targetPos) ;
       vs.current.lookAt(targetPos);
-      if  (targetPos.x < 0) {
-        // vs.current.material.uniforms.lightColor.value = new THREE.Color(0xffe7dd);
-        // vs.current.material.uniforms.lightColor.value = new THREE.Color(0xffe7dd);
-        vs.current.material.uniforms.attenuation.value = 4;
-
-      }
       spotlight.current.target.position.copy(targetPos);
     }
   });
@@ -83,7 +79,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     <>
       <spotLight
         ref={spotlight}
-        intensity={intensity}
+        intensity={initialized ? intensity : 0}
         angle={angle}
         penumbra={penumbra}
         distance={distance}
@@ -96,7 +92,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
         <volumetricSpotlight
           attach="material"
           uniforms-lightColor-value={color}
-          uniforms-attenuation-value={6}
+          uniforms-attenuation-value={initialized ? 6 : 2}
           uniforms-anglePower-value={1.2}
         />
       </mesh>
