@@ -1,7 +1,3 @@
-
-import startOfDay from 'date-fns/startOfDay'
-import differenceInSeconds from 'date-fns/differenceInSeconds'
-
 export function sphericalCoordsToCartesian (radius, inclination, azimuth) {
   /*
    * Inclination is in the range [0, pi], from straight up (the zenith)
@@ -20,15 +16,12 @@ export function latlngToSphericalCoords (lat, lng) {
   return [inclination, azimuth];
 }
 
-export function calculateAngleForTime () {
-  const secondsElapsedInDay = differenceInSeconds(
-    new Date(),
-    startOfDay(new Date()),
-  )
+const SECONDS_IN_DAY = 24 * 60 * 60;
 
-  const dayProgress = secondsElapsedInDay / (24 * 60 * 60);
-  return dayProgress * 2 * Math.PI - (Math.PI / 4);
+export function calculateAngleForTime () {
+  const unixEraSeconds = Math.floor(new Date().valueOf() / 1000);
+  const secondsElapsedInDay = unixEraSeconds % SECONDS_IN_DAY;
+  const dayProgress = secondsElapsedInDay / SECONDS_IN_DAY;
+  return dayProgress * 2 * Math.PI + Math.PI;
 }
 
-// export const citiesWhereHeadlightsOn = ['Shanghai', 'New York City', 'Berlin', 'Mexico City',  'London', 'Los Angeles', 'Mumbai', 'Sydney', 'Cairo', 'Seoul', 'Moscow', 'Buenos Aires']
-export const citiesWhereHeadlightsOn = ['Shanghai', 'New York City', 'Berlin', 'Mexico City',  'London', 'Los Angeles', 'Mumbai', 'Sydney', 'Cairo', 'Seoul', 'Moscow', 'Buenos Aires']

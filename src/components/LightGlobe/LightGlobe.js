@@ -28,7 +28,8 @@ export function LightGlobe () {
       const worldPos = pos.applyMatrix4(new Matrix4().makeRotationY(rotation))
       const onDarkSide = !!(worldPos.x > 0.1)
       const blinker = i % 3 === 0
-      const blinkingOn = new Date().getSeconds() % 10 > 5
+      // const blinkingOn = new Date().getSeconds() % 10 > 5
+      const blinkingOn = true 
       let lightOn = false
       if (onDarkSide) {
         lightOn = blinker ? blinkingOn : true
