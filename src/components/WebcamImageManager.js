@@ -3,7 +3,7 @@ import { useFrame } from "react-three-fiber";
 import { Html } from "drei";
 import { CubeTexture } from "three";
 
-const corsProxy = 'http://cors-anywhere.services.computerlab.io:8080';
+const corsProxy = 'https://cors-anywhere.services.computerlab.io';
 
 export function WebcamImageManager ({ src, handleUpdateCubeMap }) {
   const imgRef = useRef();
