@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import Credits from "./components/Credits";
 import { Canvas } from "react-three-fiber";
+import { CineonToneMapping } from "three";
 import Lights from "./components/Lights";
 import { LightGlobe } from "./components/LightGlobe/LightGlobe";
 import { OrbitControls, Stars, Stats } from "drei";
@@ -16,7 +17,7 @@ function App() {
       <Canvas
         colorManagement
         concurrent
-        gl={{ antialias: true }}
+        gl={{ antialias: true, toneMapping: CineonToneMapping }}
         style={{ background: '#020204' }}
       >
         <fogExp2 attach="fog" args={["#020204", 0.15]} />

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Html } from "drei";
+import { Html, useProgress } from "drei";
 
 export function LoadingIndicator () {
+  const { progress } = useProgress()
   return (
     <Html center>
       <div className='loading'>
@@ -20,8 +21,7 @@ export function LoadingIndicator () {
               />
               </path>
             </defs>
-
-            <text className="progress" x="50%" y="50%" dominantBaseline="middle" textAnchor="middle">Loading %</text>    
+            <text className="progress" x="50%" y="50%" dominantBaseline="middle" textAnchor="middle">Loading {Math.round(progress)}%</text>    
             <text dy="70" textLength="1220">
               <textPath className="circle-text" xlinkHref="#textcircle">TOMORROW WILL BE NOTHING LIKE TODAY WILL BE NOTHING LIKE</textPath>
             </text>

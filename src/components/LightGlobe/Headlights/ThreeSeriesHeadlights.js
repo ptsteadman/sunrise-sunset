@@ -3,19 +3,13 @@ import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
-import { WebcamImageManager } from "../../WebcamImageManager";
-
-const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
-const nycSrc = 'http://207.251.86.238/cctv884.jpg?';
 
 export function ThreeSeriesHeadlights ({ locations }) {
   const { nodes } = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/series-3-textured.glb",
+    process.env.PUBLIC_URL + "/series-3.glb",
     draco(process.env.PUBLIC_URL + "/draco-gltf/")
   );
-
-  console.log('nodes:', nodes);
 
   const { nodes: lowDetailNodes } = useLoader(
     GLTFLoader,
@@ -29,12 +23,12 @@ export function ThreeSeriesHeadlights ({ locations }) {
     for (const r of refs.current) {
       r.current.lookAt(0,0,0)
       // r.current.rotateX(Math.PI / 2)
-      r.current.rotateY( 5 * Math.PI / 4)
+      r.current.rotateY( 5.6 * Math.PI / 4)
       // r.current.rotateZ(Math.PI / 4)
     }
   }, [])
 
-  const meshObjects = locations.map(({ position, name, lightOn }, i) => {
+  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff }, i) => {
     return (
       <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
         <mesh visible geometry={lowDetailNodes['visor'].geometry}>
@@ -50,32 +44,47 @@ export function ThreeSeriesHeadlights ({ locations }) {
             depthWrite={false}
           />
         </mesh>
-        <mesh visible geometry={nodes['bulbs'].geometry}>
+        <mesh visible geometry={nodes['bulbs_0'].geometry}>
           <meshStandardMaterial
             attach="material"
             roughness={0.3}
             metalness={0.5}
-            map={nodes['bulbs'].material.map}
-            emissive={lightOn ? 0xaaaaff : 0x000000}
+            emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+          />
+        </mesh>
+        <mesh visible geometry={nodes['bulbs_1'].geometry}>
+          <meshStandardMaterial
+            attach="material"
+            roughness={0.3}
+            metalness={0.5}
+            emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+          />
+        </mesh>
+        <mesh visible geometry={nodes['bulbs_2'].geometry}>
+          <meshStandardMaterial
+            attach="material"
+            roughness={0.3}
+            metalness={0.5}
+            emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
           />
         </mesh>
         <Detailed distances={[0, 6]}>
           <mesh visible geometry={nodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
-              // color={0x666666}
+              color={0x333333}
               roughness={0.3}
               metalness={0.7}
-              map={nodes['headlight-simpler'].material.map}
+              // map={nodes['headlight-simpler'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x666666}
+              color={0x333333}
               roughness={0.3}
               metalness={0.7}
-              lightMap={nodes['headlight-simpler'].material.map}
+              // lightMap={nodes['headlight-simpler'].material.map}
               lightMapIntensity={2}
             />
           </mesh>
@@ -88,7 +97,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
                 color={0xddeeff}
                 roughness={0.2}
                 metalness={0.8}
-                emissive={lightOn ? 0xaaaaff : 0x000000}
+                emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
                 opacity={1}
                 transparent
                 transmission={0.94}
@@ -101,7 +110,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
                 color={0xddeeff}
                 roughness={0.2}
                 metalness={0.8}
-                emissive={lightOn ? 0xaaaaff : 0x000000}
+                emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
                 opacity={1}
                 transparent
                 transmission={0.4}
@@ -116,7 +125,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
               color={0xddeeff}
               roughness={0.2}
               metalness={0.8}
-              emissive={lightOn ? 0xaaaaff : 0x000000}
+              emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
               opacity={1}
               transparent
               transmission={0.4}
@@ -146,10 +155,10 @@ export function ThreeSeriesHeadlights ({ locations }) {
           <mesh visible geometry={nodes['top-light-2'].geometry}>
             <meshStandardMaterial
               attach="material"
-              // color={0xddddff}
+              color={0xddddff}
               roughness={0.1}
               metalness={0.8}
-              map={nodes['top-light-2'].material.map}
+              // map={nodes['top-light-2'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['top-light-2'].geometry}>
@@ -165,16 +174,16 @@ export function ThreeSeriesHeadlights ({ locations }) {
           <mesh visible geometry={nodes['outer-liner'].geometry}>
             <meshStandardMaterial
               attach="material"
-              // color={0x666666}
+              color={0x222222}
               roughness={0.1}
               metalness={0.8}
-              map={nodes['outer-liner'].material.map}
+              // map={nodes['outer-liner'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['outer-liner'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x666666}
+              color={0x222222}
               roughness={0.1}
               metalness={0.8}
             />
@@ -223,7 +232,8 @@ export function ThreeSeriesHeadlights ({ locations }) {
               attach="material"
               roughness={0.1}
               metalness={0.8}
-              map={nodes['inner-body'].material.map}
+              color={0x999999}
+              // map={nodes['inner-body'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['inner-body'].geometry}>

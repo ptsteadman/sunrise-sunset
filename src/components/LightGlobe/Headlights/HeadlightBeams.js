@@ -1,13 +1,14 @@
-import React, { useRef, createRef } from "react";
+import React, { useRef, createRef, useMemo } from "react";
 
 import { MyVolumetricSpotlight } from "./VolumetricSpotlight";
 
 
-export function HeadlightBeams ({ locations, rotation }) {
+
+export function HeadlightBeams ({ locations }) {
   const refs = useRef(locations.map(() => createRef()))
 
-  const beams = locations.map(({ position, lightOn }, i ) => {
-    if (!lightOn) return <group key={i} />
+  const beams = useMemo(() => locations.map(({ position, onDarkSide, blinkingOff }, i ) => {
+    if (!onDarkSide) return <group key={i} />
     return (
       <group key={i}>
         <mesh
@@ -16,14 +17,14 @@ export function HeadlightBeams ({ locations, rotation }) {
         >
         </mesh>
         <MyVolumetricSpotlight
-          position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
-          color={0xccccef}
+          position={[position[0] * 0.97, position[1] * 0.97, position[2] * 0.97]}
+          color={blinkingOff ? 0x000000 : 0xccccef}
           target={refs.current[i]}
-          intensity={4}
+          intensity={blinkingOff ? 0 :100}
         />
       </group>
     )
-  })
+  }), [locations])
 
   return (
     <>

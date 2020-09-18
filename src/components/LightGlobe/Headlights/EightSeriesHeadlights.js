@@ -41,7 +41,7 @@ export function EightSeriesHeadlights ({ locations }) {
     }
   }, [])
 
-  const meshObjects = locations.map(({ position, name, lightOn }, i) => {
+  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff }, i) => {
     const envMap = {
       "New York City": nycCubeMap,
       'Mexico City': nycCubeMap,
@@ -101,7 +101,7 @@ export function EightSeriesHeadlights ({ locations }) {
                 color={0xddeeff}
                 roughness={0.2}
                 metalness={0.8}
-                emissive={lightOn ? 0xaaaaff : 0x000000}
+                emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
                 opacity={1}
                 transparent
                 transmission={0.94}
@@ -114,7 +114,7 @@ export function EightSeriesHeadlights ({ locations }) {
                 color={0xddeeff}
                 roughness={0.2}
                 metalness={0.8}
-                emissive={lightOn ? 0xaaaaff : 0x000000}
+                emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
                 opacity={1}
                 transparent
                 transmission={0.4}
@@ -129,7 +129,7 @@ export function EightSeriesHeadlights ({ locations }) {
               color={0xddeeff}
               roughness={0.2}
               metalness={0.8}
-              emissive={lightOn ? 0xaaaaff : 0x000000}
+              emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
               depthWrite={false}
             />
           </mesh>
@@ -140,7 +140,7 @@ export function EightSeriesHeadlights ({ locations }) {
             color={0xaaaaff}
             roughness={0.3}
             metalness={0.5}
-            emissive={lightOn ? 0xaaaaff : 0x000000}
+            emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
           />
         </mesh>
         <Detailed distances={[0, 3]}>
@@ -150,7 +150,7 @@ export function EightSeriesHeadlights ({ locations }) {
               color={0xddffff}
               roughness={0.1}
               metalness={0.8}
-              emissive={lightOn ? 0xaaaaff : 0x000000}
+              emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
               opacity={1}
               transparent
               transmission={0.5}
@@ -163,7 +163,7 @@ export function EightSeriesHeadlights ({ locations }) {
               color={0xddffff}
               roughness={0.1}
               metalness={0.8}
-              emissive={lightOn ? 0xaaaaff : 0x000000}
+              emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
               depthWrite={false}
             />
           </mesh>
