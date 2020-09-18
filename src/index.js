@@ -19,7 +19,7 @@ function App() {
         gl={{ antialias: true }}
         style={{ background: '#020204' }}
       >
-        <fog attach="fog" args={["#020204", 1, 15]} />
+        <fogExp2 attach="fog" args={["#020204", 0.15]} />
         <Lights />
         <Suspense fallback={<LoadingIndicator />}>
           <LightGlobe />

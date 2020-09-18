@@ -5,6 +5,7 @@ import { Vector3, Matrix4 } from 'three';
 import { sphericalCoordsToCartesian, latlngToSphericalCoords, calculateAngleForTime } from "../../lib";
 import cities from "../../lib/cities.json";
 import { EightSeriesHeadlights } from "./Headlights/EightSeriesHeadlights";
+import { ThreeSeriesHeadlights } from "./Headlights/ThreeSeriesHeadlights";
 import { HeadlightBeams } from "./Headlights/HeadlightBeams";
 
 export function LightGlobe () {
@@ -17,10 +18,11 @@ export function LightGlobe () {
     group.current.rotation.y = r
   });
 
+
   const RADIUS = 3;
   const locations = cities
     .filter(c => c.render)
-    .map(({ lat, lng, name }, i) => {
+    .map(({ lat, lng, name, render }, i) => {
       const [inc, azm ] = latlngToSphericalCoords(lat, lng)
       const position = sphericalCoordsToCartesian(RADIUS, inc, azm);
       const pos = new Vector3(...position)
@@ -34,6 +36,7 @@ export function LightGlobe () {
         lightOn = blinker ? blinkingOn : true
       }
       return {
+        render,
         position,
         name,
         lightOn
@@ -42,7 +45,8 @@ export function LightGlobe () {
 
   return (
     <group ref={group}>
-      <EightSeriesHeadlights locations={locations} />
+      <EightSeriesHeadlights locations={locations.filter(({ render }) => render === 'EightSeries')} />
+      <ThreeSeriesHeadlights locations={locations.filter(({ render }) => render === 'ThreeSeries')} />
       <HeadlightBeams locations={locations} />
     </group>
   );

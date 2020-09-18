@@ -6,7 +6,7 @@
     "timezone": "Asia/Dubai",
     "lat": 25.07725,
     "lng": 55.30927,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Sharjah",
@@ -47,7 +47,7 @@
     "timezone": "America/Argentina/Buenos_Aires",
     "lat": -34.61315,
     "lng": -58.37723,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Rosario",
@@ -72,7 +72,7 @@
     "timezone": "Europe/Vienna",
     "lat": 48.20849,
     "lng": 16.37208,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Perth",
@@ -97,7 +97,7 @@
     "timezone": "Australia/Sydney",
     "lat": -33.86785,
     "lng": 151.20732,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Melbourne",
@@ -106,7 +106,7 @@
     "timezone": "Australia/Melbourne",
     "lat": -37.814,
     "lng": 144.96332,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Brisbane",
@@ -131,7 +131,7 @@
     "timezone": "Asia/Dhaka",
     "lat": 23.7104,
     "lng": 90.40744,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Chattogram",
@@ -211,8 +211,7 @@
     "country": "BR",
     "timezone": "America/Sao_Paulo",
     "lat": -23.5475,
-    "lng": -46.63611,
-    "render": true
+    "lng": -46.63611
   },
   {
     "name": "Salvador",
@@ -229,7 +228,7 @@
     "timezone": "America/Sao_Paulo",
     "lat": -22.90642,
     "lng": -43.18223,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Porto Alegre",
@@ -325,7 +324,8 @@
     "country": "CA",
     "timezone": "America/Toronto",
     "lat": 45.50884,
-    "lng": -73.58781
+    "lng": -73.58781,
+    "render": "ThreeSeries"
   },
   {
     "name": "Toronto",
@@ -333,8 +333,7 @@
     "country": "CA",
     "timezone": "America/Toronto",
     "lat": 43.70011,
-    "lng": -79.4163,
-    "render": true
+    "lng": -79.4163
   },
   {
     "name": "Lubumbashi",
@@ -471,7 +470,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 34.25833,
     "lng": 108.92861,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Xiamen",
@@ -479,8 +478,7 @@
     "country": "CN",
     "timezone": "Asia/Shanghai",
     "lat": 24.47979,
-    "lng": 118.08187,
-    "render": true
+    "lng": 118.08187
   },
   {
     "name": "Wuxi",
@@ -497,7 +495,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 30.58333,
     "lng": 114.26667,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Tianshui",
@@ -578,7 +576,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 31.22222,
     "lng": 121.45806,
-    "render": true
+    "render": "EightSeries"
   },
   {
     "name": "Jieyang",
@@ -611,7 +609,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 29.87819,
     "lng": 121.54945,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Nanjing",
@@ -620,7 +618,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 32.06167,
     "lng": 118.77778,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Nanchong",
@@ -661,7 +659,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 36.05701,
     "lng": 103.83987,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Kunming",
@@ -670,7 +668,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 25.03889,
     "lng": 102.71833,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Jinan",
@@ -727,7 +725,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 23.11667,
     "lng": 113.25,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Fuzhou",
@@ -736,7 +734,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 26.06139,
     "lng": 119.30611,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Foshan",
@@ -769,7 +767,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 38.91222,
     "lng": 121.60222,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Chongqing",
@@ -778,7 +776,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 29.56278,
     "lng": 106.55278,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Chengdu",
@@ -803,7 +801,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 39.9075,
     "lng": 116.39723,
-    "render": true
+    "render": "EightSeries"
   },
   {
     "name": "Suzhou",
@@ -860,7 +858,7 @@
     "timezone": "Asia/Shanghai",
     "lat": 45.75,
     "lng": 126.65,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Fushun",
@@ -949,7 +947,7 @@
     "timezone": "America/Bogota",
     "lat": 4.60971,
     "lng": -74.08175,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Barranquilla",
@@ -982,7 +980,7 @@
     "timezone": "Europe/Berlin",
     "lat": 48.13743,
     "lng": 11.57549,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Hamburg",
@@ -999,7 +997,7 @@
     "timezone": "Europe/Berlin",
     "lat": 52.52437,
     "lng": 13.41053,
-    "render": true
+    "render": "EightSeries"
   },
   {
     "name": "Copenhagen",
@@ -1056,7 +1054,7 @@
     "timezone": "Africa/Cairo",
     "lat": 30.06263,
     "lng": 31.24967,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Giza",
@@ -1081,7 +1079,7 @@
     "timezone": "Europe/Madrid",
     "lat": 40.4165,
     "lng": -3.70256,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Barcelona",
@@ -1106,7 +1104,7 @@
     "timezone": "Europe/Paris",
     "lat": 48.85341,
     "lng": 2.3488,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "London",
@@ -1115,7 +1113,7 @@
     "timezone": "Europe/London",
     "lat": 51.50853,
     "lng": -0.12574,
-    "render": true
+    "render": "EightSeries"
   },
   {
     "name": "Tbilisi",
@@ -1172,7 +1170,7 @@
     "timezone": "Asia/Hong_Kong",
     "lat": 22.27832,
     "lng": 114.17469,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Port-au-Prince",
@@ -1245,7 +1243,7 @@
     "timezone": "Asia/Jakarta",
     "lat": -6.21462,
     "lng": 106.84513,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Depok",
@@ -1429,8 +1427,7 @@
     "country": "IN",
     "timezone": "Asia/Kolkata",
     "lat": 13.08784,
-    "lng": 80.27847,
-    "render": true
+    "lng": 80.27847
   },
   {
     "name": "Ludhiāna",
@@ -1495,7 +1492,7 @@
     "timezone": "Asia/Kolkata",
     "lat": 17.38405,
     "lng": 78.45636,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Hāora",
@@ -1544,7 +1541,7 @@
     "timezone": "Asia/Kolkata",
     "lat": 28.65195,
     "lng": 77.23149,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Kolkata",
@@ -1561,7 +1558,7 @@
     "timezone": "Asia/Kolkata",
     "lat": 19.07283,
     "lng": 72.88261,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Bhopāl",
@@ -1578,7 +1575,7 @@
     "timezone": "Asia/Kolkata",
     "lat": 12.97194,
     "lng": 77.59369,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Aurangabad",
@@ -1643,7 +1640,7 @@
     "timezone": "Asia/Baghdad",
     "lat": 33.34058,
     "lng": 44.40088,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Al Mawşil al Jadīdah",
@@ -1684,7 +1681,7 @@
     "timezone": "Asia/Tehran",
     "lat": 35.69439,
     "lng": 51.42151,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Tabriz",
@@ -1733,7 +1730,7 @@
     "timezone": "Europe/Rome",
     "lat": 41.89193,
     "lng": 12.51133,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Milan",
@@ -1774,7 +1771,7 @@
     "timezone": "Asia/Tokyo",
     "lat": 35.6895,
     "lng": 139.69171,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Osaka",
@@ -1799,7 +1796,7 @@
     "timezone": "Asia/Tokyo",
     "lat": 35.02107,
     "lng": 135.75385,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Kobe",
@@ -1864,7 +1861,7 @@
     "timezone": "Africa/Nairobi",
     "lat": -1.28333,
     "lng": 36.81667,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Phnom Penh",
@@ -1913,7 +1910,7 @@
     "timezone": "Asia/Seoul",
     "lat": 37.566,
     "lng": 126.9784,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Busan",
@@ -2082,7 +2079,7 @@
     "timezone": "America/Mexico_City",
     "lat": 19.42847,
     "lng": -99.12766,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Zapopan",
@@ -2179,7 +2176,7 @@
     "timezone": "Africa/Lagos",
     "lat": 6.45407,
     "lng": 3.39467,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Kano",
@@ -2228,7 +2225,7 @@
     "timezone": "America/Lima",
     "lat": -12.04318,
     "lng": -77.02824,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Quezon City",
@@ -2309,7 +2306,7 @@
     "timezone": "Asia/Karachi",
     "lat": 31.558,
     "lng": 74.35071,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Karachi",
@@ -2350,7 +2347,7 @@
     "timezone": "Europe/Warsaw",
     "lat": 52.22977,
     "lng": 21.01178,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Asunción",
@@ -2399,7 +2396,7 @@
     "timezone": "Europe/Moscow",
     "lat": 59.93863,
     "lng": 30.31413,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Samara",
@@ -2432,7 +2429,7 @@
     "timezone": "Europe/Moscow",
     "lat": 55.75222,
     "lng": 37.61556,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Kazan",
@@ -2537,7 +2534,7 @@
     "timezone": "Asia/Singapore",
     "lat": 1.28967,
     "lng": 103.85007,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Dakar",
@@ -2578,7 +2575,7 @@
     "timezone": "Asia/Bangkok",
     "lat": 13.75398,
     "lng": 100.50144,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "İzmir",
@@ -2619,7 +2616,7 @@
     "timezone": "Europe/Istanbul",
     "lat": 41.01384,
     "lng": 28.94966,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Bursa",
@@ -2636,7 +2633,7 @@
     "timezone": "Asia/Taipei",
     "lat": 25.04776,
     "lng": 121.53185,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Taichung",
@@ -2725,7 +2722,7 @@
     "timezone": "America/Chicago",
     "lat": 29.76328,
     "lng": -95.36327,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "San Antonio",
@@ -2742,7 +2739,7 @@
     "timezone": "America/Chicago",
     "lat": 37.42412,
     "lng": -122.49363,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Chicago",
@@ -2751,7 +2748,7 @@
     "timezone": "America/Chicago",
     "lat": 41.85003,
     "lng": -87.65005,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "The Bronx",
@@ -2784,7 +2781,7 @@
     "timezone": "America/New_York",
     "lat": 40.71427,
     "lng": -74.00597,
-    "render": true
+    "render": "EightSeries"
   },
   {
     "name": "Queens",
@@ -2809,7 +2806,7 @@
     "timezone": "America/Los_Angeles",
     "lat": 34.05223,
     "lng": -118.24368,
-    "render": true
+    "render": "EightSeries"
   },
   {
     "name": "San Diego",
@@ -2938,7 +2935,7 @@
     "timezone": "Africa/Johannesburg",
     "lat": -33.92584,
     "lng": 18.42322,
-    "render": true
+    "render": "ThreeSeries"
   },
   {
     "name": "Lusaka",
