@@ -18,9 +18,9 @@ function App() {
         colorManagement
         concurrent
         gl={{ antialias: true, toneMapping: CineonToneMapping }}
-        style={{ background: '#020204' }}
+        style={{ background: '#020202' }}
       >
-        <fogExp2 attach="fog" args={["#020204", 0.15]} />
+        <fogExp2 attach="fog" args={["#020202", 0.15]} />
         <Lights />
         <Suspense fallback={<LoadingIndicator />}>
           <LightGlobe />

@@ -4,6 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
 import { WebcamImageManager } from "../../WebcamImageManager";
+import { HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR } from "../../../constants"
 
 const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
 const nycSrc = 'http://207.251.86.238/cctv884.jpg?';
@@ -71,7 +72,7 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={nodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x778899}
+              color={HEADLIGHT_BODY_COLOR}
               roughness={0.3}
               metalness={0.7}
             />
@@ -79,7 +80,7 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={midDetailNodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x778899}
+              color={HEADLIGHT_BODY_COLOR}
               roughness={0.3}
               metalness={0.7}
             />
@@ -87,7 +88,7 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x778899}
+              color={HEADLIGHT_BODY_COLOR}
               roughness={0.3}
               metalness={0.7}
             />
@@ -172,7 +173,7 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={nodes['complex--inner-thing-1'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x3333ff}
+              color={BODY_HIGHLIGHT_COLOR}
               roughness={0.6}
               metalness={0.5}
             />
@@ -180,7 +181,7 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={lowDetailNodes['complex--inner-thing-1'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x3333ff}
+              color={BODY_HIGHLIGHT_COLOR}
               roughness={0.6}
               metalness={0.5}
             />
@@ -190,7 +191,7 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={nodes['complex-inner-thing-2'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x3333ff}
+              color={BODY_HIGHLIGHT_COLOR}
               roughness={0.3}
               metalness={0.5}
             />
@@ -198,7 +199,7 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={lowDetailNodes['complex-inner-thing-2'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0x3333ff}
+              color={BODY_HIGHLIGHT_COLOR}
               roughness={0.3}
               metalness={0.5}
             />
