@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/sunrise-sunset/precache-manifest.eec43b1318198796051f6ba8f71aac57.js"
+  "/sunrise-sunset/precache-manifest.0ac5eecb21ffabc44050b4bdb53f1159.js"
 );
 
 self.addEventListener('message', (event) => {
