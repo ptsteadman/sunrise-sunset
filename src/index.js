@@ -17,8 +17,8 @@ function App() {
       <Canvas
         colorManagement
         concurrent
-        gl={{ antialias: true, toneMapping: CineonToneMapping }}
-        style={{ background: '#020202' }}
+        onCreated={({ gl }) => gl.setClearColor('#020202')}
+        gl={{ antialias: false, toneMapping: CineonToneMapping }}
       >
         <fogExp2 attach="fog" args={["#020202", 0.15]} />
         <Lights />

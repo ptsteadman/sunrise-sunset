@@ -7,6 +7,7 @@ import cities from "../../lib/cities.json";
 import { EightSeriesHeadlights } from "./Headlights/EightSeriesHeadlights";
 import { ThreeSeriesHeadlights } from "./Headlights/ThreeSeriesHeadlights";
 import { HeadlightBeams } from "./Headlights/HeadlightBeams";
+import { FillerLights } from "./Headlights/FillerLights";
 
 export function LightGlobe () {
   const group = useRef();
@@ -21,7 +22,6 @@ export function LightGlobe () {
 
   const RADIUS = 3;
   const locations = cities
-    .filter(c => c.render)
     .map(({ lat, lng, name, render }, i) => {
       const [inc, azm ] = latlngToSphericalCoords(lat, lng)
       const position = sphericalCoordsToCartesian(RADIUS, inc, azm);
@@ -43,6 +43,7 @@ export function LightGlobe () {
     <group ref={group}>
       <EightSeriesHeadlights locations={locations.filter(({ render }) => render === 'EightSeries')} />
       <ThreeSeriesHeadlights locations={locations.filter(({ render }) => render === 'ThreeSeries')} />
+      <FillerLights locations={locations.filter(({ render }) => !render)} />
       <HeadlightBeams locations={locations} />
     </group>
   );
