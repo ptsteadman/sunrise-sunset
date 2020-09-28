@@ -18,7 +18,7 @@ function App() {
         colorManagement
         concurrent
         onCreated={({ gl }) => gl.setClearColor('#020202')}
-        gl={{ antialias: false, toneMapping: CineonToneMapping }}
+        gl={{ antialias: true, toneMapping: CineonToneMapping }}
       >
         <fogExp2 attach="fog" args={["#020202", 0.15]} />
         <Lights />

@@ -69,7 +69,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
           />
         </mesh>
-        <Detailed distances={[0, 6]}>
+        <Detailed distances={[0, 5]}>
           <mesh visible geometry={nodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"

@@ -9,8 +9,6 @@ extend({
   VolumetricSpotlight
 });
 
-
-
 export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotlight(props, ref) {
   const [initialized, setInitialized] = useState(false);
   const vs = React.useRef();
@@ -19,6 +17,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
 
   const {
     color,
+    length = 100,
     position,
     target
   } = props;
@@ -94,7 +93,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       {/* /> */}
 
       <mesh ref={setRef} position={position}>
-        <cylinderGeometry args={[0.05, 0.5, 10, 12, 4, true]} attach="geometry" />
+        <cylinderGeometry args={[0.05, 0.5, length, 10, 4, true]} attach="geometry" />
 
         <volumetricSpotlight
           attach="material"
