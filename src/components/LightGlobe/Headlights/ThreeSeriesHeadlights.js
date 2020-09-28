@@ -3,7 +3,13 @@ import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
-import { HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, BODY_DARK_COLOR } from "../../../constants"
+import { TURN_SIGNAL_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, BODY_DARK_COLOR } from "../../../constants"
+
+function getBulbEmissive (onDarkSide, turnLightOn) {
+  if (turnLightOn) return TURN_SIGNAL_COLOR
+  if (onDarkSide) return 0xaaaaff
+  return 0x000000
+}
 
 export function ThreeSeriesHeadlights ({ locations }) {
   const { nodes } = useLoader(
@@ -29,7 +35,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
     }
   }, [])
 
-  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff }, i) => {
+  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turnLightOn }, i) => {
     return (
       <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
         <mesh visible geometry={lowDetailNodes['visor'].geometry}>
@@ -50,7 +56,8 @@ export function ThreeSeriesHeadlights ({ locations }) {
             attach="material"
             roughness={0.3}
             metalness={0.5}
-            emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+            color={0xaaaaff}
+            emissive={getBulbEmissive(onDarkSide, turnLightOn)}
           />
         </mesh>
         <mesh visible geometry={nodes['bulbs_1'].geometry}>
@@ -58,7 +65,8 @@ export function ThreeSeriesHeadlights ({ locations }) {
             attach="material"
             roughness={0.3}
             metalness={0.5}
-            emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+            color={0xaaaaff}
+            emissive={onDarkSide ? 0xaaaaff : null}
           />
         </mesh>
         <mesh visible geometry={nodes['bulbs_2'].geometry}>
@@ -66,7 +74,8 @@ export function ThreeSeriesHeadlights ({ locations }) {
             attach="material"
             roughness={0.3}
             metalness={0.5}
-            emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+            color={0xaaaaff}
+            emissive={getBulbEmissive(onDarkSide, turnLightOn)}
           />
         </mesh>
         <Detailed distances={[0, 5]}>
@@ -76,7 +85,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
               color={HEADLIGHT_BODY_COLOR}
               roughness={0.3}
               metalness={0.7}
-              // map={nodes['headlight-simpler'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry}>
@@ -85,8 +93,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
               color={HEADLIGHT_BODY_COLOR}
               roughness={0.3}
               metalness={0.7}
-              // lightMap={nodes['headlight-simpler'].material.map}
-              lightMapIntensity={2}
             />
           </mesh>
         </Detailed>
@@ -159,7 +165,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
               color={0xddddff}
               roughness={0.1}
               metalness={0.8}
-              // map={nodes['top-light-2'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['top-light-2'].geometry}>
@@ -178,7 +183,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
               color={BODY_DARK_COLOR}
               roughness={0.1}
               metalness={0.8}
-              // map={nodes['outer-liner'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['outer-liner'].geometry}>
@@ -234,7 +238,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
               roughness={0.1}
               metalness={0.8}
               color={BODY_HIGHLIGHT_COLOR}
-              // map={nodes['inner-body'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['inner-body'].geometry}>

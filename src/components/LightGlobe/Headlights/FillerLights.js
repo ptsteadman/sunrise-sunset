@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import * as THREE from 'three'
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { draco, Detailed } from "drei";
+import { draco } from "drei";
 
 export function FillerLights ({ locations }) {
   const { nodes: lowDetailNodes } = useLoader(

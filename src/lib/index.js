@@ -25,3 +25,6 @@ export function calculateAngleForTime () {
   return dayProgress * 2 * Math.PI + Math.PI;
 }
 
+export function isIntervalActive (periodLength, activeLength, offset) {
+  return ((new Date().getTime()) + offset * 1000) % (periodLength * 1000) < activeLength * 1000
+}

@@ -6,7 +6,7 @@
     "timezone": "Asia/Dubai",
     "lat": 25.07725,
     "lng": 55.30927,
-    "render": "ThreeSeries"
+    "render": "EightSeries"
   },
   {
     "name": "Sharjah",
@@ -97,7 +97,7 @@
     "timezone": "Australia/Sydney",
     "lat": -33.86785,
     "lng": 151.20732,
-    "render": "ThreeSeries"
+    "render": "EightSeries"
   },
   {
     "name": "Melbourne",
@@ -131,7 +131,7 @@
     "timezone": "Asia/Dhaka",
     "lat": 23.7104,
     "lng": 90.40744,
-    "render": "ThreeSeries"
+    "render": "EightSeries"
   },
   {
     "name": "Chattogram",
@@ -139,7 +139,8 @@
     "country": "BD",
     "timezone": "Asia/Dhaka",
     "lat": 22.3384,
-    "lng": 91.83168
+    "lng": 91.83168,
+    "render": "ThreeSeries"
   },
   {
     "name": "Khulna",
@@ -1079,7 +1080,7 @@
     "timezone": "Europe/Madrid",
     "lat": 40.4165,
     "lng": -3.70256,
-    "render": "ThreeSeries"
+    "render": "EightSeries"
   },
   {
     "name": "Barcelona",
@@ -1170,7 +1171,7 @@
     "timezone": "Asia/Hong_Kong",
     "lat": 22.27832,
     "lng": 114.17469,
-    "render": "ThreeSeries"
+    "render": "EightSeries"
   },
   {
     "name": "Port-au-Prince",

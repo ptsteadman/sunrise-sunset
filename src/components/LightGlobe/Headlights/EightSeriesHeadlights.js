@@ -42,7 +42,7 @@ export function EightSeriesHeadlights ({ locations }) {
     }
   }, [])
 
-  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turning }, i) => {
+  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turnLightOn }, i) => {
     const envMap = {
       "New York City": nycCubeMap,
       'Mexico City': nycCubeMap,
@@ -148,10 +148,10 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={nodes['top-light'].geometry}>
             <meshPhysicalMaterial
               attach="material"
-              color={0xFE9B56}
+              color={0xddeeff}
               roughness={0.1}
               metalness={0.8}
-              emissive={turning ? TURN_SIGNAL_COLOR : (onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000)}
+              emissive={turnLightOn ? TURN_SIGNAL_COLOR : (onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000)}
               opacity={1}
               transparent
               transmission={0.5}
@@ -161,10 +161,10 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={lowDetailNodes['top-light'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0xFE9B56}
+              color={0xddeeff}
               roughness={0.1}
               metalness={0.8}
-              emissive={turning ? TURN_SIGNAL_COLOR : (onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000)}
+              emissive={turnLightOn ? TURN_SIGNAL_COLOR : (onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000)}
               depthWrite={false}
             />
           </mesh>
