@@ -4,7 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
 import { WebcamImageManager } from "../../WebcamImageManager";
-import { HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR } from "../../../constants"
+import { HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, TURN_SIGNAL_COLOR } from "../../../constants"
 
 const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
 const nycSrc = 'http://207.251.86.238/cctv884.jpg?';
@@ -42,7 +42,7 @@ export function EightSeriesHeadlights ({ locations }) {
     }
   }, [])
 
-  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff }, i) => {
+  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turning }, i) => {
     const envMap = {
       "New York City": nycCubeMap,
       'Mexico City': nycCubeMap,
@@ -144,14 +144,14 @@ export function EightSeriesHeadlights ({ locations }) {
             emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
           />
         </mesh>
-        <Detailed distances={[0, 3]}>
+        <Detailed distances={[0, 6]}>
           <mesh visible geometry={nodes['top-light'].geometry}>
             <meshPhysicalMaterial
               attach="material"
-              color={0xddffff}
+              color={0xFE9B56}
               roughness={0.1}
               metalness={0.8}
-              emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+              emissive={turning ? TURN_SIGNAL_COLOR : (onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000)}
               opacity={1}
               transparent
               transmission={0.5}
@@ -161,10 +161,10 @@ export function EightSeriesHeadlights ({ locations }) {
           <mesh visible geometry={lowDetailNodes['top-light'].geometry}>
             <meshStandardMaterial
               attach="material"
-              color={0xddffff}
+              color={0xFE9B56}
               roughness={0.1}
               metalness={0.8}
-              emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+              emissive={turning ? TURN_SIGNAL_COLOR : (onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000)}
               depthWrite={false}
             />
           </mesh>

@@ -17,7 +17,7 @@ export function HeadlightBeams ({ locations }) {
         >
         </mesh>
         <MyVolumetricSpotlight
-          position={[position[0] * 0.97, position[1] * 0.97, position[2] * 0.97]}
+          position={[position[0] * 0.98, position[1] * 0.98, position[2] * 0.98]}
           color={blinkingOff ? 0x000000 : 0xccccef}
           length={20}
           target={refs.current[i]}
