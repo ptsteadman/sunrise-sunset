@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import { useFrame } from "react-three-fiber";
 import { Vector3, Matrix4 } from 'three';
 
@@ -8,13 +8,14 @@ import {
   calculateAngleForTime,
   isIntervalActive
 } from "../../lib";
-import cities from "../../lib/cities.json";
 import { EightSeriesHeadlights } from "./Headlights/EightSeriesHeadlights";
 import { ThreeSeriesHeadlights } from "./Headlights/ThreeSeriesHeadlights";
 import { HeadlightBeams } from "./Headlights/HeadlightBeams";
 import { FillerLights } from "./Headlights/FillerLights";
 
-export function LightGlobe () {
+const PRECISION = 1
+
+export function LightGlobe ({ cities }) {
   const group = useRef();
   const [rotation, setRotation] = useState()
 
@@ -25,11 +26,24 @@ export function LightGlobe () {
     group.current.rotation.y = r
   });
 
+  const dedupedLocations = useMemo(() =>
+    cities.reduce((acc, cur) => {
+      const nearbyIdx = acc.findIndex(c => cur.lat.toFixed(PRECISION) === c.lat.toFixed(PRECISION) || cur.lng.toFixed(PRECISION) === c.lng.toFixed(PRECISION))
+      if (nearbyIdx > 0 && cur.population > acc[nearbyIdx].population) {
+        acc[nearbyIdx] = cur
+        return acc
+      }
+      acc.push(cur)
+      return acc
+    }, []),
+    [cities]
+  )
+
   const RADIUS = 3;
-  const locations = cities
+  const locations = dedupedLocations 
     .map(({ lat, lng, name, render }, i) => {
       const [inc, azm ] = latlngToSphericalCoords(lat, lng)
-      const position = sphericalCoordsToCartesian(RADIUS, inc, azm);
+      const position = sphericalCoordsToCartesian(render ? RADIUS : RADIUS - 0.2, inc, azm);
       const pos = new Vector3(...position)
       const worldPos = pos.applyMatrix4(new Matrix4().makeRotationY(rotation))
       const onDarkSide = !!(worldPos.x > 0.1)

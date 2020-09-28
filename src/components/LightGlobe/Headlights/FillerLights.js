@@ -3,17 +3,23 @@ import * as THREE from 'three'
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
-import { HEADLIGHT_BODY_COLOR } from "../../../constants"
 
-function initInstancedMesh(instanced, locations) {
-  const dummy = new THREE.Object3D();
+const dummy = new THREE.Object3D();
+
+function initInstancedMesh(instanced, locations, lightGuide) {
   locations.forEach((location, i) => {
     const { position } = location
     dummy.position.set(...position)
-    dummy.scale.set(0.02, 0.02, 0.02)
+    let scale = [0.02, 0.02, 0.02]
+    if (lightGuide === 'on' && !location.onDarkSide) {
+      scale = [0, 0, 0]
+    }
+    if (lightGuide === 'off' && location.onDarkSide) {
+      scale = [0, 0, 0]
+    }
+    dummy.scale.set(...scale)
     dummy.lookAt(0, 0, 0)
     dummy.rotateY( 5.6 * Math.PI / 4)
-    // dummy.rotation.set(Math.sin(Math.random()) * Math.PI, Math.sin(Math.random()) * Math.PI, Math.cos(Math.random()) * Math.PI)
     dummy.updateMatrix()
     instanced.current.setMatrixAt(i, dummy.matrix)
   })
@@ -28,13 +34,15 @@ export function FillerLights ({ locations }) {
   )
 
   const instancedMeshVisor = useRef()
-  const instancedMeshLightGuide = useRef()
+  const instancedMeshLightGuideOn = useRef()
+  const instancedMeshLightGuideOff = useRef()
   const instancedMeshLens = useRef()
 
 
   useEffect(() => {
     initInstancedMesh(instancedMeshVisor, locations);
-    initInstancedMesh(instancedMeshLightGuide, locations);
+    initInstancedMesh(instancedMeshLightGuideOn, locations, 'on');
+    initInstancedMesh(instancedMeshLightGuideOff, locations, 'off');
     initInstancedMesh(instancedMeshLens, locations);
   }, [locations])
 
@@ -53,7 +61,18 @@ export function FillerLights ({ locations }) {
           depthWrite={false}
         />
       </instancedMesh>
-      <instancedMesh ref={instancedMeshLightGuide} geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
+      <instancedMesh ref={instancedMeshLightGuideOff} geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
+        <meshStandardMaterial
+          attach="material"
+          color={0xddeeff}
+          roughness={0.2}
+          metalness={0.8}
+          opacity={0.4}
+          transparent
+          depthWrite={false}
+        />
+      </instancedMesh>
+      <instancedMesh ref={instancedMeshLightGuideOn} geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
         <meshStandardMaterial
           attach="material"
           color={0xddeeff}
