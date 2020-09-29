@@ -17,9 +17,11 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
 
   const {
     color,
-    length = 100,
+    length = 6,
     position,
-    target
+    target,
+    angle = 1.2,
+    scaleX = 1,
   } = props;
 
   // INIT
@@ -56,6 +58,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     // vs.current.material.uniforms.lightColor.value = spotlight.current.color;
 
 
+    vs.current.scale.set(scaleX, 1, 1);
     if (target && target.current) {
       const targetPos = new THREE.Vector3();
       target.current.getWorldPosition(targetPos) ;
@@ -72,14 +75,13 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     }
   }, [ref]);
 
-  // // maps spotlight angle to volueme cylinder every frame
-  // // it would be better to do it on a need-to basis
-  // // but it doesn't play nice with react-spring
-  // useFrame(() => {
-  //   const angle = spotlight.current.angle;
+  // maps spotlight angle to volueme cylinder every frame
+  // it would be better to do it on a need-to basis
+  // but it doesn't play nice with react-spring
+  useFrame(() => {
+    // const angle = spotlight.current.angle;
 
-  //   // vs.current.scale.set(1.25 * angle, 1 * angle, 1);
-  // });
+  });
 
   return (
     <>
@@ -91,15 +93,13 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       {/*   distance={distance} */}
       {/*   color={color} */}
       {/* /> */}
-
       <mesh ref={setRef} position={position}>
-        <cylinderGeometry args={[0.05, 0.5, length, 10, 4, true]} attach="geometry" />
-
+        <cylinderGeometry args={[0.05, 0.5, 12, 10, 3, true]} attach="geometry" />
         <volumetricSpotlight
           attach="material"
           uniforms-lightColor-value={color}
-          uniforms-attenuation-value={initialized ? 6 : 1} // as porportion to height of cylinder
-          uniforms-anglePower-value={1.2}
+          uniforms-attenuation-value={initialized ? length : 1} // as porportion to height of cylinder
+          uniforms-anglePower-value={angle}
         />
       </mesh>
     </>

@@ -47,8 +47,10 @@ export function LightGlobe ({ cities }) {
       const pos = new Vector3(...position)
       const worldPos = pos.applyMatrix4(new Matrix4().makeRotationY(rotation))
       const onDarkSide = !!(worldPos.x > 0.1)
-      const blinkingOff = false
-      const turnLightOn = isIntervalActive(60, 20, i) && isIntervalActive(2, 1, i)
+      const lightLow = isIntervalActive(120, 0, 40, i)
+      const lightHigh = isIntervalActive(120, 40, 70, i)
+      const lightLaser = isIntervalActive(120, 70, 120, i)
+      const turnLightOn = isIntervalActive(60, 0, 20, i) && isIntervalActive(2, 0, 1, i)
       // TODO:
       // 1. turn signals blinks on and off for thirty seconds
       // 2. goes from hi-beam to low-beam on one minute interval
@@ -58,8 +60,10 @@ export function LightGlobe ({ cities }) {
         position,
         name,
         onDarkSide,
-        blinkingOff,
-        turnLightOn
+        turnLightOn,
+        lightLow,
+        lightHigh,
+        lightLaser
       }
     })
 
