@@ -27,7 +27,7 @@ function App() {
           <LightGlobe cities={cities} />
         </Suspense>
         <OrbitControls enablePan={false} zoomSpeed={0.5} />
-        <Stars factor={2} saturation={0.7} />
+        <Stars factor={1.3} saturation={0.6} />
         <Stats />
       </Canvas>
     </>
