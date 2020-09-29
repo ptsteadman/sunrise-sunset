@@ -90,6 +90,9 @@ export function FillerLights ({ locations }) {
           roughness={0.3}
           metalness={0.5}
           color={0xaaaaff}
+          opacity={0.4}
+          transparent
+          depthWrite={false}
         />
       </instancedMesh>
     </group>
