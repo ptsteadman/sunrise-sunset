@@ -94,7 +94,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       {/*   color={color} */}
       {/* /> */}
       <mesh ref={setRef} position={position}>
-        <cylinderGeometry args={[0.05, 0.5, 12, 10, 3, true]} attach="geometry" />
+        <cylinderGeometry args={[0.05, 0.25, 12, 8, 3, true]} attach="geometry" />
         <volumetricSpotlight
           attach="material"
           uniforms-lightColor-value={color}

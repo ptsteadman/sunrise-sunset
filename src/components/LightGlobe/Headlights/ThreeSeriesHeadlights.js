@@ -54,27 +54,33 @@ export function ThreeSeriesHeadlights ({ locations }) {
         <mesh visible geometry={nodes['bulbs_0'].geometry}>
           <meshStandardMaterial
             attach="material"
-            roughness={0.3}
-            metalness={0.5}
+            roughness={0.1}
+            metalness={0.8}
             color={0xaaaaff}
+            transparent
+            opacity={0.6}
             emissive={getBulbEmissive(onDarkSide, turnLightOn)}
           />
         </mesh>
         <mesh visible geometry={nodes['bulbs_1'].geometry}>
           <meshStandardMaterial
             attach="material"
-            roughness={0.3}
-            metalness={0.5}
+            roughness={0.1}
+            metalness={0.8}
             color={0xaaaaff}
+            transparent
+            opacity={0.6}
             emissive={onDarkSide ? 0xaaaaff : null}
           />
         </mesh>
         <mesh visible geometry={nodes['bulbs_2'].geometry}>
           <meshStandardMaterial
             attach="material"
-            roughness={0.3}
-            metalness={0.5}
+            roughness={0.1}
+            metalness={0.8}
             color={0xaaaaff}
+            transparent
+            opacity={0.6}
             emissive={getBulbEmissive(onDarkSide, turnLightOn)}
           />
         </mesh>

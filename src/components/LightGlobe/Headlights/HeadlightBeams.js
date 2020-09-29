@@ -18,9 +18,9 @@ export function HeadlightBeams ({ locations }) {
   }, i ) => {
     if (!onDarkSide) return <group key={i} />
     const posScaleFactor = render ? 0.98 : 0.995
-    let lightLength = 4
-    if (lightLaser) lightLength = 10
-    if (lightHigh) lightLength = 8
+    let lightLength = 6
+    if (lightLaser) lightLength = 12
+    if (lightHigh) lightLength = 10
     return (
       <group key={i}>
         <mesh
@@ -34,7 +34,7 @@ export function HeadlightBeams ({ locations }) {
           length={lightLength}
           target={refs.current[i]}
           angle={lightLaser ? 1.3 : 1.2}
-          scaleX={lightLaser ? 1 : 2}
+          scaleX={lightLaser ? 1.5 : 3}
         />
       </group>
     )
