@@ -57,7 +57,7 @@ export function EightSeriesHeadlights ({ locations }) {
       r.current.addElement(new LensflareElement(textureFlare3, 70, 0.7));
       r.current.addElement(new LensflareElement(textureFlare3, 120, 0.9));
     }
-  }, [])
+  }, [textureFlare0, textureFlare3])
 
   const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turnLightOn }, i) => {
     const envMap = {
