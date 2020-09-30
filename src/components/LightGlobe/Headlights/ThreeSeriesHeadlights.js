@@ -30,14 +30,14 @@ export function ThreeSeriesHeadlights ({ locations }) {
     for (const r of refs.current) {
       r.current.lookAt(0,0,0)
       // r.current.rotateX(Math.PI / 2)
-      r.current.rotateY( 5.6 * Math.PI / 4)
+      r.current.rotateY( 5.65 * Math.PI / 4)
       // r.current.rotateZ(Math.PI / 4)
     }
   }, [])
 
   const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turnLightOn }, i) => {
     return (
-      <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
+      <group scale={[0.018, 0.018, 0.018 ]} key={name} position={position} ref={refs.current[i]}>
         <mesh visible geometry={lowDetailNodes['visor'].geometry}>
           <meshPhysicalMaterial
             attach="material"

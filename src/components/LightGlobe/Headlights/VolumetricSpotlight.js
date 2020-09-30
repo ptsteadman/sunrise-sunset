@@ -22,6 +22,8 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     target,
     angle = 1.2,
     scaleX = 1,
+    geometryLength = 8,
+    openEnded
   } = props;
 
   // INIT
@@ -35,7 +37,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     );
     geometry.applyMatrix4(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
 
-    vs.current.material.uniforms.spotPosition.value = vs.current.position;
+    // vs.current.material.uniforms.spotPosition.value = vs.current.position;
 
     // spotlight.current.position.copy(vs.current.position);
     // spotlight.current.position.copy(vs.current.position);
@@ -49,7 +51,6 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     //   vs.current.lookAt(targetPos);
     //   spotlight.current.target.position.copy(targetPos);
     // }
-    setInitialized(true);
   }, [scene]);
 
   useFrame(({ clock }) => {
@@ -63,6 +64,9 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       const targetPos = new THREE.Vector3();
       target.current.getWorldPosition(targetPos) ;
       vs.current.lookAt(targetPos);
+      vs.current.rotateZ(Math.PI / 12)
+      vs.current.rotateY(Math.PI / 12)
+      setInitialized(true);
       // spotlight.current.target.position.copy(targetPos);
     }
   });
@@ -93,12 +97,12 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       {/*   distance={distance} */}
       {/*   color={color} */}
       {/* /> */}
-      <mesh ref={setRef} position={position}>
-        <cylinderGeometry args={[0.05, 0.25, 12, 8, 3, true]} attach="geometry" />
+      <mesh visible={initialized} ref={setRef} position={position}>
+        <cylinderGeometry args={[0.05, 0.25, geometryLength, 12, 1, openEnded]} attach="geometry" />
         <volumetricSpotlight
           attach="material"
           uniforms-lightColor-value={color}
-          uniforms-attenuation-value={initialized ? length : 1} // as porportion to height of cylinder
+          uniforms-attenuation-value={length} // as porportion to height of cylinder
           uniforms-anglePower-value={angle}
         />
       </mesh>

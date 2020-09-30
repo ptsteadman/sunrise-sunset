@@ -32,6 +32,7 @@ export function EightSeriesHeadlights ({ locations }) {
   );
 
   const refs = useRef(locations.map(() => createRef()))
+  const griddyThingRefs = useRef(locations.map(() => createRef()))
 
   useEffect(() => {
     for (const r of refs.current) {
@@ -58,7 +59,7 @@ export function EightSeriesHeadlights ({ locations }) {
             attach="material"
             color={0xeeeeee}
             roughness={0.05}
-            envMap={envMap[name]}
+            envMap={envMap[name] ? envMap[name] : nycCubeMap}
             envMapIntensity={1.5}
             clearcoat={0.9}
             metalness={0.9}
@@ -96,7 +97,7 @@ export function EightSeriesHeadlights ({ locations }) {
         </Detailed>
         <Detailed distances={[0, 3]}>
           <mesh>
-            <mesh visible geometry={nodes['griddy-thing'].geometry}>
+            <mesh visible geometry={nodes['griddy-thing'].geometry} ref={griddyThingRefs.current[i]}>
               <meshPhysicalMaterial
                 attach="material"
                 color={0xddeeff}

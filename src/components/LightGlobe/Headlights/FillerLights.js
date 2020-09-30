@@ -10,7 +10,7 @@ function initInstancedMesh(instanced, locations, lightGuide) {
   locations.forEach((location, i) => {
     const { position } = location
     dummy.position.set(...position)
-    let scale = [0.02, 0.02, 0.02]
+    let scale = [0.015, 0.015, 0.015]
     if (lightGuide === 'on' && !location.onDarkSide) {
       scale = [0, 0, 0]
     }
