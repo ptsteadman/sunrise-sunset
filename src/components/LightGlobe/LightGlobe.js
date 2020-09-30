@@ -12,6 +12,7 @@ import { EightSeriesHeadlights } from "./Headlights/EightSeriesHeadlights";
 import { ThreeSeriesHeadlights } from "./Headlights/ThreeSeriesHeadlights";
 import { HeadlightBeams } from "./Headlights/HeadlightBeams";
 import { FillerLights } from "./Headlights/FillerLights";
+import { RADIUS } from '../../constants';
 
 const PRECISION = 1
 
@@ -39,7 +40,6 @@ export function LightGlobe ({ cities }) {
     [cities]
   )
 
-  const RADIUS = 3;
   const locations = dedupedLocations 
     .map(({ lat, lng, name, render }, i) => {
       const [inc, azm ] = latlngToSphericalCoords(lat, lng)
