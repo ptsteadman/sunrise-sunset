@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, createRef } from 'react'
 import { useLoader } from "react-three-fiber";
+import * as THREE from 'three'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
-import { TURN_SIGNAL_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, BODY_DARK_COLOR } from "../../../constants"
+import { PLASTIC_COLOR, TURN_SIGNAL_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, BODY_DARK_COLOR } from "../../../constants"
 
 function getBulbEmissive (onDarkSide, turnLightOn) {
   if (turnLightOn) return TURN_SIGNAL_COLOR
@@ -39,19 +40,18 @@ export function ThreeSeriesHeadlights ({ locations }) {
     return (
       <group scale={[0.018, 0.018, 0.018 ]} key={name} position={position} ref={refs.current[i]}>
         <mesh visible geometry={lowDetailNodes['visor'].geometry}>
-          <meshPhysicalMaterial
+          <meshStandardMaterial
             attach="material"
             color={0xeeeeee}
             roughness={0.05}
             clearcoat={0.9}
             metalness={0.9}
             opacity={1}
-            transmission={0.6}
             transparent
             depthWrite={false}
           />
         </mesh>
-        <mesh visible geometry={nodes['bulbs_0'].geometry}>
+        <mesh visible userData={{ bloom: true }} geometry={nodes['bulbs_0'].geometry}>
           <meshStandardMaterial
             attach="material"
             roughness={0.1}
@@ -62,7 +62,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             emissive={getBulbEmissive(onDarkSide, turnLightOn)}
           />
         </mesh>
-        <mesh visible geometry={nodes['bulbs_1'].geometry}>
+        <mesh userData={{ bloom: true }} visible geometry={nodes['bulbs_1'].geometry}>
           <meshStandardMaterial
             attach="material"
             roughness={0.1}
@@ -73,7 +73,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             emissive={onDarkSide ? 0xaaaaff : null}
           />
         </mesh>
-        <mesh visible geometry={nodes['bulbs_2'].geometry}>
+        <mesh visible userData={{ bloom: true }} geometry={nodes['bulbs_2'].geometry}>
           <meshStandardMaterial
             attach="material"
             roughness={0.1}
@@ -102,52 +102,53 @@ export function ThreeSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
+        {
+          onDarkSide
+            ? (
+              <mesh visible renderOrder={-1} userData={{ bloom: true }} geometry={nodes['griddy-thing'].geometry}>
+                <meshStandardMaterial
+                  attach="material"
+                  color={PLASTIC_COLOR}
+                  roughness={0.2}
+                  metalness={0.8}
+                  emissive={onDarkSide ? 0xccccff : 0x000000}
+                  blending={THREE.AdditiveBlending}
+                  transparent
+                  // depthTest={false}
+                />
+              </mesh>
+            ) : (
+            <mesh>
+              <mesh visible geometry={nodes['griddy-thing'].geometry}>
+                <meshPhysicalMaterial
+                  attach="material"
+                  color={PLASTIC_COLOR}
+                  roughness={0.2}
+                  metalness={0.8}
+                  emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+                  opacity={1}
+                  transparent
+                  transmission={0.94}
+                />
+              </mesh>
+              <mesh visible geometry={nodes['griddy-thing'].geometry}>
+                <meshPhysicalMaterial
+                  attach="material"
+                  color={PLASTIC_COLOR}
+                  roughness={0.2}
+                  metalness={0.8}
+                  emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
+                  opacity={1}
+                  transparent
+                  transmission={0.4}
+                  side={BackSide}
+                />
+              </mesh>
+              </mesh>
+            )
+        }
         <Detailed distances={[0, 3]}>
-          <mesh>
-            <mesh visible geometry={nodes['griddy-thing'].geometry}>
-              <meshPhysicalMaterial
-                attach="material"
-                color={HEADLIGHT_BODY_COLOR}
-                roughness={0.2}
-                metalness={0.8}
-                emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
-                opacity={1}
-                transparent
-                transmission={0.94}
-                depthWrite={false}
-              />
-            </mesh>
-            <mesh visible geometry={nodes['griddy-thing'].geometry}>
-              <meshPhysicalMaterial
-                attach="material"
-                color={0xddeeff}
-                roughness={0.2}
-                metalness={0.8}
-                emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
-                opacity={1}
-                transparent
-                transmission={0.4}
-                depthWrite={false}
-                side={BackSide}
-              />
-            </mesh>
-          </mesh>
-          <mesh visible geometry={lowDetailNodes['griddy-thing'].geometry}>
-            <meshPhysicalMaterial
-              attach="material"
-              color={0xddeeff}
-              roughness={0.2}
-              metalness={0.8}
-              emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
-              opacity={1}
-              transparent
-              transmission={0.4}
-              depthWrite={false}
-            />
-          </mesh>
-        </Detailed>
-        <Detailed distances={[0, 3]}>
-          <mesh visible geometry={nodes['top-light'].geometry}>
+          <mesh visible userData={{ bloom: true }} geometry={nodes['top-light'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={0xeeffff}
@@ -155,7 +156,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
               metalness={0.8}
             />
           </mesh>
-          <mesh visible geometry={lowDetailNodes['top-light'].geometry}>
+          <mesh visible userData={{ bloom: true }} geometry={lowDetailNodes['top-light'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={0xeeffff}
@@ -225,7 +226,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
               color={HEADLIGHT_BODY_COLOR}
               roughness={0.1}
               metalness={0.8}
-              map={nodes['griddy-thing-case'].material.map}
+              // map={nodes['griddy-thing-case'].material.map}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['griddy-thing-case'].geometry}>

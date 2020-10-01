@@ -11,7 +11,7 @@ import {
 import { EightSeriesHeadlights } from "./Headlights/EightSeriesHeadlights";
 import { ThreeSeriesHeadlights } from "./Headlights/ThreeSeriesHeadlights";
 import { HeadlightBeams } from "./Headlights/HeadlightBeams";
-import { FillerLights } from "./Headlights/FillerLights";
+// import { FillerLights } from "./Headlights/FillerLights";
 import { RADIUS } from '../../constants';
 
 const PRECISION = 1
@@ -71,7 +71,7 @@ export function LightGlobe ({ cities }) {
     <group ref={group}>
       <EightSeriesHeadlights locations={locations.filter(({ render }) => render === 'EightSeries')} />
       <ThreeSeriesHeadlights locations={locations.filter(({ render }) => render === 'ThreeSeries')} />
-      <FillerLights locations={locations.filter(({ render }) => !render)} />
+      {/* <FillerLights locations={locations.filter(({ render }) => !render)} /> */}
       <HeadlightBeams locations={locations} />
     </group>
   );

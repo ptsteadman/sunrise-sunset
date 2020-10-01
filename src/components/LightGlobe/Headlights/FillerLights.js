@@ -61,7 +61,7 @@ export function FillerLights ({ locations }) {
           depthWrite={false}
         />
       </instancedMesh>
-      <instancedMesh ref={instancedMeshLightGuideOff} geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
+      <instancedMesh ref={instancedMeshLightGuideOff}  geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
         <meshStandardMaterial
           attach="material"
           color={0xddeeff}
@@ -72,7 +72,7 @@ export function FillerLights ({ locations }) {
           depthWrite={false}
         />
       </instancedMesh>
-      <instancedMesh ref={instancedMeshLightGuideOn} geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
+      <instancedMesh ref={instancedMeshLightGuideOn} userData={{ bloom: true }} geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
         <meshStandardMaterial
           attach="material"
           color={0xddeeff}
@@ -84,7 +84,7 @@ export function FillerLights ({ locations }) {
           depthWrite={false}
         />
       </instancedMesh>
-      <instancedMesh ref={instancedMeshLens} geometry={nodes['lens'].geometry} args={[null, null, locations.length]} >
+      <instancedMesh ref={instancedMeshLens} userData={{ bloom: true }} geometry={nodes['lens'].geometry} args={[null, null, locations.length]} >
         <meshStandardMaterial
           attach="material"
           roughness={0.3}

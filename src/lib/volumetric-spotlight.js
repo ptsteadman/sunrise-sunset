@@ -83,7 +83,7 @@ const VolumetricSpotLightMaterial = function() {
     vertexShader: vertexShader,
     fragmentShader: fragmentShader,
     side		: THREE.DoubleSide,
-    // blending	: THREE.AdditiveBlending,
+    blending	: THREE.AdditiveBlending,
     transparent: true,
     depthWrite: false
   });

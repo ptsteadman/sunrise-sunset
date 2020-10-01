@@ -97,7 +97,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       {/*   distance={distance} */}
       {/*   color={color} */}
       {/* /> */}
-      <mesh visible={initialized} ref={setRef} position={position}>
+      <mesh renderOrder={-3} visible={initialized} ref={setRef} position={position}>
         <cylinderGeometry args={[0.05, 0.25, geometryLength, 12, 1, openEnded]} attach="geometry" />
         <volumetricSpotlight
           attach="material"

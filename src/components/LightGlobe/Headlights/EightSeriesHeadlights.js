@@ -4,7 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
 import { WebcamImageManager } from "../../WebcamImageManager";
-import { HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, TURN_SIGNAL_COLOR } from "../../../constants"
+import { PLASTIC_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, TURN_SIGNAL_COLOR } from "../../../constants"
 
 const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
 const nycSrc = 'http://207.251.86.238/cctv884.jpg?';
@@ -96,39 +96,54 @@ export function EightSeriesHeadlights ({ locations }) {
           </mesh>
         </Detailed>
         <Detailed distances={[0, 3]}>
-          <mesh>
-            <mesh visible geometry={nodes['griddy-thing'].geometry} ref={griddyThingRefs.current[i]}>
-              <meshPhysicalMaterial
-                attach="material"
-                color={0xddeeff}
-                roughness={0.2}
-                metalness={0.8}
-                emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
-                opacity={1}
-                transparent
-                transmission={0.94}
-                depthWrite={false}
-              />
-            </mesh>
-            <mesh visible geometry={nodes['griddy-thing'].geometry}>
-              <meshPhysicalMaterial
-                attach="material"
-                color={0xddeeff}
-                roughness={0.2}
-                metalness={0.8}
-                emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
-                opacity={1}
-                transparent
-                transmission={0.4}
-                depthWrite={false}
-                side={BackSide}
-              />
-            </mesh>
-          </mesh>
-          <mesh visible geometry={lowDetailNodes['griddy-thing'].geometry}>
+          {onDarkSide ? 
+          <mesh visible userData={{ bloom: true }} geometry={nodes['griddy-thing'].geometry} ref={griddyThingRefs.current[i]}>
             <meshStandardMaterial
               attach="material"
-              color={0xddeeff}
+              color={PLASTIC_COLOR}
+              roughness={0.2}
+              metalness={0.8}
+              emissive={onDarkSide ? 0xbbbbff : 0x000000}
+              opacity={0.7}
+              transparent
+              depthWrite={false}
+            />
+          </mesh>
+            :
+              <mesh>
+                <mesh visible geometry={nodes['griddy-thing'].geometry} ref={griddyThingRefs.current[i]}>
+                  <meshPhysicalMaterial
+                    attach="material"
+                    color={PLASTIC_COLOR}
+                    roughness={0.2}
+                    metalness={0.8}
+                    emissive={onDarkSide ? 0xaaaaff : 0x000000}
+                    opacity={1}
+                    transparent
+                    transmission={0.94}
+                    depthWrite={false}
+                  />
+                </mesh>
+                <mesh visible geometry={nodes['griddy-thing'].geometry}>
+                  <meshPhysicalMaterial
+                    attach="material"
+                    color={PLASTIC_COLOR}
+                    roughness={0.2}
+                    metalness={0.8}
+                    emissive={onDarkSide ? 0xaaaaff : 0x000000}
+                    opacity={1}
+                    transparent
+                    transmission={0.4}
+                    depthWrite={false}
+                    side={BackSide}
+                  />
+                </mesh>
+              </mesh>
+          }
+          <mesh visible userData={{ bloom: true }} geometry={lowDetailNodes['griddy-thing'].geometry}>
+            <meshStandardMaterial
+              attach="material"
+              color={PLASTIC_COLOR}
               roughness={0.2}
               metalness={0.8}
               emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
@@ -146,20 +161,18 @@ export function EightSeriesHeadlights ({ locations }) {
           />
         </mesh>
         <Detailed distances={[0, 6]}>
-          <mesh visible geometry={nodes['top-light'].geometry}>
-            <meshPhysicalMaterial
+          <mesh visible userData={{ bloom: true }} geometry={nodes['top-light'].geometry}>
+            <meshStandardMaterial
               attach="material"
               color={0xddeeff}
               roughness={0.1}
               metalness={0.8}
               emissive={turnLightOn ? TURN_SIGNAL_COLOR : (onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000)}
-              opacity={1}
-              transparent
-              transmission={0.5}
+              opacity={0.7}
               depthWrite={false}
             />
           </mesh>
-          <mesh visible geometry={lowDetailNodes['top-light'].geometry}>
+          <mesh visible userData={{ bloom: true }} geometry={lowDetailNodes['top-light'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={0xddeeff}

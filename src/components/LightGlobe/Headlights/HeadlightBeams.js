@@ -32,15 +32,18 @@ export function HeadlightBeams ({ locations }) {
           ref={bloomRefs.current[i]}
           position={[position[0] * 2, position[1] * 2, position[2] * 2]}
         />
-        <MyVolumetricSpotlight
-          position={[position[0] * posScaleFactor, position[1] * posScaleFactor, position[2] * posScaleFactor]}
-          color={lightLaser ? BEAM_COLOR_LASER : BEAM_COLOR_STANDARD}
-          length={lightLength}
-          target={refs.current[i]}
-          angle={lightLaser ? 1.3 : 1.2}
-          scaleX={lightLaser ? 1.5 : 3}
-          openEnded
-        />
+        {
+          render &&
+            <MyVolumetricSpotlight
+              position={[position[0] * posScaleFactor, position[1] * posScaleFactor, position[2] * posScaleFactor]}
+              color={lightLaser ? BEAM_COLOR_LASER : BEAM_COLOR_STANDARD}
+              length={lightLength}
+              target={refs.current[i]}
+              angle={lightLaser ? 1.3 : 1.2}
+              scaleX={lightLaser ? 1.5 : 3}
+              openEnded
+            />
+        }
         {false && (
           <MyVolumetricSpotlight
             position={[position[0] * posScaleFactor, position[1] * posScaleFactor, position[2] * posScaleFactor]}
@@ -50,7 +53,7 @@ export function HeadlightBeams ({ locations }) {
             target={bloomRefs.current[i]}
             angle={lightLaser ? 1.2 : 1.2}
             scaleX={3}
-            openEnded={false}
+            openEnded={true}
           />
         )}
         {render && (
@@ -62,7 +65,7 @@ export function HeadlightBeams ({ locations }) {
             target={bloomRefs.current[i]}
             angle={lightLaser ? 1.4 : 1.1}
             scaleX={3.5}
-            openEnded={false}
+            openEnded={true}
           />
         )}
       </group>

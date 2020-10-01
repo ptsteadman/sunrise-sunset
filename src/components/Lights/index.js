@@ -4,7 +4,7 @@ export default () => {
   return (
     <group>
       <ambientLight intensity={0.3} />
-      <mesh position={[-200, -10, 0]}>
+      <mesh position={[-200, -10, 0]} userData={{ bloom: true }}>
         <sphereBufferGeometry attach="geometry" args={[4, 32, 32]} />
         <meshBasicMaterial attach="material" color="#FFFF99" fog={false} />
       </mesh>
