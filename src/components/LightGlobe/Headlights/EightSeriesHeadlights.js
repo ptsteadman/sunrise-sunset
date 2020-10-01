@@ -73,24 +73,24 @@ export function EightSeriesHeadlights ({ locations }) {
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
-              roughness={0.3}
-              metalness={0.7}
+              roughness={0.2}
+              metalness={0.8}
             />
           </mesh>
           <mesh visible geometry={midDetailNodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
-              roughness={0.3}
-              metalness={0.7}
+              roughness={0.2}
+              metalness={0.8}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
-              roughness={0.3}
-              metalness={0.7}
+              roughness={0.2}
+              metalness={0.8}
             />
           </mesh>
         </Detailed>
