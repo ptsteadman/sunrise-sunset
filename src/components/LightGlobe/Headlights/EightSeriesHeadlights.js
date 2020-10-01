@@ -32,7 +32,6 @@ export function EightSeriesHeadlights ({ locations }) {
   );
 
   const refs = useRef(locations.map(() => createRef()))
-  const griddyThingRefs = useRef(locations.map(() => createRef()))
 
   useEffect(() => {
     for (const r of refs.current) {
@@ -97,7 +96,7 @@ export function EightSeriesHeadlights ({ locations }) {
         </Detailed>
         <Detailed distances={[0, 3]}>
           {onDarkSide ? 
-          <mesh visible userData={{ bloom: true }} geometry={nodes['griddy-thing'].geometry} ref={griddyThingRefs.current[i]}>
+          <mesh visible userData={{ bloom: true }} geometry={nodes['griddy-thing'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={PLASTIC_COLOR}
@@ -111,7 +110,7 @@ export function EightSeriesHeadlights ({ locations }) {
           </mesh>
             :
               <mesh>
-                <mesh visible geometry={nodes['griddy-thing'].geometry} ref={griddyThingRefs.current[i]}>
+                <mesh visible geometry={nodes['griddy-thing'].geometry}>
                   <meshPhysicalMaterial
                     attach="material"
                     color={PLASTIC_COLOR}

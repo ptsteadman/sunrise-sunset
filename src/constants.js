@@ -1,4 +1,5 @@
 // colors
+export const BG_COLOR = '';
 export const HEADLIGHT_BODY_COLOR = 0x737693
 export const TURN_SIGNAL_COLOR = 0xF18F17;
 export const BODY_HIGHLIGHT_COLOR = 0x0a25ad;

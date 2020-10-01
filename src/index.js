@@ -10,7 +10,7 @@ import Lights from "./components/Lights";
 import { LightGlobe } from "./components/LightGlobe/LightGlobe";
 import { OrbitControls, Stars, Stats } from "drei";
 import { LoadingIndicator } from './components/LoadingIndicator';
-import { RADIUS } from "./constants"
+import { RADIUS, BG_COLOR } from "./constants"
 import { Effects } from "./components/Effects"
 import { ControlsProvider, Controls } from 'react-three-gui'
 
@@ -22,7 +22,7 @@ function App() {
         <Canvas
           colorManagement
           concurrent
-          onCreated={({ gl }) => gl.setClearColor('#020202')}
+          onCreated={({ gl }) => gl.setClearColor(BG_COLOR)}
           gl={{ antialias: true, toneMapping: CineonToneMapping }}
         >
           <fogExp2 attach="fog" args={["#020202", 0.15]} />
