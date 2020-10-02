@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { useFrame } from 'react-three-fiber'
+import { Vector3 } from 'three'
 
-const ZOOM_DURATION = 10
+const ZOOM_DURATION = 2
 
 export function withClickToZoom(WrappedComponent) {
   return function WithClickToZoomComponent(props) {
@@ -11,11 +12,9 @@ export function withClickToZoom(WrappedComponent) {
 
     useFrame(({ camera, clock }) => {
       if (zoomTarget) {
-          console.log('zoomStartTime + ZOOM_DURATION:', zoomStartTime + ZOOM_DURATION);
-          console.log('clock.elapsedTime:', clock.elapsedTime);
         if (!zoomStartTime) {
           setZoomStartTime(clock.elapsedTime)
-          setZoomStartPosition(camera.position)
+          setZoomStartPosition(new Vector3().copy(camera.position)) // copy, otherwise reference is stored!
           return
         }
         if (clock.elapsedTime > zoomStartTime + ZOOM_DURATION) {
@@ -24,18 +23,16 @@ export function withClickToZoom(WrappedComponent) {
           setZoomStartPosition(null)
           return
         }
-        console.log('zoomTarget:', zoomTarget);
         const a = (clock.elapsedTime - zoomStartTime) / ZOOM_DURATION
-        console.log('a:', a);
-        camera.position.copy(zoomTarget.lerp(zoomStartPosition, a))
+        const newCamPos = new Vector3().lerpVectors(zoomStartPosition, zoomTarget, a)
+        camera.position.copy(newCamPos)
         camera.updateProjectionMatrix()
-        setZoomTarget(null)
       }
     })
 
     const handleClick = useCallback((e) => {
       e.stopPropagation();
-      setZoomTarget(e.point)
+      setZoomTarget(e.point.multiplyScalar(1.1))
 
     }, [])
 
