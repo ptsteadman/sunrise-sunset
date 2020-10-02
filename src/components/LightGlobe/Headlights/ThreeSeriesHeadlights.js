@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, createRef } from 'react'
 import { useLoader } from "react-three-fiber";
-import * as THREE from 'three'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
@@ -102,51 +101,33 @@ export function ThreeSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        {
-          onDarkSide
-            ? (
-              <mesh visible renderOrder={-1} userData={{ bloom: true }} geometry={nodes['griddy-thing'].geometry}>
-                <meshStandardMaterial
-                  attach="material"
-                  color={PLASTIC_COLOR}
-                  roughness={0.2}
-                  metalness={0.8}
-                  emissive={onDarkSide ? 0xccccff : 0x000000}
-                  blending={THREE.AdditiveBlending}
-                  transparent
-                  // depthTest={false}
-                />
-              </mesh>
-            ) : (
-            <mesh>
-              <mesh visible geometry={nodes['griddy-thing'].geometry}>
-                <meshPhysicalMaterial
-                  attach="material"
-                  color={PLASTIC_COLOR}
-                  roughness={0.2}
-                  metalness={0.8}
-                  emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
-                  opacity={1}
-                  transparent
-                  transmission={0.94}
-                />
-              </mesh>
-              <mesh visible geometry={nodes['griddy-thing'].geometry}>
-                <meshPhysicalMaterial
-                  attach="material"
-                  color={PLASTIC_COLOR}
-                  roughness={0.2}
-                  metalness={0.8}
-                  emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
-                  opacity={1}
-                  transparent
-                  transmission={0.4}
-                  side={BackSide}
-                />
-              </mesh>
-              </mesh>
-            )
-        }
+        <mesh userData={{ bloom: onDarkSide }} visible geometry={nodes['griddy-thing'].geometry}>
+          <meshPhysicalMaterial
+            attach="material"
+            color={PLASTIC_COLOR}
+            roughness={0.2}
+            metalness={0.8}
+            emissive={onDarkSide ? 0xaaaaff : 0x000000}
+            opacity={1}
+            transparent
+            transmission={0.94}
+            depthWrite={false}
+          />
+        </mesh>
+        <mesh userData={{ bloom: onDarkSide }} visible geometry={nodes['griddy-thing'].geometry}>
+          <meshPhysicalMaterial
+            attach="material"
+            color={PLASTIC_COLOR}
+            roughness={0.2}
+            metalness={0.8}
+            emissive={onDarkSide ? 0xaaaaff : 0x000000}
+            opacity={1}
+            transparent
+            transmission={0.4}
+            side={BackSide}
+            depthWrite={false}
+          />
+        </mesh>
         <Detailed distances={[0, 3]}>
           <mesh visible userData={{ bloom: true }} geometry={nodes['top-light'].geometry}>
             <meshStandardMaterial

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 // from https://github.com/jeromeetienne/threex.volumetricspotlight
 import { useThree, useFrame, extend } from "react-three-fiber";
@@ -10,7 +10,6 @@ extend({
 });
 
 export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotlight(props, ref) {
-  const [initialized, setInitialized] = useState(false);
   const vs = React.useRef();
 
   const { scene } = useThree();
@@ -59,15 +58,14 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     // vs.current.material.uniforms.lightColor.value = spotlight.current.color;
 
 
-    vs.current.scale.set(scaleX, 1, 1);
+    vs.current.scale.set(scaleX, 1, 1)
     if (target && target.current) {
-      const targetPos = new THREE.Vector3();
-      target.current.getWorldPosition(targetPos) ;
-      vs.current.lookAt(targetPos);
+      const targetPos = new THREE.Vector3()
+      target.current.getWorldPosition(targetPos)
+      vs.current.lookAt(targetPos)
       vs.current.rotateZ(Math.PI / 12)
       vs.current.rotateY(Math.PI / 12)
-      setInitialized(true);
-      // spotlight.current.target.position.copy(targetPos);
+      vs.current.visible = true // prevent glitch on load
     }
   });
 
@@ -79,13 +77,13 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     }
   }, [ref]);
 
-  // maps spotlight angle to volueme cylinder every frame
-  // it would be better to do it on a need-to basis
-  // but it doesn't play nice with react-spring
-  useFrame(() => {
-    // const angle = spotlight.current.angle;
+  // // maps spotlight angle to volueme cylinder every frame
+  // // it would be better to do it on a need-to basis
+  // // but it doesn't play nice with react-spring
+  // useFrame(() => {
+  //   // const angle = spotlight.current.angle;
 
-  });
+  // });
 
   return (
     <>
@@ -97,7 +95,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       {/*   distance={distance} */}
       {/*   color={color} */}
       {/* /> */}
-      <mesh renderOrder={-3} visible={initialized} ref={setRef} position={position}>
+      <mesh visible={false} ref={setRef} position={position}>
         <cylinderGeometry args={[0.05, 0.25, geometryLength, 12, 1, openEnded]} attach="geometry" />
         <volumetricSpotlight
           attach="material"

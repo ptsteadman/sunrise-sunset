@@ -60,7 +60,7 @@ function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
             color={0xeeeeee}
             roughness={0.05}
             envMap={envMap[name] ? envMap[name] : nycCubeMap}
-            envMapIntensity={1.5}
+            envMapIntensity={1.3}
             clearcoat={0.9}
             metalness={0.9}
             opacity={1}
@@ -96,50 +96,35 @@ function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
           </mesh>
         </Detailed>
         <Detailed distances={[0, 3]}>
-          {onDarkSide ? 
-          <mesh visible userData={{ bloom: true }} geometry={nodes['griddy-thing'].geometry}>
-            <meshStandardMaterial
-              attach="material"
-              color={PLASTIC_COLOR}
-              roughness={0.2}
-              metalness={0.8}
-              emissive={onDarkSide ? 0xbbbbff : 0x000000}
-              opacity={0.7}
-              transparent
-              depthWrite={false}
-            />
+          <mesh>
+            <mesh visible userData={{ bloom: onDarkSide }} geometry={nodes['griddy-thing'].geometry}>
+              <meshPhysicalMaterial
+                attach="material"
+                color={PLASTIC_COLOR}
+                roughness={0.2}
+                metalness={0.8}
+                emissive={onDarkSide ? 0xaaaaff : 0x000000}
+                opacity={1}
+                transparent
+                transmission={0.94}
+                depthWrite={false}
+              />
+            </mesh>
+            <mesh visible userData={{ bloom: onDarkSide }} geometry={nodes['griddy-thing'].geometry}>
+              <meshPhysicalMaterial
+                attach="material"
+                color={PLASTIC_COLOR}
+                roughness={0.2}
+                metalness={0.8}
+                emissive={onDarkSide ? 0xaaaaff : 0x000000}
+                opacity={1}
+                transparent
+                transmission={0.4}
+                depthWrite={false}
+                side={BackSide}
+              />
+            </mesh>
           </mesh>
-            :
-              <mesh>
-                <mesh visible geometry={nodes['griddy-thing'].geometry}>
-                  <meshPhysicalMaterial
-                    attach="material"
-                    color={PLASTIC_COLOR}
-                    roughness={0.2}
-                    metalness={0.8}
-                    emissive={onDarkSide ? 0xaaaaff : 0x000000}
-                    opacity={1}
-                    transparent
-                    transmission={0.94}
-                    depthWrite={false}
-                  />
-                </mesh>
-                <mesh visible geometry={nodes['griddy-thing'].geometry}>
-                  <meshPhysicalMaterial
-                    attach="material"
-                    color={PLASTIC_COLOR}
-                    roughness={0.2}
-                    metalness={0.8}
-                    emissive={onDarkSide ? 0xaaaaff : 0x000000}
-                    opacity={1}
-                    transparent
-                    transmission={0.4}
-                    depthWrite={false}
-                    side={BackSide}
-                  />
-                </mesh>
-              </mesh>
-          }
           <mesh visible userData={{ bloom: true }} geometry={lowDetailNodes['griddy-thing'].geometry}>
             <meshStandardMaterial
               attach="material"
