@@ -57,9 +57,9 @@ export function Effects() {
   useFrame(({ scene, camera }) => {
     // https://github.com/mrdoob/three.js/blob/master/examples/webgl_postprocessing_unreal_bloom_selective.html
     // this seems kinda dirty, it mutates the scene and overwrites materials
-    scene.traverse(darkenNonBloomed)
+    // scene.traverse(darkenNonBloomed)
     bloom.render()
-    scene.traverse(restoreMaterial)
+    // scene.traverse(restoreMaterial)
     // then writes the normal scene on top
     final.render()
   }, 1)
