@@ -5,11 +5,12 @@ import { draco, Detailed } from "drei";
 import { BackSide } from "three";
 import { WebcamImageManager } from "../../WebcamImageManager";
 import { PLASTIC_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, TURN_SIGNAL_COLOR } from "../../../constants"
+import { withClickToZoom } from '../../withClickToZoom'
 
 const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
 const nycSrc = 'http://207.251.86.238/cctv884.jpg?';
 
-export function EightSeriesHeadlights ({ locations }) {
+function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
   const [nycCubeMap, setNycCubeMap] = React.useState(null)
   const [hkCubeMap, setHkCubeMap] = React.useState(null)
 
@@ -53,7 +54,7 @@ export function EightSeriesHeadlights ({ locations }) {
     }
     return (
       <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
-        <mesh visible geometry={nodes['visor'].geometry}>
+        <mesh visible geometry={nodes['visor'].geometry} onClick={handleClick}>
           <meshPhysicalMaterial
             attach="material"
             color={0xeeeeee}
@@ -69,7 +70,7 @@ export function EightSeriesHeadlights ({ locations }) {
           />
         </mesh>
         <Detailed distances={[0, 2.5, 5]}>
-          <mesh visible geometry={nodes['headlight-simpler'].geometry}>
+          <mesh visible geometry={nodes['headlight-simpler'].geometry} onClick={handleClick}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
@@ -77,7 +78,7 @@ export function EightSeriesHeadlights ({ locations }) {
               metalness={0.8}
             />
           </mesh>
-          <mesh visible geometry={midDetailNodes['headlight-simpler'].geometry}>
+          <mesh visible geometry={midDetailNodes['headlight-simpler'].geometry} onClick={handleClick}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
@@ -85,7 +86,7 @@ export function EightSeriesHeadlights ({ locations }) {
               metalness={0.8}
             />
           </mesh>
-          <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry}>
+          <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry} onClick={handleClick}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
@@ -228,3 +229,5 @@ export function EightSeriesHeadlights ({ locations }) {
     </group>
   );
 }
+
+export const EightSeriesHeadlights = withClickToZoom(EightSeriesHeadlightsUnwrapped)
