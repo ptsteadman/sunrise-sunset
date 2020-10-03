@@ -1,23 +1,24 @@
-import React, { useRef, useState, useMemo } from "react";
-import { useFrame } from "react-three-fiber";
-import { Vector3, Matrix4 } from 'three';
+import React, { useRef, useState, useMemo } from "react"
+import { useFrame } from "react-three-fiber"
+import { Vector3, Matrix4 } from "three"
 
 import {
   sphericalCoordsToCartesian,
   latlngToSphericalCoords,
   calculateAngleForTime,
   isIntervalActive
-} from "../../lib";
-import { EightSeriesHeadlights } from "./Headlights/EightSeriesHeadlights";
-import { ThreeSeriesHeadlights } from "./Headlights/ThreeSeriesHeadlights";
-import { HeadlightBeams } from "./Headlights/HeadlightBeams";
-import { FillerLights } from "./Headlights/FillerLights";
-import { RADIUS } from '../../constants';
+} from "../../lib"
+import { EightSeriesHeadlights } from "./Headlights/EightSeriesHeadlights"
+import { ThreeSeriesHeadlights } from "./Headlights/ThreeSeriesHeadlights"
+import { HeadlightBeams } from "./Headlights/HeadlightBeams"
+import { FillerLights } from "./Headlights/FillerLights"
+import { Oceans } from "./Oceans"
+import { RADIUS } from "../../constants"
 
 const PRECISION = 1
 
 export function LightGlobe ({ cities }) {
-  const group = useRef();
+  const group = useRef()
   const [rotation, setRotation] = useState()
 
   useFrame(() => {
@@ -25,7 +26,7 @@ export function LightGlobe ({ cities }) {
     if (r === rotation) return
     setRotation(r)
     group.current.rotation.y = r
-  });
+  })
 
   const dedupedLocations = useMemo(() =>
     cities.reduce((acc, cur) => {
@@ -43,7 +44,7 @@ export function LightGlobe ({ cities }) {
   const locations = dedupedLocations 
     .map(({ lat, lng, name, render }, i) => {
       const [inc, azm ] = latlngToSphericalCoords(lat, lng)
-      const position = sphericalCoordsToCartesian(render ? RADIUS : RADIUS - 0.2, inc, azm);
+      const position = sphericalCoordsToCartesian(render ? RADIUS : RADIUS - 0.1, inc, azm);
       const pos = new Vector3(...position)
       const worldPos = pos.applyMatrix4(new Matrix4().makeRotationY(rotation))
       const onDarkSide = !!(worldPos.x > 0.1)
@@ -73,6 +74,7 @@ export function LightGlobe ({ cities }) {
       <ThreeSeriesHeadlights locations={locations.filter(({ render }) => render === 'ThreeSeries')} />
       <FillerLights locations={locations.filter(({ render }) => !render)} />
       <HeadlightBeams locations={locations} />
+      <Oceans radius={RADIUS} />
     </group>
   );
 };

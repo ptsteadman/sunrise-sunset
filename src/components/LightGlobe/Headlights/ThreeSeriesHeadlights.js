@@ -51,7 +51,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
           onPointerOver={handleHoverMesh}
           onPointerOut={handleUnhoverMesh}
         >
-          <meshStandardMaterial
+          <meshPhysicalMaterial
             attach="material"
             color={0xeeeeee}
             roughness={0.05}

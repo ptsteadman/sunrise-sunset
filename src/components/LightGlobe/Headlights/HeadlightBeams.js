@@ -50,7 +50,7 @@ export function HeadlightBeams ({ locations }) {
             target={bloomRefs.current[i]}
             angle={lightLaser ? 1.4 : 1.1}
             scaleX={3.5}
-            openEnded={true}
+            openEnded
           />
         )}
       </group>

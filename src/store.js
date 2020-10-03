@@ -12,14 +12,20 @@ export const useStore = create(set => ({
     e.stopPropagation();
     const worldPos = new Vector3()
     const headlightPos = e.object.getWorldPosition(worldPos)
+    if (headlightPos.x === 0 && headlightPos.y === 0 && headlightPos.z === 0) return console.log('zero')
     return set(state => ({
       zoomTarget: headlightPos.multiplyScalar(1.1)
     }))
   },
   handleHoverMesh: (e) => {
+    e.stopPropagation();
+    const worldPos = new Vector3()
+    const headlightPos = e.object.getWorldPosition(worldPos)
+    if (headlightPos.x === 0 && headlightPos.y === 0 && headlightPos.z === 0) return
     document.getElementById('cursor-style').innerHTML = 'body { cursor: pointer }'
   },
   handleUnhoverMesh: (e) => {
+    e.stopPropagation();
     document.getElementById('cursor-style').innerHTML = ''
   },
 
