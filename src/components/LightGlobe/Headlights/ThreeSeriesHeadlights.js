@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, createRef } from 'react'
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { draco, Detailed } from "drei";
+import { Detailed } from "drei";
 import { BackSide } from "three";
 import shallow from "zustand/shallow"
 import { PLASTIC_COLOR, TURN_SIGNAL_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, BODY_DARK_COLOR } from "../../../constants"
@@ -22,14 +22,12 @@ export function ThreeSeriesHeadlights ({ locations }) {
 
   const { nodes } = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/series-3.glb",
-    draco(process.env.PUBLIC_URL + "/draco-gltf/")
+    process.env.PUBLIC_URL + "/three-series-high-lod.glb",
   );
 
   const { nodes: lowDetailNodes } = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/series-3-low-lod.glb",
-    draco(process.env.PUBLIC_URL + "/draco-gltf/")
+    process.env.PUBLIC_URL + "/three-series-low-lod.glb",
   );
 
   const refs = useRef(locations.map(() => createRef()))
@@ -64,7 +62,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             depthWrite={false}
           />
         </mesh>
-        <mesh visible userData={{ bloom: true }} geometry={nodes['bulbs_0'].geometry}>
+        <mesh visible userData={{ bloom: true }} geometry={nodes['bulbs'].geometry}>
           <meshStandardMaterial
             attach="material"
             roughness={0.1}
@@ -75,29 +73,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             emissive={getBulbEmissive(onDarkSide, turnLightOn)}
           />
         </mesh>
-        <mesh userData={{ bloom: true }} visible geometry={nodes['bulbs_1'].geometry}>
-          <meshStandardMaterial
-            attach="material"
-            roughness={0.1}
-            metalness={0.8}
-            color={0xaaaaff}
-            transparent
-            opacity={0.6}
-            emissive={onDarkSide ? 0xaaaaff : null}
-          />
-        </mesh>
-        <mesh visible userData={{ bloom: true }} geometry={nodes['bulbs_2'].geometry}>
-          <meshStandardMaterial
-            attach="material"
-            roughness={0.1}
-            metalness={0.8}
-            color={0xaaaaff}
-            transparent
-            opacity={0.6}
-            emissive={getBulbEmissive(onDarkSide, turnLightOn)}
-          />
-        </mesh>
-        <Detailed distances={[0, 5]}>
+        <Detailed distances={[0, 4]}>
           <mesh visible geometry={nodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
@@ -178,7 +154,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <Detailed distances={[0, 6]}>
+        <Detailed distances={[0, 4]}>
           <mesh visible geometry={nodes['outer-liner'].geometry}>
             <meshStandardMaterial
               attach="material"
@@ -196,7 +172,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <Detailed distances={[0, 6]}>
+        <Detailed distances={[0, 4]}>
           <mesh visible geometry={nodes['hanger'].geometry}>
             <meshStandardMaterial
               attach="material"

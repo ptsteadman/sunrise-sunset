@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, createRef } from 'react'
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { draco, Detailed } from "drei";
+import { Detailed } from "drei";
 import { BackSide } from "three";
 import shallow from "zustand/shallow"
 import { WebcamImageManager } from "../../WebcamImageManager";
@@ -22,20 +22,12 @@ export function EightSeriesHeadlights ({ locations }) {
 
   const { nodes } = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/eight-series-headlight-simplified.glb",
-    draco(process.env.PUBLIC_URL + "/draco-gltf/")
-  );
-
-  const { nodes: midDetailNodes } = useLoader(
-    GLTFLoader,
-    process.env.PUBLIC_URL + "/eight-series-headlight-mid-lod.glb",
-    draco(process.env.PUBLIC_URL + "/draco-gltf/")
+    process.env.PUBLIC_URL + "/eight-series-high-lod.glb",
   );
 
   const { nodes: lowDetailNodes } = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/eight-series-headlight-very-low-lod.glb",
-    draco(process.env.PUBLIC_URL + "/draco-gltf/")
+    process.env.PUBLIC_URL + "/eight-series-low-lod.glb",
   );
 
   const refs = useRef(locations.map(() => createRef()))
@@ -81,21 +73,13 @@ export function EightSeriesHeadlights ({ locations }) {
             depthWrite={false}
           />
         </mesh>
-        <Detailed distances={[0, 2.5, 5]}>
+        <Detailed distances={[0, 4]}>
           <mesh visible geometry={nodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
-              roughness={0.2}
-              metalness={0.8}
-            />
-          </mesh>
-          <mesh visible geometry={midDetailNodes['headlight-simpler'].geometry}>
-            <meshStandardMaterial
-              attach="material"
-              color={HEADLIGHT_BODY_COLOR}
-              roughness={0.2}
-              metalness={0.8}
+              roughness={0.4}
+              metalness={0.9}
             />
           </mesh>
           <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry}>
@@ -157,7 +141,7 @@ export function EightSeriesHeadlights ({ locations }) {
             emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
           />
         </mesh>
-        <Detailed distances={[0, 6]}>
+        <Detailed distances={[0, 4]}>
           <mesh visible userData={{ bloom: true }} geometry={nodes['top-light'].geometry}>
             <meshStandardMaterial
               attach="material"
@@ -180,8 +164,7 @@ export function EightSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <Detailed distances={[0, 3]}>
-          <mesh visible geometry={nodes['complex--inner-thing-1'].geometry}>
+          <mesh visible geometry={nodes['inner-thing'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={BODY_HIGHLIGHT_COLOR}
@@ -189,33 +172,6 @@ export function EightSeriesHeadlights ({ locations }) {
               metalness={0.5}
             />
           </mesh>
-          <mesh visible geometry={lowDetailNodes['complex--inner-thing-1'].geometry}>
-            <meshStandardMaterial
-              attach="material"
-              color={BODY_HIGHLIGHT_COLOR}
-              roughness={0.6}
-              metalness={0.5}
-            />
-          </mesh>
-        </Detailed>
-        <Detailed distances={[0, 3]}>
-          <mesh visible geometry={nodes['complex-inner-thing-2'].geometry}>
-            <meshStandardMaterial
-              attach="material"
-              color={BODY_HIGHLIGHT_COLOR}
-              roughness={0.3}
-              metalness={0.5}
-            />
-          </mesh>
-          <mesh visible geometry={lowDetailNodes['complex-inner-thing-2'].geometry}>
-            <meshStandardMaterial
-              attach="material"
-              color={BODY_HIGHLIGHT_COLOR}
-              roughness={0.3}
-              metalness={0.5}
-            />
-          </mesh>
-        </Detailed>
       </group>
     )})
   return (

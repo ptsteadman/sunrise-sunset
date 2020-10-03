@@ -2,7 +2,8 @@ import React from 'react';
 import { Html, useProgress } from "drei";
 
 export function LoadingIndicator () {
-  const { progress } = useProgress()
+  const { progress, errors } = useProgress()
+  if (errors.length) console.log(errors)
   return (
     <Html center>
       <div className='loading'>
@@ -21,7 +22,13 @@ export function LoadingIndicator () {
               />
               </path>
             </defs>
-            <text className="progress" x="50%" y="50%" dominantBaseline="middle" textAnchor="middle">Loading {Math.round(progress)}%</text>    
+            <text className="progress" x="50%" y="50%" dominantBaseline="middle" textAnchor="middle">
+              {
+                errors && errors.length 
+                  ?  errors[0]
+                  : `Loading ${Math.round(progress)}%`
+              }
+            </text>    
             <text dy="70" textLength="1220">
               <textPath className="circle-text" xlinkHref="#textcircle">TOMORROW WILL BE NOTHING LIKE TODAY WILL BE NOTHING LIKE</textPath>
             </text>
