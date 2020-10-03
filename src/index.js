@@ -9,11 +9,12 @@ import { CineonToneMapping } from "three"
 import cities from "./lib/cities.json"
 import Lights from "./components/Lights"
 import { LightGlobe } from "./components/LightGlobe/LightGlobe"
-import { Stars, Stats } from "drei"
+import { Stats } from "drei"
 import { LoadingIndicator } from "./components/LoadingIndicator"
 import { BG_COLOR } from "./constants"
 import { Effects } from "./components/Effects"
 import { CameraRig } from "./components/CameraRig"
+import { Stars } from "./components/Stars"
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             <LightGlobe cities={cities} />
           </Suspense>
           <CameraRig />
-          <Stars factor={1.3} saturation={0.4} />
+          <Stars factor={2.5} saturation={0.3} fade />
           <Stats />
           <Effects />
         </Canvas>
