@@ -3,16 +3,22 @@ import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
+import shallow from "zustand/shallow"
 import { WebcamImageManager } from "../../WebcamImageManager";
 import { PLASTIC_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, TURN_SIGNAL_COLOR } from "../../../constants"
-import { withClickToZoom } from '../../withClickToZoom'
+import { useStore } from '../../../store'
 
 const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
 const nycSrc = 'http://207.251.86.238/cctv884.jpg?';
 
-function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
+export function EightSeriesHeadlights ({ locations }) {
   const [nycCubeMap, setNycCubeMap] = React.useState(null)
   const [hkCubeMap, setHkCubeMap] = React.useState(null)
+  const [zoomToMesh, handleHoverMesh, handleUnhoverMesh] = useStore(state => [
+    state.zoomToMesh,
+    state.handleHoverMesh,
+    state.handleUnhoverMesh
+  ], shallow)
 
   const { nodes } = useLoader(
     GLTFLoader,
@@ -54,7 +60,13 @@ function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
     }
     return (
       <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
-        <mesh visible geometry={nodes['visor'].geometry} onClick={handleClick}>
+        <mesh
+          visible
+          geometry={nodes['visor'].geometry}
+          onClick={zoomToMesh}
+          onPointerOver={handleHoverMesh}
+          onPointerOut={handleUnhoverMesh}
+        >
           <meshPhysicalMaterial
             attach="material"
             color={0xeeeeee}
@@ -70,7 +82,7 @@ function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
           />
         </mesh>
         <Detailed distances={[0, 2.5, 5]}>
-          <mesh visible geometry={nodes['headlight-simpler'].geometry} onClick={handleClick}>
+          <mesh visible geometry={nodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
@@ -78,7 +90,7 @@ function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
               metalness={0.8}
             />
           </mesh>
-          <mesh visible geometry={midDetailNodes['headlight-simpler'].geometry} onClick={handleClick}>
+          <mesh visible geometry={midDetailNodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
@@ -86,7 +98,7 @@ function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
               metalness={0.8}
             />
           </mesh>
-          <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry} onClick={handleClick}>
+          <mesh visible geometry={lowDetailNodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
               color={HEADLIGHT_BODY_COLOR}
@@ -214,5 +226,3 @@ function EightSeriesHeadlightsUnwrapped ({ handleClick, locations }) {
     </group>
   );
 }
-
-export const EightSeriesHeadlights = withClickToZoom(EightSeriesHeadlightsUnwrapped)

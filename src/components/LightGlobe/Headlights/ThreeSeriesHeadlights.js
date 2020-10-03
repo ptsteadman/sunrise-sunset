@@ -3,7 +3,9 @@ import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco, Detailed } from "drei";
 import { BackSide } from "three";
+import shallow from "zustand/shallow"
 import { PLASTIC_COLOR, TURN_SIGNAL_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, BODY_DARK_COLOR } from "../../../constants"
+import { useStore } from "../../../store"
 
 function getBulbEmissive (onDarkSide, turnLightOn) {
   if (turnLightOn) return TURN_SIGNAL_COLOR
@@ -12,6 +14,12 @@ function getBulbEmissive (onDarkSide, turnLightOn) {
 }
 
 export function ThreeSeriesHeadlights ({ locations }) {
+  const [zoomToMesh, handleHoverMesh, handleUnhoverMesh] = useStore(state => [
+    state.zoomToMesh,
+    state.handleHoverMesh,
+    state.handleUnhoverMesh
+  ], shallow)
+
   const { nodes } = useLoader(
     GLTFLoader,
     process.env.PUBLIC_URL + "/series-3.glb",
@@ -38,7 +46,13 @@ export function ThreeSeriesHeadlights ({ locations }) {
   const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turnLightOn }, i) => {
     return (
       <group scale={[0.018, 0.018, 0.018 ]} key={name} position={position} ref={refs.current[i]}>
-        <mesh visible geometry={lowDetailNodes['visor'].geometry}>
+        <mesh
+          visible
+          geometry={lowDetailNodes['visor'].geometry}
+          onClick={zoomToMesh}
+          onPointerOver={handleHoverMesh}
+          onPointerOut={handleUnhoverMesh}
+        >
           <meshStandardMaterial
             attach="material"
             color={0xeeeeee}
