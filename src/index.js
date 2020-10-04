@@ -11,7 +11,7 @@ import Lights from "./components/Lights"
 import { LightGlobe } from "./components/LightGlobe/LightGlobe"
 import { Stats } from "drei"
 import { LoadingIndicator } from "./components/LoadingIndicator"
-import { BG_COLOR } from "./constants"
+import { BG_COLOR, IS_LIVE } from "./constants"
 import { Effects } from "./components/Effects"
 import { CameraRig } from "./components/CameraRig"
 import { Stars } from "./components/Stars"
@@ -29,9 +29,15 @@ function App() {
         >
           <fogExp2 attach="fog" args={["#020202", 0.15]} />
           <Lights />
-          <Suspense fallback={<LoadingIndicator />}>
-            <LightGlobe cities={cities} />
-          </Suspense>
+          {
+            IS_LIVE
+              ? (
+                <Suspense fallback={<LoadingIndicator />}>
+                  <LightGlobe cities={cities} />
+                </Suspense>
+              )
+              : <LoadingIndicator />
+          }
           <CameraRig />
           <Stars factor={2.5} saturation={0.3} fade />
           <Stats />

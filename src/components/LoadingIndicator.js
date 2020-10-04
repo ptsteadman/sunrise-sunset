@@ -1,9 +1,13 @@
-import React from 'react';
-import { Html, useProgress } from "drei";
+import React from "react"
+import { Html, useProgress } from "drei"
+import { IS_LIVE } from "../constants"
 
 export function LoadingIndicator () {
   const { progress, errors } = useProgress()
   if (errors.length) console.log(errors)
+  let loadingText = `Loading ${Math.round(progress)}%`
+  if (!IS_LIVE) loadingText = 'Coming October 7th'
+  if (errors.length) loadingText = 'Error'
   return (
     <Html center>
       <div className='loading'>
@@ -18,17 +22,13 @@ export function LoadingIndicator () {
                 type="rotate"
                 from="0 250 250"
                 to="360 250 250"
-                repeatCount="indefinite" 
+                repeatCount="indefinite"
               />
               </path>
             </defs>
             <text className="progress" x="50%" y="50%" dominantBaseline="middle" textAnchor="middle">
-              {
-                errors && errors.length 
-                  ?  errors[0]
-                  : `Loading ${Math.round(progress)}%`
-              }
-            </text>    
+              { loadingText }
+            </text>
             <text dy="70" textLength="1220">
               <textPath className="circle-text" xlinkHref="#textcircle">TOMORROW WILL BE NOTHING LIKE TODAY WILL BE NOTHING LIKE</textPath>
             </text>

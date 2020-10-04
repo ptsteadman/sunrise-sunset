@@ -41,7 +41,7 @@ export function LightGlobe ({ cities }) {
     [cities]
   )
 
-  const locations = dedupedLocations 
+  const locations = dedupedLocations
     .map(({ lat, lng, name, render }, i) => {
       const [inc, azm ] = latlngToSphericalCoords(lat, lng)
       const position = sphericalCoordsToCartesian(render ? RADIUS : RADIUS - 0.1, inc, azm);
