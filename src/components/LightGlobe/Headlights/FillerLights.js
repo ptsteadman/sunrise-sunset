@@ -48,7 +48,7 @@ export function FillerLights ({ locations }) {
 
   return (
     <group>
-      <instancedMesh ref={instancedMeshVisor} geometry={nodes['visor'].geometry} userData={{ bloom: true }} args={[null, null, locations.length]} >
+      <instancedMesh ref={instancedMeshVisor} geometry={nodes['visor'].geometry} args={[null, null, locations.length]} >
         <meshPhysicalMaterial
           attach="material"
           color={0xccccff}

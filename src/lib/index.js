@@ -26,6 +26,6 @@ export function calculateAngleForTime () {
 }
 
 export function isIntervalActive (periodLength, intervalStart, intervalEnd, offset) {
-  const t = (new Date().getTime() + offset * 1000) % (periodLength * 1000)
-  return t < intervalEnd * 1000 && t >= intervalStart * 1000;
+  const t = (new Date().getTime() + offset) % (periodLength)
+  return t < intervalEnd && t >= intervalStart;
 }
