@@ -40,7 +40,6 @@ function App() {
           }
           <CameraRig />
           <Stars factor={2.5} saturation={0.3} fade />
-          <Stats />
           <Effects />
         </Canvas>
       </ControlsProvider>
