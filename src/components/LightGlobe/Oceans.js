@@ -6,7 +6,7 @@ const WIDTH_SEGMENTS = 20
 const HEIGHT_SEGMENTS = 20
 
 export function Oceans ({ radius }) {
-  const topo = useTextureLoader('topo.png')
+  const topo = useTextureLoader(process.env.PUBLIC_URL + '/topo.png')
   topo.offset = new Vector2(0.5, 0)
   topo.wrapS = RepeatWrapping
   return (

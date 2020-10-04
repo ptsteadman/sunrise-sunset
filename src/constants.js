@@ -15,4 +15,4 @@ export const RADIUS = 3
 export const DEFAULT_LAYER = 0
 export const BLOOM_LAYER = 1
 export const ZOOM_DURATION = 1.5
-export const IS_LIVE = false
+export const IS_LIVE = true
