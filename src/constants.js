@@ -1,11 +1,15 @@
+import { Color } from 'three'
 // colors
 export const BG_COLOR = ''
-export const HEADLIGHT_BODY_COLOR = 0x838b9f
-export const TURN_SIGNAL_COLOR = 0xF18F17
+export const HEADLIGHT_BODY_COLOR = new Color(0x838b9f)
+export const TURN_SIGNAL_COLOR = new Color(0xF18F17)
 export const BODY_HIGHLIGHT_COLOR = 0x0a25ad
 export const BODY_DARK_COLOR = 0x242529
-export const BEAM_COLOR_LASER = 0xEEEAFF
-export const BEAM_COLOR_STANDARD = 0xEAEEF8
+export const BEAM_COLOR_LASER = new Color(0xEEEAFF)
+export const BEAM_COLOR_STANDARD = new Color(0xEAEEF8)
+export const EMISSIVE_COLOR_LASER = new Color(0xaaaaff)
+export const EMISSIVE_COLOR_STANDARD = new Color(0xaaaacc)
+export const EMISSIVE_COLOR_OFF = new Color(0x000000)
 export const PLASTIC_COLOR = 0xddeeff
 
 // geometry

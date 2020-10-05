@@ -1,3 +1,4 @@
+import cities from "./cities.json"
 export function sphericalCoordsToCartesian (radius, inclination, azimuth) {
   /*
    * Inclination is in the range [0, pi], from straight up (the zenith)
@@ -28,4 +29,20 @@ export function calculateAngleForTime () {
 export function isIntervalActive (periodLength, intervalStart, intervalEnd, offset) {
   const t = (new Date().getTime() + offset) % (periodLength)
   return t < intervalEnd && t >= intervalStart;
+}
+
+const OFFSETS = Array.from(Array(cities.length)).map(() => Math.random() * 120 * 1000)
+
+export function getLightState (i) {
+  const offset = OFFSETS[i]
+  const lightLow = isIntervalActive(120 * 1000, 0, 40 * 1000, offset)
+  const lightHigh = isIntervalActive(120 * 1000, 40 * 1000, 70 * 1000, offset)
+  const lightLaser = isIntervalActive(120 * 1000, 70 * 1000, 120 * 1000, offset)
+  const turnLightOn = isIntervalActive(60 * 1000, 0, 20 * 1000, offset) && isIntervalActive(1 * 1500, 0, 750, offset)
+  return {
+    lightLow,
+    lightHigh,
+    lightLaser,
+    turnLightOn
+  }
 }
