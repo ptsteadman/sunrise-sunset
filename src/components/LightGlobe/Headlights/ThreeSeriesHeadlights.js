@@ -176,25 +176,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
           </mesh>
         </Detailed>
         <Detailed distances={[0, 2]}>
-          <mesh visible geometry={nodes['griddy-thing-case'].geometry}>
-            <meshStandardMaterial
-              attach="material"
-              color={HEADLIGHT_BODY_COLOR}
-              roughness={0.1}
-              metalness={0.8}
-              // map={nodes['griddy-thing-case'].material.map}
-            />
-          </mesh>
-          <mesh visible geometry={lowDetailNodes['griddy-thing-case'].geometry}>
-            <meshStandardMaterial
-              attach="material"
-              color={HEADLIGHT_BODY_COLOR}
-              roughness={0.1}
-              metalness={0.8}
-            />
-          </mesh>
-        </Detailed>
-        <Detailed distances={[0, 2]}>
           <mesh visible geometry={nodes['inner-body'].geometry}>
             <meshStandardMaterial
               attach="material"

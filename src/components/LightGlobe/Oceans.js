@@ -19,7 +19,7 @@ export function Oceans ({ radius }) {
         color={0xeeeeff}
         alphaMap={topo}
         map={ocean}
-        shininess={60}
+        shininess={30}
         transparent
         depthWrite={false}
       />
