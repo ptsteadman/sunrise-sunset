@@ -27,7 +27,7 @@ function App() {
           onCreated={({ gl }) => gl.setClearColor(BG_COLOR)}
           gl={{ antialias: true, toneMapping: CineonToneMapping }}
         >
-          <fogExp2 attach="fog" args={["#020202", 0.15]} />
+          <fogExp2 attach="fog" args={["#020202", 0.1]} />
           <Lights />
           {
             IS_LIVE

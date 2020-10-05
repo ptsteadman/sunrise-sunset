@@ -2,11 +2,11 @@ import React from "react"
 import { useTextureLoader } from "drei"
 import { Vector2, RepeatWrapping } from "three"
 
-const WIDTH_SEGMENTS = 23
-const HEIGHT_SEGMENTS = 23
+const WIDTH_SEGMENTS = 26
+const HEIGHT_SEGMENTS = 26
 
 export function Oceans ({ radius }) {
-  const topo = useTextureLoader(process.env.PUBLIC_URL + '/topo-black-level.png')
+  const topo = useTextureLoader(process.env.PUBLIC_URL + '/topo.png')
   const ocean = useTextureLoader(process.env.PUBLIC_URL + '/ocean-texture.png')
   const specular = useTextureLoader(process.env.PUBLIC_URL + '/specular.png')
   topo.offset = new Vector2(0.5, 0)
