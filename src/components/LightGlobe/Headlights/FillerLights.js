@@ -48,20 +48,18 @@ export function FillerLights ({ locations }) {
 
   return (
     <group>
-      <instancedMesh ref={instancedMeshVisor} geometry={nodes['visor'].geometry} args={[null, null, locations.length]} >
-        <meshPhysicalMaterial
+      <instancedMesh ref={instancedMeshVisor} userData={{ bloom: true }} geometry={nodes['visor'].geometry} args={[null, null, locations.length]} >
+        <meshStandardMaterial
           attach="material"
           color={0xccccff}
           roughness={0.05}
-          clearcoat={0.9}
           metalness={0.9}
-          opacity={1}
-          transmission={0.6}
+          opacity={0.7}
           transparent
           depthWrite={false}
         />
       </instancedMesh>
-      <instancedMesh ref={instancedMeshLightGuideOff} userData={{ bloom: true }} geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
+      <instancedMesh ref={instancedMeshLightGuideOff} geometry={nodes['light-guide'].geometry} args={[null, null, locations.length]} >
         <meshStandardMaterial
           attach="material"
           color={0xddeeff}
@@ -80,19 +78,19 @@ export function FillerLights ({ locations }) {
           metalness={0.8}
           emissive={0xaaaaff}
           opacity={0.4}
-          transparent
           depthWrite={false}
+          transparent
         />
       </instancedMesh>
-      <instancedMesh ref={instancedMeshLens} userData={{ bloom: true }} geometry={nodes['lens'].geometry} args={[null, null, locations.length]} >
+      <instancedMesh ref={instancedMeshLens} geometry={nodes['lens'].geometry} args={[null, null, locations.length]} >
         <meshStandardMaterial
           attach="material"
           roughness={0.3}
           metalness={0.5}
           color={0xaaaaff}
+          depthWrite={false}
           opacity={0.4}
           transparent
-          depthWrite={false}
         />
       </instancedMesh>
     </group>

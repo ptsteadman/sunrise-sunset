@@ -9,9 +9,9 @@ export default () => {
         <meshBasicMaterial attach="material" color="#EEEE88" fog={false} />
       </mesh>
       <directionalLight
-        intensity={2}
+        intensity={1.5}
         position={[-1, 0, 0]}
-        color={0xfffdf2}
+        color={0xffffe4}
       />
     </group>
   );

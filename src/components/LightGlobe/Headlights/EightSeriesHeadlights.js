@@ -64,7 +64,7 @@ export function EightSeriesHeadlights ({ locations }) {
             color={0xeeeeee}
             roughness={0.05}
             envMap={envMap[name] ? envMap[name] : nycCubeMap}
-            envMapIntensity={1.3}
+            envMapIntensity={1.8}
             clearcoat={0.9}
             metalness={0.9}
             opacity={1}
@@ -73,7 +73,7 @@ export function EightSeriesHeadlights ({ locations }) {
             depthWrite={false}
           />
         </mesh>
-        <Detailed distances={[0, 4]}>
+        <Detailed distances={[0, 3.8]}>
           <mesh visible geometry={nodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
@@ -91,7 +91,7 @@ export function EightSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <Detailed distances={[0, 3]}>
+        <Detailed distances={[0, 2]}>
           <mesh>
             <mesh visible userData={{ bloom: onDarkSide }} geometry={nodes['griddy-thing'].geometry}>
               <meshPhysicalMaterial
@@ -132,7 +132,7 @@ export function EightSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <mesh visible geometry={nodes['bulbs'].geometry}>
+        <mesh visible geometry={lowDetailNodes['bulbs'].geometry}>
           <meshStandardMaterial
             attach="material"
             color={0xaaaaff}
@@ -141,7 +141,7 @@ export function EightSeriesHeadlights ({ locations }) {
             emissive={onDarkSide && !blinkingOff ? 0xaaaaff : 0x000000}
           />
         </mesh>
-        <Detailed distances={[0, 4]}>
+        <Detailed distances={[0, 2.5]}>
           <mesh visible userData={{ bloom: true }} geometry={nodes['top-light'].geometry}>
             <meshStandardMaterial
               attach="material"

@@ -23,15 +23,15 @@ export function Effects() {
   const { gl, scene, camera, size } = useThree()
   // const bloomStrength = useControl('Bloom Strength', { type: 'number', value: 2.3 })
   // const bloomThreshold = useControl('Bloom Threshold', { type: 'number', value: 0.2 })
-  const bloomStrength = 2.3
-  const bloomThreshold = 0.2 
+  const bloomStrength = 2
+  const bloomThreshold = 0.23
 
   const [bloom, final] = useMemo(() => {
     const renderScene = new RenderPass(scene, camera)
     const comp = new EffectComposer(gl)
     comp.renderToScreen = false
     comp.addPass(renderScene)
-    comp.addPass(new UnrealBloomPass(new THREE.Vector2(size.width, size.height), bloomStrength, 0.1, bloomThreshold))
+    comp.addPass(new UnrealBloomPass(new THREE.Vector2(size.width, size.height), bloomStrength, 0, bloomThreshold))
 
     const finalComposer = new EffectComposer(gl)
     finalComposer.addPass(renderScene)
