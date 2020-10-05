@@ -17,7 +17,6 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
   const { scene } = useThree();
 
   const {
-    color = new THREE.Color(0x000000),
     length,
     position,
     target,
@@ -119,7 +118,6 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
         <cylinderGeometry args={[0.05, 0.25, geometryLength, 12, 1, openEnded]} attach="geometry" />
         <volumetricSpotlight
           attach="material"
-          uniforms-lightColor-value={color}
           uniforms-attenuation-value={length} // as porportion to height of cylinder
           uniforms-anglePower-value={angle}
         />
