@@ -62,16 +62,20 @@ export function EightSeriesHeadlights ({ locations }) {
       const onDarkSide = !!(worldPos.x > 0.1)
       const { lightLaser, turnLightOn } = getLightState(i)
       const emissiveColor = lightLaser ? EMISSIVE_COLOR_LASER : EMISSIVE_COLOR_STANDARD
-      griddyThingRefs.current[i].current.material.emissive = onDarkSide ? emissiveColor : false
-      griddyThingRefs.current[i].current.userData = { bloom: onDarkSide }
-      griddyThingInsideRefs.current[i].current.material.emissive = onDarkSide ? emissiveColor : false
-      griddyThingInsideRefs.current[i].current.userData = { bloom: onDarkSide }
-      griddyThingLowDetailRefs.current[i].current.material.emissive = onDarkSide ? emissiveColor : false
-      griddyThingLowDetailRefs.current[i].current.userData = { bloom: onDarkSide }
-      topLightRefs.current[i].current.children[0].material.emissive = turnLightOn ? TURN_SIGNAL_COLOR : onDarkSide ? emissiveColor : EMISSIVE_COLOR_OFF
-      topLightRefs.current[i].current.children[1].material.emissive = turnLightOn ? TURN_SIGNAL_COLOR : onDarkSide ? emissiveColor : EMISSIVE_COLOR_OFF
-      topLightRefs.current[i].current.children[0].userData = { bloom: turnLightOn ? true : onDarkSide }
-      topLightRefs.current[i].current.children[1].userData = { bloom: turnLightOn ? true : onDarkSide }
+      const griddyThing = griddyThingRefs.current[i].current
+      griddyThing.material.emissive = onDarkSide ? emissiveColor : false
+      griddyThing.userData = { bloom: onDarkSide }
+      const griddyThingInside = griddyThingInsideRefs.current[i].current
+      griddyThingInside.material.emissive = onDarkSide ? emissiveColor : false
+      griddyThingInside.userData = { bloom: onDarkSide }
+      const griddyThingLowDetail = griddyThingLowDetailRefs.current[i].current
+      griddyThingLowDetail.material.emissive = onDarkSide ? emissiveColor : false
+      griddyThingLowDetail.userData = { bloom: onDarkSide }
+      const topLightLOD = topLightRefs.current[i].current
+      topLightLOD.children[0].material.emissive = turnLightOn ? TURN_SIGNAL_COLOR : onDarkSide ? emissiveColor : EMISSIVE_COLOR_OFF
+      topLightLOD.children[1].material.emissive = turnLightOn ? TURN_SIGNAL_COLOR : onDarkSide ? emissiveColor : EMISSIVE_COLOR_OFF
+      topLightLOD.children[0].userData = { bloom: turnLightOn ? true : onDarkSide }
+      topLightLOD.children[1].userData = { bloom: turnLightOn ? true : onDarkSide }
     }
   })
 

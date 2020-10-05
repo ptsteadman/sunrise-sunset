@@ -1,20 +1,25 @@
 import React, { useRef, useEffect } from 'react'
 import * as THREE from 'three'
-import { useLoader } from "react-three-fiber";
+import { useLoader, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { draco } from "drei";
+import { calculateAngleForTime } from "../../../lib"
 
 const dummy = new THREE.Object3D();
 
 function initInstancedMesh(instanced, locations, lightGuide) {
+  const r = calculateAngleForTime()
   locations.forEach((location, i) => {
     const { position } = location
     dummy.position.set(...position)
+    const pos = new THREE.Vector3(...position)
+    const worldPos = pos.applyMatrix4(new THREE.Matrix4().makeRotationY(r))
     let scale = [0.015, 0.015, 0.015]
-    if (lightGuide === 'on' && !location.onDarkSide) {
+    const onDarkSide = !!(worldPos.x > 0.1)
+    if (lightGuide === 'on' && !onDarkSide) {
       scale = [0, 0, 0]
     }
-    if (lightGuide === 'off' && location.onDarkSide) {
+    if (lightGuide === 'off' && onDarkSide) {
       scale = [0, 0, 0]
     }
     dummy.scale.set(...scale)
@@ -38,13 +43,16 @@ export function FillerLights ({ locations }) {
   const instancedMeshLightGuideOff = useRef()
   const instancedMeshLens = useRef()
 
-
   useEffect(() => {
     initInstancedMesh(instancedMeshVisor, locations);
-    initInstancedMesh(instancedMeshLightGuideOn, locations, 'on');
-    initInstancedMesh(instancedMeshLightGuideOff, locations, 'off');
     initInstancedMesh(instancedMeshLens, locations);
   }, [locations])
+
+  useFrame(({ clock }) => {
+    initInstancedMesh(instancedMeshLightGuideOn, locations, 'on');
+    initInstancedMesh(instancedMeshLightGuideOff, locations, 'off');
+  }, 2)
+
 
   return (
     <group>

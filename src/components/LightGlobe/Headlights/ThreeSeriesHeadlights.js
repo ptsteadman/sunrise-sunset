@@ -1,10 +1,21 @@
 import React, { useEffect, useRef, createRef } from 'react'
-import { useLoader } from "react-three-fiber";
+import { useLoader, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Detailed } from "drei";
+import { Vector3} from "three"
+import { Detailed } from "drei"
 import shallow from "zustand/shallow"
-import { PLASTIC_COLOR, TURN_SIGNAL_COLOR, HEADLIGHT_BODY_COLOR, BODY_HIGHLIGHT_COLOR, BODY_DARK_COLOR } from "../../../constants"
+import {
+  PLASTIC_COLOR,
+  TURN_SIGNAL_COLOR,
+  HEADLIGHT_BODY_COLOR,
+  BODY_HIGHLIGHT_COLOR,
+  BODY_DARK_COLOR,
+  EMISSIVE_COLOR_LASER,
+  EMISSIVE_COLOR_STANDARD,
+  EMISSIVE_COLOR_OFF
+} from "../../../constants"
 import { useStore } from "../../../store"
+import { getLightState } from "../../../lib/index"
 
 function getBulbEmissive (onDarkSide, turnLightOn) {
   if (turnLightOn) return TURN_SIGNAL_COLOR
@@ -31,6 +42,9 @@ export function ThreeSeriesHeadlights ({ locations }) {
 
 
   const refs = useRef(locations.map(() => createRef()))
+  const griddyThingRefs = useRef(locations.map(() => createRef()))
+  const topLightRefs = useRef(locations.map(() => createRef()))
+  const bulbRefs = useRef(locations.map(() => createRef()))
 
   useEffect(() => {
     for (const r of refs.current) {
@@ -40,6 +54,29 @@ export function ThreeSeriesHeadlights ({ locations }) {
       // r.current.rotateZ(Math.PI / 4)
     }
   }, [])
+
+  useFrame(() => {
+    let worldPos = new Vector3()
+    for (let i = 0; i < locations.length; i++) {
+      const headlight = refs.current[i].current;
+      headlight.getWorldPosition(worldPos)
+      const onDarkSide = !!(worldPos.x > 0.1)
+      const { lightLaser, turnLightOn } = getLightState(i)
+      const emissiveColor = lightLaser ? EMISSIVE_COLOR_LASER : EMISSIVE_COLOR_STANDARD
+      const griddyThing = griddyThingRefs.current[i].current
+      griddyThing.material.emissive = onDarkSide ? emissiveColor : false
+      griddyThing.userData = { bloom: onDarkSide }
+      const topLightLOD = topLightRefs.current[i].current
+      topLightLOD.children[0].material.emissive =  onDarkSide ? emissiveColor : EMISSIVE_COLOR_OFF
+      topLightLOD.children[1].material.emissive =  onDarkSide ? emissiveColor : EMISSIVE_COLOR_OFF
+      topLightLOD.children[0].userData = { bloom: onDarkSide }
+      topLightLOD.children[1].userData = { bloom: onDarkSide }
+      const bulbs = bulbRefs.current[i].current
+      bulbs.material.emissive = turnLightOn ? TURN_SIGNAL_COLOR : onDarkSide ? emissiveColor : EMISSIVE_COLOR_OFF
+      bulbs.userData = { bloom: turnLightOn ? true : onDarkSide }
+    }
+  })
+
 
   const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turnLightOn }, i) => {
     return (
@@ -62,7 +99,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             depthWrite={false}
           />
         </mesh>
-        <mesh visible userData={{ bloom: true }} geometry={nodes['bulbs'].geometry}>
+        <mesh visible ref={bulbRefs.current[i]} geometry={nodes['bulbs'].geometry}>
           <meshStandardMaterial
             attach="material"
             roughness={0.1}
@@ -91,19 +128,18 @@ export function ThreeSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <mesh userData={{ bloom: onDarkSide }} visible geometry={nodes['griddy-thing'].geometry}>
+        <mesh ref={griddyThingRefs.current[i]} visible geometry={nodes['griddy-thing'].geometry}>
           <meshStandardMaterial
             attach="material"
             color={PLASTIC_COLOR}
             roughness={0.2}
             metalness={0.8}
-            emissive={onDarkSide ? 0xaaaaff : 0x000000}
             opacity={0.6}
             transparent
             depthWrite={false}
           />
         </mesh>
-        <Detailed distances={[0, 2]}>
+        <Detailed ref={topLightRefs.current[i]} distances={[0, 2]}>
           <mesh visible userData={{ bloom: true }} geometry={nodes['top-light'].geometry}>
             <meshStandardMaterial
               attach="material"

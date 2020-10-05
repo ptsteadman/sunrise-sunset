@@ -31,7 +31,7 @@ export function Effects() {
     const comp = new EffectComposer(gl)
     comp.renderToScreen = false
     comp.addPass(renderScene)
-    comp.addPass(new UnrealBloomPass(new THREE.Vector2(size.width, size.height), bloomStrength, 0, bloomThreshold))
+    comp.addPass(new UnrealBloomPass(new THREE.Vector2(size.width / 2, size.height / 2), bloomStrength, 0, bloomThreshold))
 
     const finalComposer = new EffectComposer(gl)
     finalComposer.addPass(renderScene)

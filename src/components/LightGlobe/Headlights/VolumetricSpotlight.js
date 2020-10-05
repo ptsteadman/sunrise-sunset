@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // from https://github.com/jeromeetienne/threex.volumetricspotlight
 import { useThree, useFrame, extend } from "react-three-fiber";
@@ -17,7 +17,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
   const { scene } = useThree();
 
   const {
-    color = BEAM_COLOR_STANDARD,
+    color = new THREE.Color(0x000000),
     length,
     position,
     target,
@@ -27,7 +27,9 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
     openEnded,
     wide
   } = props;
+  const { clock } = useThree()
 
+  const [startTime] = useState(clock.elapsedTime)
   // INIT
   useEffect(() => {
     // scene.add(spotlight.current.target);
@@ -69,7 +71,7 @@ export const MyVolumetricSpotlight = React.forwardRef(function MyVolumetricSpotl
       vs.current.rotateY(Math.PI / 12)
       const onDarkSide = !!(targetPos.x > 0.1)
       const { lightLaser, lightHigh } = getLightState(index)
-      vs.current.visible = onDarkSide
+      vs.current.visible = onDarkSide && clock.elapsedTime - startTime > 2
       if (!onDarkSide) return
       vs.current.material.uniforms.lightColor.value = lightLaser ? BEAM_COLOR_LASER : BEAM_COLOR_STANDARD
       if (wide) {
