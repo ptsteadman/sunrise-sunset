@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { useFrame } from "react-three-fiber"
 import { Vector3 } from "three"
 import shallow from "zustand/shallow"
@@ -13,8 +13,20 @@ export function CameraRig () {
   const setZoomStartTime = useStore(state => state.setZoomStartTime)
   const setZoomStartPosition = useStore(state => state.setZoomStartPosition)
   const setZoomTarget = useStore(state => state.setZoomTarget)
+  const orbitControlsRef = useRef()
 
   useFrame(({ camera, clock }) => {
+    const cameraDistance = camera.position.length()
+    if (cameraDistance < 3.5) {
+      orbitControlsRef.current.zoomSpeed = 0.025
+      orbitControlsRef.current.rotateSpeed = 0.3
+    } else if (cameraDistance < 5.5) {
+      orbitControlsRef.current.zoomSpeed = 0.1
+      orbitControlsRef.current.rotateSpeed = 0.8
+    } else {
+      orbitControlsRef.current.zoomSpeed = 0.2
+      orbitControlsRef.current.rotateSpeed = 1
+    }
     if (zoomTarget) {
       if (!zoomStartTime) {
         setZoomStartTime(clock.elapsedTime)
@@ -41,6 +53,6 @@ export function CameraRig () {
 
 
   return (
-    <OrbitControls enableDamping minDistance={RADIUS} maxDistance={20} enablePan={false} zoomSpeed={0.2} />
+    <OrbitControls ref={orbitControlsRef} enableDamping minDistance={RADIUS} maxDistance={20} enablePan={false} zoomSpeed={0.2} />
   )
 }
