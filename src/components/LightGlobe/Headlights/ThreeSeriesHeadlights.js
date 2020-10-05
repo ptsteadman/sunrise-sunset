@@ -17,12 +17,6 @@ import {
 import { useStore } from "../../../store"
 import { getLightState } from "../../../lib/index"
 
-function getBulbEmissive (onDarkSide, turnLightOn) {
-  if (turnLightOn) return TURN_SIGNAL_COLOR
-  if (onDarkSide) return 0xaaaaff
-  return 0x000000
-}
-
 export function ThreeSeriesHeadlights ({ locations }) {
   const [zoomToMesh, handleHoverMesh, handleUnhoverMesh] = useStore(state => [
     state.zoomToMesh,
@@ -107,7 +101,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
             color={0xaaaaff}
             transparent
             opacity={0.6}
-            emissive={getBulbEmissive(onDarkSide, turnLightOn)}
           />
         </mesh>
         <Detailed distances={[0, 3.5]}>

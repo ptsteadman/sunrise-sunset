@@ -8,10 +8,13 @@ const HEIGHT_SEGMENTS = 23
 export function Oceans ({ radius }) {
   const topo = useTextureLoader(process.env.PUBLIC_URL + '/topo-black-level.png')
   const ocean = useTextureLoader(process.env.PUBLIC_URL + '/ocean-texture.png')
+  const specular = useTextureLoader(process.env.PUBLIC_URL + '/specular.png')
   topo.offset = new Vector2(0.5, 0)
   topo.wrapS = RepeatWrapping
   ocean.offset = new Vector2(0.5, 0)
   ocean.wrapS = RepeatWrapping
+  specular.offset = new Vector2(0.5, 0)
+  specular.wrapS = RepeatWrapping
   return (
     <mesh>
       <sphereBufferGeometry args={[radius - 0.1, WIDTH_SEGMENTS, HEIGHT_SEGMENTS]} />
@@ -19,7 +22,7 @@ export function Oceans ({ radius }) {
         color={0xeeeeff}
         alphaMap={topo}
         map={ocean}
-        shininess={30}
+        specularMap={specular}
         transparent
         depthWrite={false}
       />
