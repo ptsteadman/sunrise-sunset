@@ -10,6 +10,7 @@ import { EightSeriesHeadlights } from "./Headlights/EightSeriesHeadlights"
 import { ThreeSeriesHeadlights } from "./Headlights/ThreeSeriesHeadlights"
 import { HeadlightBeams } from "./Headlights/HeadlightBeams"
 import { FillerLights } from "./Headlights/FillerLights"
+import { WebcamImageManager } from "../WebcamImageManager"
 import { Oceans } from "./Oceans"
 import { RADIUS } from "../../constants"
 
@@ -52,6 +53,7 @@ export function LightGlobe ({ cities }) {
       <ThreeSeriesHeadlights locations={locations.filter(({ render }) => render === 'ThreeSeries')} />
       <FillerLights locations={locations.filter(({ render }) => !render)} />
       <HeadlightBeams locations={locations} />
+      <WebcamImageManager locations={locations} />
       <Oceans radius={RADIUS} />
     </group>
   );

@@ -12,6 +12,7 @@ import {
   BODY_DARK_COLOR,
   EMISSIVE_COLOR_LASER,
   EMISSIVE_COLOR_STANDARD,
+  EMISSIVE_COLOR_LOW,
   EMISSIVE_COLOR_OFF
 } from "../../../constants"
 import { useStore } from "../../../store"
@@ -39,6 +40,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
   const griddyThingRefs = useRef(locations.map(() => createRef()))
   const topLightRefs = useRef(locations.map(() => createRef()))
   const bulbRefs = useRef(locations.map(() => createRef()))
+  const envMap = useStore(state => state.envMap)
 
   useEffect(() => {
     for (const r of refs.current) {
@@ -55,8 +57,8 @@ export function ThreeSeriesHeadlights ({ locations }) {
       const headlight = refs.current[i].current;
       headlight.getWorldPosition(worldPos)
       const onDarkSide = !!(worldPos.x > 0.1)
-      const { lightLaser, turnLightOn } = getLightState(i)
-      const emissiveColor = lightLaser ? EMISSIVE_COLOR_LASER : EMISSIVE_COLOR_STANDARD
+      const { lightLaser, turnLightOn, lightLow } = getLightState(i)
+      const emissiveColor = lightLaser ? EMISSIVE_COLOR_LASER : lightLow ? EMISSIVE_COLOR_LOW : EMISSIVE_COLOR_STANDARD
       const griddyThing = griddyThingRefs.current[i].current
       griddyThing.material.emissive = onDarkSide ? emissiveColor : false
       griddyThing.userData = { bloom: onDarkSide }
@@ -85,12 +87,14 @@ export function ThreeSeriesHeadlights ({ locations }) {
           <meshPhysicalMaterial
             attach="material"
             color={0xeeeeee}
-            roughness={0.05}
-            clearcoat={0.9}
+            roughness={0.1}
+            clearcoat={0.8}
             metalness={0.9}
             opacity={1}
             transparent
             depthWrite={false}
+            envMap={envMap}
+            envMapIntensity={1.5}
           />
         </mesh>
         <mesh visible ref={bulbRefs.current[i]} geometry={nodes['bulbs'].geometry}>

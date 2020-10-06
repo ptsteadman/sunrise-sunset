@@ -9,6 +9,7 @@ export const BEAM_COLOR_LASER = new Color(0xE9E0FF)
 export const BEAM_COLOR_STANDARD = new Color(0xEAEEF8)
 export const EMISSIVE_COLOR_LASER = new Color(0x9999ff)
 export const EMISSIVE_COLOR_STANDARD = new Color(0xadaacc)
+export const EMISSIVE_COLOR_LOW = new Color(0x666677)
 export const EMISSIVE_COLOR_OFF = new Color(0x000000)
 export const PLASTIC_COLOR = 0xddeeff
 

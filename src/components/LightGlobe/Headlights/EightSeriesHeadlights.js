@@ -4,7 +4,6 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Detailed } from "drei";
 import { BackSide, Vector3 } from "three";
 import shallow from "zustand/shallow"
-import { WebcamImageManager } from "../../WebcamImageManager";
 import {
   PLASTIC_COLOR,
   HEADLIGHT_BODY_COLOR,
@@ -12,22 +11,20 @@ import {
   TURN_SIGNAL_COLOR,
   EMISSIVE_COLOR_LASER,
   EMISSIVE_COLOR_STANDARD,
-  EMISSIVE_COLOR_OFF
+  EMISSIVE_COLOR_OFF,
+  EMISSIVE_COLOR_LOW
 } from "../../../constants"
 import { useStore } from '../../../store'
 import { getLightState } from "../../../lib"
 
-const hkSrc = 'https://tdcctv.data.one.gov.hk/K107F.JPG?';
-const nycSrc = 'http://207.251.86.238/cctv884.jpg?';
 
 export function EightSeriesHeadlights ({ locations }) {
-  const [nycCubeMap, setNycCubeMap] = React.useState(null)
-  const [hkCubeMap, setHkCubeMap] = React.useState(null)
   const [zoomToMesh, handleHoverMesh, handleUnhoverMesh] = useStore(state => [
     state.zoomToMesh,
     state.handleHoverMesh,
-    state.handleUnhoverMesh
+    state.handleUnhoverMesh,
   ], shallow)
+  const envMap = useStore(state => state.envMap)
 
   const { nodes } = useLoader(
     GLTFLoader,
@@ -60,8 +57,8 @@ export function EightSeriesHeadlights ({ locations }) {
       const headlight = refs.current[i].current;
       headlight.getWorldPosition(worldPos)
       const onDarkSide = !!(worldPos.x > 0.1)
-      const { lightLaser, turnLightOn } = getLightState(i)
-      const emissiveColor = lightLaser ? EMISSIVE_COLOR_LASER : EMISSIVE_COLOR_STANDARD
+      const { lightLaser, turnLightOn, lightLow } = getLightState(i)
+      const emissiveColor = lightLaser ? EMISSIVE_COLOR_LASER : lightLow ? EMISSIVE_COLOR_LOW : EMISSIVE_COLOR_STANDARD
       const griddyThing = griddyThingRefs.current[i].current
       griddyThing.material.emissive = onDarkSide ? emissiveColor : false
       griddyThing.userData = { bloom: onDarkSide }
@@ -79,15 +76,7 @@ export function EightSeriesHeadlights ({ locations }) {
     }
   })
 
-  const meshObjects = locations.map(({ position, name, onDarkSide, blinkingOff, turnLightOn }, i) => {
-    const envMap = {
-      "New York City": nycCubeMap,
-      'Mexico City': nycCubeMap,
-      "Hong Kong": hkCubeMap,
-      "Qingdao": hkCubeMap,
-      "Seoul": hkCubeMap,
-      "Dhaka": hkCubeMap,
-    }
+  const meshObjects = locations.map(({ position, name }, i) => {
     return (
       <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
         <mesh
@@ -100,10 +89,10 @@ export function EightSeriesHeadlights ({ locations }) {
           <meshPhysicalMaterial
             attach="material"
             color={0xeeeeee}
-            roughness={0.05}
-            envMap={envMap[name] ? envMap[name] : nycCubeMap}
-            envMapIntensity={1.8}
-            clearcoat={0.9}
+            roughness={0.1}
+            envMap={envMap}
+            envMapIntensity={1.5}
+            clearcoat={0.7}
             metalness={0.9}
             opacity={1}
             transmission={0.6}
@@ -209,8 +198,6 @@ export function EightSeriesHeadlights ({ locations }) {
     )})
   return (
     <group>
-      <WebcamImageManager src={nycSrc} handleUpdateCubeMap={setNycCubeMap} />
-      <WebcamImageManager src={hkSrc} handleUpdateCubeMap={setHkCubeMap} />
       {meshObjects}
     </group>
   );
