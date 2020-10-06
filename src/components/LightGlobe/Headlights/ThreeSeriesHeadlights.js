@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, createRef } from 'react'
 import { useLoader, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Vector3} from "three"
-import { Detailed } from "drei"
+import { Vector3 } from "three"
+import { Detailed, draco } from "drei"
 import shallow from "zustand/shallow"
 import {
   PLASTIC_COLOR,
@@ -28,6 +28,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
   const { nodes } = useLoader(
     GLTFLoader,
     process.env.PUBLIC_URL + "/three-series-high-lod.glb",
+    draco(process.env.PUBLIC_URL + "/draco-gltf/")
   );
 
   const { nodes: lowDetailNodes } = useLoader(
