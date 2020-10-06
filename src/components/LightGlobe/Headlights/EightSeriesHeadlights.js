@@ -81,21 +81,19 @@ export function EightSeriesHeadlights ({ locations }) {
       <group scale={[0.02, 0.02, 0.02 ]} key={name} position={position} ref={refs.current[i]}>
         <mesh
           visible
-          geometry={nodes['visor'].geometry}
+          geometry={lowDetailNodes['visor'].geometry}
           onClick={zoomToMesh}
           onPointerOver={handleHoverMesh}
           onPointerOut={handleUnhoverMesh}
         >
-          <meshPhysicalMaterial
+          <meshStandardMaterial
             attach="material"
             color={0xeeeeee}
-            roughness={0.1}
+            roughness={0.09}
             envMap={envMap}
-            envMapIntensity={1.5}
-            clearcoat={0.7}
+            envMapIntensity={1.4}
             metalness={0.9}
-            opacity={1}
-            transmission={0.6}
+            opacity={0.7}
             transparent
             depthWrite={false}
           />

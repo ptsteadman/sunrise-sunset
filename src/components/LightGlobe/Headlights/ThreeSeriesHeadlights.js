@@ -84,17 +84,16 @@ export function ThreeSeriesHeadlights ({ locations }) {
           onPointerOver={handleHoverMesh}
           onPointerOut={handleUnhoverMesh}
         >
-          <meshPhysicalMaterial
+          <meshStandardMaterial
             attach="material"
             color={0xeeeeee}
             roughness={0.1}
-            clearcoat={0.8}
-            metalness={0.9}
-            opacity={1}
+            metalness={0.95}
+            opacity={0.7}
             transparent
             depthWrite={false}
             envMap={envMap}
-            envMapIntensity={1.5}
+            envMapIntensity={1.4}
           />
         </mesh>
         <mesh visible ref={bulbRefs.current[i]} geometry={nodes['bulbs'].geometry}>

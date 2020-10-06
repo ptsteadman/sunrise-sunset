@@ -71,7 +71,7 @@ export function WebcamImageManager ({ locations }) {
         userData={{ hidden: true }}
         position={[nycLocation.position[0] * 1.1, nycLocation.position[1] * 1.1, nycLocation.position[2] * 1.1]}
       >
-         <planeGeometry args={[12, 8]} />
+         <planeGeometry args={[13, 8]} />
          <meshBasicMaterial alphaMap={edgeBlur} transparent color={0xbbbbbb} />
       </mesh>
       <mesh
