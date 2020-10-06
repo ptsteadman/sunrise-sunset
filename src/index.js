@@ -36,7 +36,7 @@ function App() {
             : <LoadingIndicator />
         }
         <CameraRig />
-        <Stars factor={2.5} saturation={0.3} fade />
+        <Stars factor={2.2} saturation={0.3} fade />
         <Stats />
         <Effects />
       </Canvas>
