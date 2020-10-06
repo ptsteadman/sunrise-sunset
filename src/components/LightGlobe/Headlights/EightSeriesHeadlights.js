@@ -98,7 +98,7 @@ export function EightSeriesHeadlights ({ locations }) {
             depthWrite={false}
           />
         </mesh>
-        <Detailed distances={[0, 3.8]}>
+        <Detailed distances={[0, 3.5]}>
           <mesh visible geometry={nodes['headlight-simpler'].geometry}>
             <meshStandardMaterial
               attach="material"
@@ -116,29 +116,27 @@ export function EightSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <Detailed distances={[0, 2]}>
+        <Detailed distances={[0, 1.75]}>
           <mesh>
-            <mesh ref={griddyThingRefs.current[i]} visible geometry={nodes['griddy-thing'].geometry}>
-              <meshPhysicalMaterial
+            <mesh ref={griddyThingRefs.current[i]} visible geometry={lowDetailNodes['griddy-thing'].geometry}>
+              <meshStandardMaterial
                 attach="material"
                 color={PLASTIC_COLOR}
-                roughness={0.2}
-                metalness={0.8}
-                opacity={1}
+                roughness={0.1}
+                metalness={0.9}
+                opacity={0.3}
                 transparent
-                transmission={0.94}
                 depthWrite={false}
               />
             </mesh>
             <mesh ref={griddyThingInsideRefs.current[i]} visible geometry={nodes['griddy-thing'].geometry}>
-              <meshPhysicalMaterial
+              <meshStandardMaterial
                 attach="material"
                 color={PLASTIC_COLOR}
-                roughness={0.2}
-                metalness={0.8}
-                opacity={1}
+                roughness={0.1}
+                metalness={0.9}
+                opacity={0.4}
                 transparent
-                transmission={0.4}
                 depthWrite={false}
                 side={BackSide}
               />
@@ -148,8 +146,8 @@ export function EightSeriesHeadlights ({ locations }) {
             <meshStandardMaterial
               attach="material"
               color={PLASTIC_COLOR}
-              roughness={0.2}
-              metalness={0.8}
+              roughness={0.1}
+              metalness={0.9}
               depthWrite={false}
             />
           </mesh>

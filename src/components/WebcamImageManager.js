@@ -63,12 +63,11 @@ export function WebcamImageManager ({ locations }) {
         ref={cubeCamera}
         position={[0, 0, 0]}
         // i. notice how the renderTarget is passed as a constructor argument of the cubeCamera object
-        args={[0.1, 100, renderTarget]}
+        args={[0.1, 25, renderTarget]}
       />
       <mesh
         layers={[11]}
         ref={nycWebcamRef}
-        userData={{ hidden: true }}
         position={[nycLocation.position[0] * 1.1, nycLocation.position[1] * 1.1, nycLocation.position[2] * 1.1]}
       >
          <planeGeometry args={[13, 8]} />

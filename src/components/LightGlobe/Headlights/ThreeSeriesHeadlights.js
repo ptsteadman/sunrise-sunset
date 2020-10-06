@@ -171,7 +171,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <Detailed distances={[0, 3.8]}>
+        <Detailed distances={[0, 3.2]}>
           <mesh visible geometry={nodes['outer-liner'].geometry}>
             <meshStandardMaterial
               attach="material"
@@ -189,7 +189,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <Detailed distances={[0, 3.7]}>
+        <Detailed distances={[0, 3.5]}>
           <mesh visible geometry={nodes['hanger'].geometry}>
             <meshStandardMaterial
               attach="material"
@@ -207,7 +207,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             />
           </mesh>
         </Detailed>
-        <Detailed distances={[0, 2]}>
+        <Detailed distances={[0, 1]}>
           <mesh visible geometry={nodes['inner-body'].geometry}>
             <meshStandardMaterial
               attach="material"
