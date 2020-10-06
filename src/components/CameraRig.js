@@ -53,6 +53,6 @@ export function CameraRig () {
 
 
   return (
-    <OrbitControls ref={orbitControlsRef} enableDamping minDistance={RADIUS + 0.2} maxDistance={20} enablePan={false} zoomSpeed={0.2} />
+    <OrbitControls ref={orbitControlsRef} dampingFactor={0.1} enableDamping minDistance={RADIUS + 0.2} maxDistance={20} enablePan={false} zoomSpeed={0.2} />
   )
 }

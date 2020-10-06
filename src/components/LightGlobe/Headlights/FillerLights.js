@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react'
 import * as THREE from 'three'
 import { useLoader, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { draco } from "drei";
 import { calculateAngleForTime } from "../../../lib"
 
 const dummy = new THREE.Object3D();
@@ -34,8 +33,7 @@ function initInstancedMesh(instanced, locations, lightGuide) {
 export function FillerLights ({ locations }) {
   const { nodes } = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/laser.glb",
-    draco(process.env.PUBLIC_URL + "/draco-gltf/")
+    process.env.PUBLIC_URL + "/laser.glb"
   )
 
   const instancedMeshVisor = useRef()

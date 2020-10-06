@@ -14,7 +14,7 @@ import { WebcamImageManager } from "../WebcamImageManager"
 import { Oceans } from "./Oceans"
 import { RADIUS } from "../../constants"
 
-const PRECISION = 7
+const PRECISION = 7.5
 
 export function LightGlobe ({ cities }) {
   const group = useRef()

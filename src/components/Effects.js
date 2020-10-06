@@ -21,8 +21,6 @@ const restoreMaterial = obj => materials[obj.uuid] && ((obj.material = materials
 
 export function Effects() {
   const { gl, scene, camera, size } = useThree()
-  // const bloomStrength = useControl('Bloom Strength', { type: 'number', value: 2.3 })
-  // const bloomThreshold = useControl('Bloom Threshold', { type: 'number', value: 0.2 })
   const bloomStrength = 1.8
   const bloomThreshold = 0.23
 
@@ -58,7 +56,6 @@ export function Effects() {
   useFrame(({ scene, camera }) => {
     // https://github.com/mrdoob/three.js/blob/master/examples/webgl_postprocessing_unreal_bloom_selective.html
     // this seems kinda dirty, it mutates the scene and overwrites materials
-    // camera.layers.enable(11)
     scene.traverse(darkenNonBloomed)
     bloom.render()
     scene.traverse(restoreMaterial)

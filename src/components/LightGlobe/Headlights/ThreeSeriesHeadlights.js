@@ -25,17 +25,21 @@ export function ThreeSeriesHeadlights ({ locations }) {
     state.handleUnhoverMesh
   ], shallow)
 
-  const { nodes } = useLoader(
+  // const { nodes } = useGLTF(process.env.PUBLIC_URL + "/three-series-high-lod.glb")
+  // const { nodes: lowDetailNodes } = useGLTF(process.env.PUBLIC_URL + "/three-series-low-lod.glb")
+  const [highLod, lowLod] = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "/three-series-high-lod.glb",
-    draco(process.env.PUBLIC_URL + "/draco-gltf/")
+    [process.env.PUBLIC_URL + "/three-series-high-lod.glb", process.env.PUBLIC_URL + "/three-series-low-lod.glb"],
+    draco("https://www.gstatic.com/draco/v1/decoders/")
   );
+  const { nodes } = highLod
+  const { nodes: lowDetailNodes } = lowLod
+  // console.log('nodes:', nodes);
 
-  const { nodes: lowDetailNodes } = useLoader(
-    GLTFLoader,
-    process.env.PUBLIC_URL + "/three-series-low-lod.glb",
-  );
-
+  // const { nodes: lowDetailNodes } = useLoader(
+  //   GLTFLoader,
+  //   process.env.PUBLIC_URL + "/three-series-low-lod.glb",
+  // );
 
   const refs = useRef(locations.map(() => createRef()))
   const griddyThingRefs = useRef(locations.map(() => createRef()))

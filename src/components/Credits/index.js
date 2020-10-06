@@ -9,7 +9,7 @@ export default () => {
         href="https://www.frieze.com/madeline-hollander-2020-sunrise-sunset"
         target="_blank"
       >
-        Sunrise/Sunset
+        Sunrise / Sunset
       </a>
       <br />
       <a
