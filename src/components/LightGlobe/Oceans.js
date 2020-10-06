@@ -2,8 +2,8 @@ import React from "react"
 import { useTextureLoader } from "drei"
 import { Vector2, RepeatWrapping } from "three"
 
-const WIDTH_SEGMENTS = 25
-const HEIGHT_SEGMENTS = 25
+const WIDTH_SEGMENTS = 26
+const HEIGHT_SEGMENTS = 26
 
 export function Oceans ({ radius }) {
   const topo = useTextureLoader(process.env.PUBLIC_URL + '/topo.png')
