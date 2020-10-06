@@ -5,7 +5,7 @@ export default () => {
     <div className="credits">
       <a
         rel="noopener noreferrer"
-        href="https://bortolamigallery.com/artist/madeline-hollander/bio/"
+        href="https://www.frieze.com/madeline-hollander-2020-sunrise-sunset"
         target="_blank"
       >
         Sunrise / Sunset
@@ -13,7 +13,7 @@ export default () => {
       <br />
       <a
         rel="noopener noreferrer"
-        href="https://bortolamigallery.com/artist/madeline-hollander/bio/"
+        href="https://www.frieze.com/madeline-hollander-2020-sunrise-sunset"
         target="_blank"
       >
         Madeline Hollander
