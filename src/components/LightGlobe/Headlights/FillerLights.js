@@ -56,13 +56,13 @@ export function FillerLights ({ locations }) {
 
   return (
     <group>
-      <instancedMesh ref={instancedMeshVisor} userData={{ bloom: true }} geometry={nodes['visor'].geometry} args={[null, null, locations.length]} >
+      <instancedMesh ref={instancedMeshVisor} geometry={nodes['visor'].geometry} args={[null, null, locations.length]} >
         <meshStandardMaterial
           attach="material"
-          color={0xccccff}
+          color={0xcccccc}
           roughness={0.05}
           metalness={0.9}
-          opacity={0.7}
+          opacity={0.6}
           transparent
           depthWrite={false}
         />

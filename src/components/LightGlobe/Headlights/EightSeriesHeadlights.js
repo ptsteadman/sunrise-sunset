@@ -91,7 +91,7 @@ export function EightSeriesHeadlights ({ locations }) {
             color={0xeeeeee}
             roughness={0.09}
             envMap={envMap}
-            envMapIntensity={1.4}
+            envMapIntensity={1.5}
             metalness={0.9}
             opacity={0.7}
             transparent

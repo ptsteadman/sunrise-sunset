@@ -93,7 +93,7 @@ export function ThreeSeriesHeadlights ({ locations }) {
             transparent
             depthWrite={false}
             envMap={envMap}
-            envMapIntensity={1.4}
+            envMapIntensity={1.5}
           />
         </mesh>
         <mesh visible ref={bulbRefs.current[i]} geometry={nodes['bulbs'].geometry}>
