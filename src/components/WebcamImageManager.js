@@ -26,11 +26,11 @@ export function WebcamImageManager ({ locations }) {
   useFrame(({ gl, scene, camera }) => {
     const newNycSrc = `${corsProxy}/${nycSrc}&rand=${Math.floor(new Date().getTime() / 1000)}`
     const newHkSrc = `${corsProxy}/${hkSrc}&rand=${Math.floor(new Date().getTime() / 10000)}`
-    cubeCamera.current.update(gl, scene)
     if (newHkSrc !== hkImgRef.current.src) {
       hkImgRef.current.src = newHkSrc
     }
     if (newNycSrc !== nycImgRef.current.src) {
+      cubeCamera.current.update(gl, scene)
       nycImgRef.current.src = newNycSrc
       cubeCamera.current.rotation.y = - calculateAngleForTime()
       setEnvMap(renderTarget.texture)
