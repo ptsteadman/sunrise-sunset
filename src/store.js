@@ -16,7 +16,7 @@ export const useStore = create(set => ({
     const headlightPos = e.object.getWorldPosition(worldPos)
     if (headlightPos.x === 0 && headlightPos.y === 0 && headlightPos.z === 0) return console.log('zero')
     return set(state => ({
-      zoomTarget: headlightPos.multiplyScalar(1.1)
+      zoomTarget: headlightPos.multiplyScalar(1.08)
     }))
   },
   handleHoverMesh: (e) => {

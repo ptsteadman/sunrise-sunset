@@ -25,8 +25,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
     state.handleUnhoverMesh
   ], shallow)
 
-  // const { nodes } = useGLTF(process.env.PUBLIC_URL + "/three-series-high-lod.glb")
-  // const { nodes: lowDetailNodes } = useGLTF(process.env.PUBLIC_URL + "/three-series-low-lod.glb")
   const [highLod, lowLod] = useLoader(
     GLTFLoader,
     [process.env.PUBLIC_URL + "/three-series-high-lod.glb", process.env.PUBLIC_URL + "/three-series-low-lod.glb"],
@@ -34,12 +32,6 @@ export function ThreeSeriesHeadlights ({ locations }) {
   );
   const { nodes } = highLod
   const { nodes: lowDetailNodes } = lowLod
-  // console.log('nodes:', nodes);
-
-  // const { nodes: lowDetailNodes } = useLoader(
-  //   GLTFLoader,
-  //   process.env.PUBLIC_URL + "/three-series-low-lod.glb",
-  // );
 
   const refs = useRef(locations.map(() => createRef()))
   const griddyThingRefs = useRef(locations.map(() => createRef()))

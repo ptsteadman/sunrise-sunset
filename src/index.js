@@ -7,7 +7,7 @@ import { Canvas } from "react-three-fiber"
 import cities from "./lib/cities.json"
 import Lights from "./components/Lights"
 import { LightGlobe } from "./components/LightGlobe/LightGlobe"
-// import { Stats } from "drei"
+import { Stats } from "drei"
 import { LoadingIndicator } from "./components/LoadingIndicator"
 import { BG_COLOR, IS_LIVE } from "./constants"
 import { Effects } from "./components/Effects"
@@ -37,7 +37,7 @@ function App() {
         }
         <CameraRig />
         <Stars factor={2.5} saturation={0.3} fade />
-        {/* <Stats /> */}
+        <Stats />
         <Effects />
       </Canvas>
     </>
